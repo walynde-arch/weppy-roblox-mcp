@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 
 
+
+## [2.7.2] - 2026-05-06
+
+### Stability
+
+- **Stability hardening** — Internal reliability improvements across the MCP server and Roblox Studio plugin, including more robust instance resolution, unified metadata serialization, and structured error classification with clearer origin and recoverability information. No behavior changes for existing workflows.
+
+### Improvements
+
+- **Dashboard UI polish** — The dashboard has been refreshed with a consolidated semantic color system and refined analytics event tracking, giving a more consistent look-and-feel across pages and cleaner navigation context.
+
 ## [2.7.1] - 2026-05-05
 
 ### Improvements
