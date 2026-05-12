@@ -6,6 +6,13 @@ All notable changes to this project will be documented in this file.
 
 
 
+
+## [2.7.5] - 2026-05-12
+
+### Stability
+
+- **Stability hardening** — Internal reliability improvements across the MCP server and Roblox Studio plugin. No behavior changes for existing workflows.
+
 ## [2.7.4] - 2026-05-10
 
 ### Stability
