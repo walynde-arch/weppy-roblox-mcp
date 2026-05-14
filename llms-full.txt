@@ -12,13 +12,13 @@ Canonical documentation lives on the web:
 
 For app-specific setup, open the web install page and choose the relevant AI client guide.
 
-Optional WEPPY AI Agent Plugin:
+Optional WEPPY Roblox AI Toolkit:
 
 - Claude Code:
 
 ```bash
 claude plugin marketplace add hope1026/weppy-roblox-mcp --scope user
-claude plugin install weppy-roblox-mcp@hope1026-roblox-mcp --scope user
+claude plugin install weppy-roblox-ai-toolkit@hope1026-roblox-mcp --scope user
 ```
 
 - Codex:
@@ -27,4 +27,4 @@ claude plugin install weppy-roblox-mcp@hope1026-roblox-mcp --scope user
 codex plugin marketplace add hope1026/weppy-roblox-mcp
 ```
 
-After adding the Codex marketplace, restart Codex, open Plugin Directory, and install WEPPY Roblox MCP.
+After adding the Codex marketplace, restart Codex, open Plugin Directory, and install WEPPY Roblox AI Toolkit.

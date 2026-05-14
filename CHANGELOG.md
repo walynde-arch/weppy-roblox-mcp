@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 
 
 
+
+## [2.7.7] - 2026-05-14
+
+### Bug Fixes
+
+- **Codex Plugin Directory installation** — The Codex marketplace entry now uses the installable plugin metadata expected by Codex and appears as **WEPPY Roblox AI Toolkit**. The MCP server id and npm command stay unchanged, while Codex users can install the plugin and load the included WEPPY skills from Plugin Directory.
+
+### Documentation
+
+- **Clearer Claude Code and Codex setup names** — Install guides now use the same plugin id and display name across the public README, one-line installer guidance, and website docs, reducing confusion between the MCP server and the agent plugin.
+
 ## [2.7.6] - 2026-05-14
 
 ### Features

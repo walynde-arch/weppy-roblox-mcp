@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Verify — public repo WEPPY AI Agent Plugin layout
+      - name: Verify — public repo WEPPY Roblox AI Toolkit layout
         run: |
           node <<'NODE'
           const fs = require('fs');
@@ -83,9 +83,28 @@ jobs:
 
           const claudePlugin = JSON.parse(fs.readFileSync(path.join(root, 'plugins/weppy-roblox-mcp/.claude-plugin/plugin.json'), 'utf8'));
           const codexPlugin = JSON.parse(fs.readFileSync(path.join(root, 'plugins/weppy-roblox-mcp/.codex-plugin/plugin.json'), 'utf8'));
+          const codexMarketplace = JSON.parse(fs.readFileSync(path.join(root, '.agents/plugins/marketplace.json'), 'utf8'));
           const codexMcp = JSON.parse(fs.readFileSync(path.join(root, 'plugins/weppy-roblox-mcp/.mcp.json'), 'utf8'));
           const expected = { command: 'npx', args: ['-y', '@weppy/roblox-mcp@latest'] };
 
+          if (codexMarketplace.interface?.displayName !== 'WEPPY Roblox AI Toolkit') {
+            throw new Error('Codex marketplace display name must be WEPPY Roblox AI Toolkit');
+          }
+          if (codexMarketplace.plugins?.[0]?.name !== 'weppy-roblox-ai-toolkit') {
+            throw new Error('Codex marketplace plugin id must be weppy-roblox-ai-toolkit');
+          }
+          if (JSON.stringify(codexMarketplace.plugins?.[0]?.source) !== JSON.stringify({ source: 'local', path: './plugins/weppy-roblox-mcp' })) {
+            throw new Error('Codex marketplace source must point to local plugin path');
+          }
+          if (claudePlugin.name !== 'weppy-roblox-ai-toolkit') {
+            throw new Error('Claude plugin id must be weppy-roblox-ai-toolkit');
+          }
+          if (codexPlugin.name !== 'weppy-roblox-ai-toolkit') {
+            throw new Error('Codex plugin id must be weppy-roblox-ai-toolkit');
+          }
+          if (codexPlugin.interface?.displayName !== 'WEPPY Roblox AI Toolkit') {
+            throw new Error('Codex plugin display name must be WEPPY Roblox AI Toolkit');
+          }
           if (JSON.stringify(claudePlugin.mcpServers?.['weppy-roblox-mcp']) !== JSON.stringify(expected)) {
             throw new Error('Claude plugin MCP command is not @latest npm command');
           }
@@ -145,7 +164,7 @@ jobs:
             throw new Error('mcp-actions.md must be generated from tool-codegen');
           }
 
-          console.log('✓ Public repo WEPPY AI Agent Plugin layout verified');
+          console.log('✓ Public repo WEPPY Roblox AI Toolkit layout verified');
           NODE
 
       - name: Verify — npm package runtime tarball shape
@@ -303,7 +322,7 @@ jobs:
             ls -la "$HOME/.claude" || true
             exit 1
           fi
-          if ! grep -q 'weppy-roblox-mcp@hope1026-roblox-mcp' "$HOME/.claude/weppy-plugin-installed"; then
+          if ! grep -q 'weppy-roblox-ai-toolkit@hope1026-roblox-mcp' "$HOME/.claude/weppy-plugin-installed"; then
             echo "❌ Claude Code plugin install was not called"
             ls -la "$HOME/.claude" || true
             exit 1
@@ -491,7 +510,7 @@ jobs:
             Get-ChildItem $claudeDir -Force
             exit 1
           }
-          if (-not ((Get-Content $pluginMarker -Raw) -match 'weppy-roblox-mcp@hope1026-roblox-mcp')) {
+          if (-not ((Get-Content $pluginMarker -Raw) -match 'weppy-roblox-ai-toolkit@hope1026-roblox-mcp')) {
             Write-Error "❌ Claude Code plugin install was not called"
             Get-ChildItem $claudeDir -Force
             exit 1

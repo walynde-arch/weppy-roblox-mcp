@@ -5,15 +5,15 @@
     "email": "hope841026@gmail.com"
   },
   "metadata": {
-    "description": "WEPPY Roblox MCP — WEPPY AI Agent Plugin and MCP setup for live Roblox Studio workflows with direct Studio control, sync, playtest, UI Studio, and dashboard monitoring",
-    "version": "2.7.6"
+    "description": "WEPPY Roblox AI Toolkit — WEPPY AI Agent Plugin and MCP setup for live Roblox Studio workflows with direct Studio control, sync, playtest, UI Studio, and dashboard monitoring",
+    "version": "2.7.7"
   },
   "plugins": [
     {
-      "name": "weppy-roblox-mcp",
+      "name": "weppy-roblox-ai-toolkit",
       "source": "./plugins/weppy-roblox-mcp",
-      "description": "WEPPY Roblox MCP — WEPPY AI Agent Plugin and MCP setup for live Roblox Studio workflows.",
-      "version": "2.7.6",
+      "description": "WEPPY Roblox AI Toolkit — WEPPY AI Agent Plugin and MCP setup for live Roblox Studio workflows.",
+      "version": "2.7.7",
       "author": {
         "name": "hope1026"
       },

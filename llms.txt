@@ -38,15 +38,15 @@ irm https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/install.ps1
 
 Safari / Firefox users should open the web install page and follow the browser-specific guide there.
 
-## Optional WEPPY AI Agent Plugin
+## Optional WEPPY Roblox AI Toolkit
 
-Claude Code and Codex can also use the WEPPY AI Agent Plugin.
+Claude Code and Codex can also use the WEPPY Roblox AI Toolkit.
 
 Claude Code:
 
 ```bash
 claude plugin marketplace add hope1026/weppy-roblox-mcp --scope user
-claude plugin install weppy-roblox-mcp@hope1026-roblox-mcp --scope user
+claude plugin install weppy-roblox-ai-toolkit@hope1026-roblox-mcp --scope user
 ```
 
 Codex:
@@ -55,7 +55,7 @@ Codex:
 codex plugin marketplace add hope1026/weppy-roblox-mcp
 ```
 
-After adding the Codex marketplace, restart Codex, open Plugin Directory, and install WEPPY Roblox MCP.
+After adding the Codex marketplace, restart Codex, open Plugin Directory, and install WEPPY Roblox AI Toolkit.
 
 ## Tiers
 
