@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 
 
+## [2.7.15] - 2026-06-03
+
+### Stability
+
+- **Release package cleanup** — Rebuilds the v2.7 release line from the last stable baseline while keeping the v2.7.13 and v2.7.14 stability fixes below. Existing Dashboard, Sync, UI Studio, Changelog, Playtest, Tools, and Settings workflows continue to work normally.
+- **Unfinished Dashboard Assets work rolled back** — An in-development Assets page and Roblox upload controls were included in v2.7.13 and v2.7.14 before they were ready. v2.7.15 removes that unfinished surface from release builds. We are sorry for the confusion this caused.
 
 ## [2.7.14] - 2026-06-03
 
