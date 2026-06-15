@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 
 
 
+
+## [2.8.1] - 2026-06-15
+
+### Features
+
+- **Playtest controls now live under Studio actions** — AI agents and direct MCP users should use `manage_studio.play_start`, `manage_studio.play_stop`, `manage_studio.play_pause`, `manage_studio.play_resume`, `manage_studio.play_status`, and `manage_studio.run_test` for Playtest workflows. The older `system_info` Playtest aliases are no longer the documented path, keeping `system_info` focused on read-only status and diagnostics.
+
+### Bug Fixes
+
+- **Fix Play Stop cases that required a retry** — Stopping a Playtest now handles cases where Roblox Studio creates multiple plugin connections after Play starts. WEPPY no longer relies on only one connection for Stop, and cleanup checks the Playtest status when it needs confirmation that Studio returned to Edit mode. This reduces cases where the AI asks Studio to stop but the test keeps running until you retry.
+
 ## [2.8.0] - 2026-06-14
 
 ### Features
