@@ -977,7 +977,7 @@ get suggested camera view for a target.
 
 ### `manage_camera.screenshot`
 
-**EDIT MODE ONLY — DO NOT call during an active playtest.** Captures the current Studio Edit-mode viewport as a PNG image (MCP image content). Pre-check: call system_info.play_status and only proceed when state == "edit"; the handler will fail with a clear error if a playtest is running. Requires the Studio setting "Allow Mesh / Image APIs" (Game Settings > Security). v1 does not support Play-mode capture because Roblox blocks converting CaptureService temporary contentId into EditableImage outside the edit DM plugin context (confirmed by Roblox engineers on devforum).
+**EDIT MODE ONLY — DO NOT call during an active playtest.** Captures the current Studio Edit-mode viewport as a PNG image (MCP image content). Pre-check: call manage_studio.play_status and only proceed when state == "edit". The handler will fail with a clear error if a playtest is running. Requires the Studio setting "Allow Mesh / Image APIs" (Game Settings > Security). v1 does not support Play-mode capture because Roblox blocks converting CaptureService temporary contentId into EditableImage outside the edit DM plugin context (confirmed by Roblox engineers on devforum).
 
 - Tier: `pro`
 - Route: `plugin`
@@ -2157,7 +2157,7 @@ quick access to recent errors only.
 
 ## Tool: `system_info`
 
-System info: ping, connection status, usage tier. [PRO] place info, services list, studio settings, playtest control, automated test runner.
+System info: ping, connection status, usage tier. [PRO] place info, services list, studio settings.
 
 ### `system_info.ping`
 
@@ -2214,71 +2214,9 @@ System info: ping, connection status, usage tier. [PRO] place info, services lis
 - Required params: none
 - Optional params: none
 
-### `system_info.play`
-
-- Tier: `pro`
-- Route: `plugin`
-- Execution mode: `unspecified`
-- Param aliases: none
-- Required params: none
-- Optional params:
-  - `mode` - "play" | "run" - Playtest mode. "play" = Play mode (F5, default), "run" = Run mode (F8). Used by: play, run_test.
-
-### `system_info.stop`
-
-- Tier: `pro`
-- Route: `plugin`
-- Execution mode: `unspecified`
-- Param aliases: none
-- Required params: none
-- Optional params: none
-
-### `system_info.pause`
-
-- Tier: `pro`
-- Route: `plugin`
-- Execution mode: `unspecified`
-- Param aliases: none
-- Required params: none
-- Optional params: none
-
-### `system_info.resume`
-
-- Tier: `pro`
-- Route: `plugin`
-- Execution mode: `unspecified`
-- Param aliases: none
-- Required params: none
-- Optional params: none
-
-### `system_info.play_status`
-
-- Tier: `pro`
-- Route: `plugin`
-- Execution mode: `unspecified`
-- Param aliases: none
-- Required params: none
-- Optional params: none
-
-### `system_info.run_test`
-
-- Tier: `pro`
-- Route: `internal`
-- Execution mode: `unspecified`
-- Param aliases: none
-- Required params:
-  - `script` - string - Luau test body to inject into ServerScriptService.__MCP_TestRunner. Used by: run_test.
-- Optional params:
-  - `mode` - "play" | "run" - Playtest mode. "play" = Play mode (F5, default), "run" = Run mode (F8). Used by: play, run_test.
-  - `test_name` - string - Optional report display name for the automated playtest run. Used by: run_test.
-  - `timeout` - number - Timeout in seconds for the automated playtest run. Default: 60. Maximum: 300. Used by: run_test.
-  - `contextId` - string - Optional execution context identifier. Used to continue an existing context for mutating actions.
-  - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
-  - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
-
 ## Tool: `manage_studio`
 
-Control Roblox Studio editor view/rendering settings for screenshot and QA workflows. Use it to toggle Studio session-level View settings such as UI preview; it does not edit game UI objects or their properties.
+Control Roblox Studio state for playtest lifecycle, automated test runs, and editor view/rendering QA workflows. Use it for state-changing playtest controls and Studio session-level View settings such as UI preview; it does not edit game UI objects or their properties.
 
 ### `manage_studio.toggle_ui_preview`
 
@@ -2289,6 +2227,68 @@ Control Roblox Studio editor view/rendering settings for screenshot and QA workf
 - Required params: none
 - Optional params:
   - `enabled` - boolean - Boolean value to set. Omit to toggle the current value. Used by: toggle_ui_preview (optional).
+
+### `manage_studio.play_start`
+
+- Tier: `pro`
+- Route: `plugin`
+- Execution mode: `unspecified`
+- Param aliases: none
+- Required params: none
+- Optional params:
+  - `mode` - "play" | "run" - Playtest mode. "play" = Play mode (F5, default), "run" = Run mode (F8). Used by: play_start, run_test.
+
+### `manage_studio.play_stop`
+
+- Tier: `pro`
+- Route: `plugin`
+- Execution mode: `unspecified`
+- Param aliases: none
+- Required params: none
+- Optional params: none
+
+### `manage_studio.play_pause`
+
+- Tier: `pro`
+- Route: `plugin`
+- Execution mode: `unspecified`
+- Param aliases: none
+- Required params: none
+- Optional params: none
+
+### `manage_studio.play_resume`
+
+- Tier: `pro`
+- Route: `plugin`
+- Execution mode: `unspecified`
+- Param aliases: none
+- Required params: none
+- Optional params: none
+
+### `manage_studio.play_status`
+
+- Tier: `pro`
+- Route: `plugin`
+- Execution mode: `readonly`
+- Param aliases: none
+- Required params: none
+- Optional params: none
+
+### `manage_studio.run_test`
+
+- Tier: `pro`
+- Route: `internal`
+- Execution mode: `unspecified`
+- Param aliases: none
+- Required params:
+  - `script` - string - Luau test body to inject into ServerScriptService.__MCP_TestRunner. Used by: run_test.
+- Optional params:
+  - `mode` - "play" | "run" - Playtest mode. "play" = Play mode (F5, default), "run" = Run mode (F8). Used by: play_start, run_test.
+  - `test_name` - string - Optional report display name for the automated playtest run. Used by: run_test.
+  - `timeout` - number - Timeout in seconds for the automated playtest run. Default: 60. Maximum: 300. Used by: run_test.
+  - `contextId` - string - Optional execution context identifier. Used to continue an existing context for mutating actions.
+  - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
+  - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
 
 ## Tool: `batch_execute`
 
