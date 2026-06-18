@@ -2,7 +2,7 @@
 
 > **WEPPY** is an MCP server that lets AI coding agents control a live Roblox Studio session - create and edit scripts, instances, terrain, lighting, assets, audio, and animations through natural language.
 
-**Action-based tool surface · Bidirectional sync · Automated playtest · UI Studio · Multi-place support**
+**Multi-Place Studio work · Generated assets to Roblox · Bidirectional sync · Automated playtest · UI Studio**
 
 **English** | [한국어](https://weppyai.com/ko) | [日本語](https://weppyai.com/ja) | [Español](https://weppyai.com/es) | [Português](https://weppyai.com/pt-br) | [Bahasa Indonesia](https://weppyai.com/id) | [Deutsch](https://weppyai.com/de)
 
@@ -14,7 +14,11 @@ AI coding agents like Claude, Codex, and Gemini are powerful, but they cannot se
 
 **WEPPY** bridges AI agents and Roblox Studio. AI directly creates and modifies instances, scripts, properties, terrain, and more inside Studio, and the changes are reflected immediately in Studio and the dashboard so you can see exactly what changed.
 
-No copy-pasting code. AI does the work, you review the results.
+WEPPY is also built for Roblox experiences that are split across several Places. Open up to five Studio windows for Lobby, Game, Shop, Tutorial, or other Places, then tell the agent which Studio ID to use. One request can update several Places without re-explaining context or copying changes by hand.
+
+For assets, an agent can create or prepare an image, save it to the Asset Library, upload it through Roblox Open Cloud, and apply the returned asset URI to a Place. The result is a shorter path from "make this icon/decal" to "it is visible in Studio."
+
+No copy-pasting code or asset IDs. AI does the work, you review the results.
 
 ## Quick Install
 
@@ -100,16 +104,38 @@ AI can directly handle scripts, instances, properties, terrain, lighting, assets
 - "Generate terrain with mountains and rivers, then place spawn points on flat areas."
 - "Search the Creator Store for a sword model and insert it into StarterPack."
 
-### 2) Sync: Keep full project context stable for AI
+### 2) Multi-Place work: Split one request across several Studio windows
+
+Many Roblox experiences are not a single Place. WEPPY lets you keep up to five Studio windows connected to one MCP server, then route work by Studio ID.
+
+- Open up to five Roblox Studio windows, such as Lobby, Game, Shop, or Tutorial
+- Ask once: "In studio-1, add the event portal to Lobby. In studio-2, add the arrival point and guide UI to Game."
+- Use Dashboard Connection to see every AI agent, Studio Target, copyable Studio ID, and routing state
+- Work with the multi-Studio flow also documented by [Roblox's official Studio MCP guide](https://create.roblox.com/docs/studio/mcp), with WEPPY's dashboard visibility on top
+
+![WEPPY Dashboard Connection - multiple AI agents and Studio Targets connected to one MCP server](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_connection.png)
+
+### 3) Assets: Generate, upload, and apply images in Studio
+
+WEPPY Assets turns a natural-language asset request into a Studio-ready result.
+
+- "Create a gem icon for the shop button, upload it to Roblox, then apply it to the ShopButton image in the Lobby Place."
+- Save generated images, Decals, and RBXM files to the local Asset Library
+- Upload images through Roblox Open Cloud and reuse place-specific or shared assets
+- Apply the returned asset URI to ImageLabel, Decal, Texture, or other Studio properties
+
+![WEPPY Dashboard Assets - local Asset Library items and Roblox upload status](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_assets.png)
+
+### 4) Sync: Keep full project context stable for AI
 
 AI works from a synchronized local mirror, so multi-file updates stay consistent.
 
 - Basic: one-way sync (Studio -> Local)
-- Pro: bidirectional sync + per-type Direction/Apply Mode + history + multi-place
+- Pro: bidirectional sync + per-type Direction/Apply Mode + history + up to five Places
 
 ![Sync workflow - Studio and local files synchronized in real time](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/plugin/sync/sync-overview.png)
 
-### 3) Playtest: Let AI run and verify tests automatically
+### 5) Playtest: Let AI run and verify tests automatically
 
 AI can control Roblox Studio playtests directly. It can start and stop Play (F5) or Run (F8), inject test scripts, collect logs, and generate local reports automatically.
 
@@ -119,7 +145,7 @@ AI can control Roblox Studio playtests directly. It can start and stop Play (F5)
 
 ![WEPPY Playtest Dashboard - Test history and detailed report](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_playtest.png)
 
-### 4) UI Studio: Build and inspect in-game UI
+### 6) UI Studio: Build and inspect in-game UI
 
 UI Studio lets AI agents create in-game UI that matches your game's style, or analyze the UI you already have and suggest improvements.
 
@@ -129,17 +155,20 @@ UI Studio lets AI agents create in-game UI that matches your game's style, or an
 
 ![WEPPY UI Studio - Roblox Studio showing AI-generated in-game UI](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_ui_roblox_studio.png)
 
-### 5) WEPPY Dashboard: Monitor AI work in real time
+### 7) WEPPY Dashboard: Monitor AI work in real time
 
 The MCP server provides a web dashboard where you can check connection status, tool execution history, sync state, UI Studio history, and game change logs in real time.
 
-- Server/Plugin/Agent connection status at a glance
+- Connection topology for AI agents, the MCP server, and connected Roblox Studio windows
+- Studio Targets with copyable Studio IDs, Priority/Pinned badges, and a link to routing controls
+- Multi-agent and multi-Studio workflows: keep several agents and up to five Studio windows visible, then tell the agent which Studio ID to use
+- Assets page for local library items, shared assets, and Roblox upload status
 - Compare every change the AI made via Before & After in Changelog
 - Analyze workflow with tool execution history, UI Studio captures, and statistics
 
 ![WEPPY Dashboard Overview - Server status, recent changes, and session summary](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_overview.png)
 
-### 6) WEPPY Roblox Explorer: Browse Studio hierarchy in VSCode
+### 8) WEPPY Roblox Explorer: Browse Studio hierarchy in VSCode
 
 View the full instance tree of your Roblox Studio place directly inside VSCode. Navigate services, open synced scripts and property files, and track sync status - all without switching to Studio.
 WEPPY Roblox Explorer is a companion VSCode extension for sync data generated by WEPPY. Tree browsing works from synced files, and live sync state or direction indicators are enhanced when the local MCP server is running.
@@ -147,22 +176,25 @@ Install from [VS Code Marketplace](https://marketplace.visualstudio.com/items?it
 
 - Class icons matching Studio for instant recognition
 - Click to open synced scripts and property files
-- Multi-place support with sync status indicators
+- Multi-place support with sync status indicators for up to five Places
 
 ![WEPPY Roblox Explorer - Studio instance tree displayed in VSCode sidebar](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/roblox-explorer/roblox-explorer-screen.png)
 
 ## Use Cases
 
 - **Rapid prototyping**: Describe a game mechanic in natural language and watch AI build it in Studio
+- **Multi-Place production**: Keep Lobby and Game open in separate Studio windows and update both from one request
 - **Bulk refactoring**: Rename a module interface and update every dependent script in one request
 - **Terrain & environment**: Generate procedural terrain, set lighting/atmosphere, place assets - all from a single prompt
 - **UI design**: Generate in-game UI, capture previews, and iterate on Design Check suggestions
 - **Multi-file consistency**: AI reads the full project via Sync and applies changes across related scripts together
-- **Asset integration**: Search the Creator Store, insert models, and configure properties without leaving your editor
+- **Generated asset integration**: Create an icon or decal, upload it to Roblox, apply it to a UI or Decal property, and keep the asset for reuse
 
 ## Why It Matters
 
 - Compress repetitive work: turn many manual edits into one request
+- Work across up to five Places without re-explaining context or copying changes between Studio windows
+- Turn generated images into applied Roblox assets without manually moving files and asset IDs
 - Change related files together: not just one target file
 - Lower risk: rely on sync state and history before applying changes
 - Better token efficiency (Pro): reduce round trips with bulk actions
@@ -200,17 +232,17 @@ Yes. Any MCP-compatible AI client works.
 Yes. AI can create instances, write scripts, generate terrain, set up lighting, insert assets, configure physics, and more - all inside a live Roblox Studio session. It goes beyond code generation to executable actions.
 
 ### What is the difference between Basic and Pro?
-Basic (Free) includes MCP tool execution and one-way sync (Studio -> Local). Pro adds bidirectional sync, UI Studio, bulk operations, terrain generation, spatial analysis, audio/animation control, and multi-place support. See the Pro upgrade page.
+Basic (Free) includes MCP tool execution and one-way sync (Studio -> Local). Pro adds multi-place work across up to five Places, Asset Library with Roblox upload, bidirectional sync, UI Studio, bulk operations, terrain generation, spatial analysis, and audio/animation control. See the Pro upgrade page.
 
 ### How is Weppy different from other Roblox MCP servers?
-Weppy uses action-based dispatching instead of separate tools for each function. This reduces AI token consumption significantly. It also provides bidirectional project sync and multi-place support, which most alternatives lack.
+Weppy uses action-based dispatching instead of separate tools for each function. This reduces AI token consumption significantly. It also combines Studio ID based multi-place work, generated asset upload/apply, bidirectional project sync, and Playtest control.
 
 ### Is it safe? Can AI break my game?
 The server runs on localhost only (127.0.0.1:3002). Forbidden paths (CoreGui, CorePackages) are blocked. Rate limiting (450 req/min) and 30-second timeouts prevent runaway operations. All changes are trackable via sync history.
 
 ## Pro Upgrade
 
-Bidirectional Sync, UI Studio, advanced build capabilities, and AI token efficiency - all in one upgrade.
+Multi-Place work, generated assets to Roblox, bidirectional Sync, UI Studio, Playtest control, and AI token efficiency - all in one upgrade.
 
 [Pro Upgrade Guide](https://weppyai.com/plans/)
 

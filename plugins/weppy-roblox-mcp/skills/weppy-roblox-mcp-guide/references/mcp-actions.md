@@ -19,6 +19,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
 - Optional params:
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.children`
 
@@ -33,6 +36,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
   - `recursive` - boolean - If true, returns all descendants instead of just immediate children. Used by: children. Default: false.
   - `maxDepth` - number - Maximum depth for recursive traversal. Used by: children (default: 10), file_tree (default: 5).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.find_child`
 
@@ -43,7 +49,10 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
 - Required params:
   - `path` - string - Instance path to query (e.g., "game.Workspace.Part"). Used by: get, children, find_child, find_descendant, wait_for_child, descendants, ancestors.
   - `childName` - string - Name of the child instance to find. Used by: find_child, wait_for_child.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.find_descendant`
 
@@ -54,7 +63,10 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
 - Required params:
   - `path` - string - Instance path to query (e.g., "game.Workspace.Part"). Used by: get, children, find_child, find_descendant, wait_for_child, descendants, ancestors.
   - `descendantName` - string - Name of the descendant instance to find. Used by: find_descendant.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.wait_for_child`
 
@@ -67,6 +79,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `childName` - string - Name of the child instance to find. Used by: find_child, wait_for_child.
 - Optional params:
   - `timeout` - number - Maximum time to wait in seconds. Used by: wait_for_child. Default: 5. Maximum: 30.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.class_info`
 
@@ -76,7 +91,10 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
 - Param aliases: none
 - Required params:
   - `className` - string - Roblox class name. Used by: find_child/find_descendant (optional filter), class_info (required), search_class (required).
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.search_name`
 
@@ -91,6 +109,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `root` - string - Root path to search/scan from. Used by: search_name, search_class, search_property, search_tag, file_tree, project_structure. Default: "game".
   - `caseSensitive` - boolean - Case-sensitive name search. Used by: search_name. Default: false.
   - `maxResults` - number - Maximum results to return. Used by: search_name, search_class, search_property, search_tag, descendants. Default: 100.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.search_class`
 
@@ -104,6 +125,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `root` - string - Root path to search/scan from. Used by: search_name, search_class, search_property, search_tag, file_tree, project_structure. Default: "game".
   - `includeSubclasses` - boolean - Include subclasses in class search (e.g., BasePart finds Part, MeshPart). Used by: search_class. Default: true.
   - `maxResults` - number - Maximum results to return. Used by: search_name, search_class, search_property, search_tag, descendants. Default: 100.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.search_property`
 
@@ -118,6 +142,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `root` - string - Root path to search/scan from. Used by: search_name, search_class, search_property, search_tag, file_tree, project_structure. Default: "game".
   - `propertyValue` - unknown - [PRO] Property value to match. Used by: search_property.
   - `maxResults` - number - Maximum results to return. Used by: search_name, search_class, search_property, search_tag, descendants. Default: 100.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.search_tag`
 
@@ -131,6 +158,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
 - Optional params:
   - `root` - string - Root path to search/scan from. Used by: search_name, search_class, search_property, search_tag, file_tree, project_structure. Default: "game".
   - `maxResults` - number - Maximum results to return. Used by: search_name, search_class, search_property, search_tag, descendants. Default: 100.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.file_tree`
 
@@ -143,6 +173,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `maxDepth` - number - Maximum depth for recursive traversal. Used by: children (default: 10), file_tree (default: 5).
   - `root` - string - Root path to search/scan from. Used by: search_name, search_class, search_property, search_tag, file_tree, project_structure. Default: "game".
   - `includeServices` - boolean - [PRO] Include Roblox services when root is "game". Used by: file_tree. Default: true.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.project_structure`
 
@@ -155,6 +188,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
 - Optional params:
   - `root` - string - Root path to search/scan from. Used by: search_name, search_class, search_property, search_tag, file_tree, project_structure. Default: "game".
   - `depth` - number - [PRO] Maximum depth for project structure traversal. Used by: project_structure. Default: 3.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.descendants`
 
@@ -168,6 +204,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
   - `maxResults` - number - Maximum results to return. Used by: search_name, search_class, search_property, search_tag, descendants. Default: 100.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.ancestors`
 
@@ -180,6 +219,9 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
 - Optional params:
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `mutate_instances`
 
@@ -197,6 +239,9 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
 - Optional params:
   - `name` - string - Name for the instance. Used by: create (optional), create_with_props (required).
   - `properties` - object - Properties to set on the instance. Supports Vector3, Color3, CFrame, UDim2, Enum types. Used by: create (optional), create_with_props (required).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.create_with_props`
 
@@ -209,7 +254,10 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `parent` - string - Parent path for new instance. Used by: create, create_with_props.
   - `name` - string - Name for the instance. Used by: create (optional), create_with_props (required).
   - `properties` - object - Properties to set on the instance. Supports Vector3, Color3, CFrame, UDim2, Enum types. Used by: create (optional), create_with_props (required).
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.delete`
 
@@ -222,6 +270,9 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
 - Optional params:
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.clone`
 
@@ -238,6 +289,9 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `targetParent` - string - Target parent for cloned/duplicated instances. Used by: clone, mass_duplicate, smart_duplicate.
   - `newName` - string - New name for instance. Used by: rename (required), clone (optional).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.move`
 
@@ -251,6 +305,9 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
 - Optional params:
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.rename`
 
@@ -264,6 +321,9 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
 - Optional params:
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.pivot`
 
@@ -279,6 +339,9 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `position` - object - Target position as Vector3 {x, y, z}. Used by: pivot.
   - `cframe` - array<number> - Target CFrame as 12-number array [x, y, z, r00, r01, r02, r10, r11, r12, r20, r21, r22]. Used by: pivot.
   - `offset` - object - Relative offset to move by (ignores position/cframe). Used by: pivot, smart_duplicate.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.create_tree`
 
@@ -289,7 +352,10 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
 - Required params:
   - `parent` - string - Parent path for new instance. Used by: create, create_with_props.
   - `tree` - object - [PRO] Instance tree specification for hierarchical creation. Used by: create_tree.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.mass_create`
 
@@ -299,7 +365,10 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
 - Param aliases: none
 - Required params:
   - `instances` - array<object> - [PRO] Array of instance specifications for batch creation. Used by: mass_create. Each item: {className, name, parentPath, properties?}.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.mass_delete`
 
@@ -309,7 +378,10 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
 - Param aliases: none
 - Required params:
   - `paths` - array<string> - [PRO] Array of instance paths. Used by: mass_delete, mass_duplicate.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.mass_duplicate`
 
@@ -321,6 +393,9 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `paths` - array<string> - [PRO] Array of instance paths. Used by: mass_delete, mass_duplicate.
 - Optional params:
   - `targetParent` - string - Target parent for cloned/duplicated instances. Used by: clone, mass_duplicate, smart_duplicate.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.smart_duplicate`
 
@@ -337,6 +412,9 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `targetParent` - string - Target parent for cloned/duplicated instances. Used by: clone, mass_duplicate, smart_duplicate.
   - `count` - number - [PRO] Number of copies to create. Used by: smart_duplicate.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_properties`
 
@@ -351,7 +429,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Required params:
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
   - `property` - string - Property name (e.g., "Size", "Position", "Anchored"). Used by: get, set.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.set`
 
@@ -363,7 +444,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
   - `property` - string - Property name (e.g., "Size", "Position", "Anchored"). Used by: get, set.
   - `value` - unknown - Value to set. Supports primitives, Vector3 {x,y,z}, Color3 {r,g,b} (0-255), CFrame (12-number array), UDim2 {xScale,xOffset,yScale,yOffset}, Enum strings. Used by: set, set_attr, set_relative.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.get_all`
 
@@ -375,6 +459,9 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
 - Optional params:
   - `includeReadOnly` - boolean - Include read-only properties. Used by: get_all. Default: false.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.set_multiple`
 
@@ -385,7 +472,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Required params:
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
   - `properties` - object - Dictionary of property names to values. Used by: set_multiple.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.get_attr`
 
@@ -396,7 +486,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Required params:
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
   - `attribute` - string - Attribute name. Used by: get_attr, set_attr, delete_attr.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.set_attr`
 
@@ -408,7 +501,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
   - `value` - unknown - Value to set. Supports primitives, Vector3 {x,y,z}, Color3 {r,g,b} (0-255), CFrame (12-number array), UDim2 {xScale,xOffset,yScale,yOffset}, Enum strings. Used by: set, set_attr, set_relative.
   - `attribute` - string - Attribute name. Used by: get_attr, set_attr, delete_attr.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.get_all_attrs`
 
@@ -418,7 +514,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Param aliases: none
 - Required params:
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.delete_attr`
 
@@ -429,7 +528,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Required params:
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
   - `attribute` - string - Attribute name. Used by: get_attr, set_attr, delete_attr.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.add_tag`
 
@@ -440,7 +542,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Required params:
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
   - `tag` - string - Tag string (case-sensitive). Used by: add_tag, remove_tag, check_tag.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.remove_tag`
 
@@ -451,7 +556,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Required params:
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
   - `tag` - string - Tag string (case-sensitive). Used by: add_tag, remove_tag, check_tag.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.check_tag`
 
@@ -462,7 +570,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Required params:
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
   - `tag` - string - Tag string (case-sensitive). Used by: add_tag, remove_tag, check_tag.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.get_tags`
 
@@ -472,7 +583,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Param aliases: none
 - Required params:
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.get_tagged`
 
@@ -487,6 +601,9 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Optional params:
   - `root` - string - Root path to filter get_tagged results. Used by: get_tagged.
   - `maxResults` - number - Maximum results for get_tagged. Default: 100.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.set_calculated`
 
@@ -500,6 +617,9 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `propertyName` - string - [PRO] Property name for mass operations or set_calculated/set_relative. Used by: mass_set, mass_get, set_calculated, set_relative, modify_children.
 - Optional params:
   - `variables` - object - [PRO] Variable name to value/path mapping. Used by: set_calculated. Example: {"baseValue": "workspace.Config.BaseValue", "multiplier": 2}.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.set_relative`
 
@@ -515,6 +635,9 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Optional params:
   - `value` - unknown - Value to set. Supports primitives, Vector3 {x,y,z}, Color3 {r,g,b} (0-255), CFrame (12-number array), UDim2 {xScale,xOffset,yScale,yOffset}, Enum strings. Used by: set, set_attr, set_relative.
   - `amount` - unknown - [PRO] Value for relative operation. Can be number, Vector3, etc. Used by: set_relative. Alias for value in set_relative context.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.mass_set`
 
@@ -526,7 +649,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `paths` - array<string> - [PRO] Array of instance paths for bulk operations. Used by: mass_set, mass_get.
   - `propertyName` - string - [PRO] Property name for mass operations or set_calculated/set_relative. Used by: mass_set, mass_get, set_calculated, set_relative, modify_children.
   - `propertyValue` - unknown - [PRO] Property value for mass_set and modify_children.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.mass_get`
 
@@ -537,7 +663,10 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Required params:
   - `paths` - array<string> - [PRO] Array of instance paths for bulk operations. Used by: mass_set, mass_get.
   - `propertyName` - string - [PRO] Property name for mass operations or set_calculated/set_relative. Used by: mass_set, mass_get, set_calculated, set_relative, modify_children.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.modify_children`
 
@@ -553,6 +682,9 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `propertyValue` - unknown - [PRO] Property value for mass_set and modify_children.
   - `filter` - string - [PRO] Class name filter for modify_children.
   - `recursive` - boolean - [PRO] Modify all descendants, not just immediate children. Used by: modify_children. Default: false.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_scripts`
 
@@ -566,7 +698,10 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
 - Param aliases: none
 - Required params:
   - `path` - string - Path to the script instance. Used by: get_source, set_source, delete, edit_replace, edit_insert, edit_delete, search, get_dependencies, replace.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.set_source`
 
@@ -577,7 +712,10 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
 - Required params:
   - `path` - string - Path to the script instance. Used by: get_source, set_source, delete, edit_replace, edit_insert, edit_delete, search, get_dependencies, replace.
   - `source` - string - Script source code. Used by: set_source (required), create (optional initial source).
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.create`
 
@@ -591,6 +729,9 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
 - Optional params:
   - `source` - string - Script source code. Used by: set_source (required), create (optional initial source).
   - `name` - string - Name for new script. Used by: create.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.delete`
 
@@ -600,7 +741,10 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
 - Param aliases: none
 - Required params:
   - `path` - string - Path to the script instance. Used by: get_source, set_source, delete, edit_replace, edit_insert, edit_delete, search, get_dependencies, replace.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.edit_replace`
 
@@ -614,7 +758,10 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `startLine` - number - Starting line number, 1-based inclusive. Used by: edit_replace, edit_delete.
   - `endLine` - number - Ending line number, 1-based inclusive. Used by: edit_replace, edit_delete.
   - `newLines` - string - New content to replace specified lines. Used by: edit_replace. Can be multi-line.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.edit_insert`
 
@@ -629,6 +776,9 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `content` - string - Content to insert. Used by: edit_insert. Can be multi-line.
 - Optional params:
   - `lines` - string - Content to insert after afterLine. Used by: edit_insert. Can be multi-line. Alias for content.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.edit_delete`
 
@@ -640,7 +790,10 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `path` - string - Path to the script instance. Used by: get_source, set_source, delete, edit_replace, edit_insert, edit_delete, search, get_dependencies, replace.
   - `startLine` - number - Starting line number, 1-based inclusive. Used by: edit_replace, edit_delete.
   - `endLine` - number - Ending line number, 1-based inclusive. Used by: edit_replace, edit_delete.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.search`
 
@@ -656,6 +809,9 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `wholeWord` - boolean - Match whole words only. Used by: search. Default: false.
   - `usePattern` - boolean - Treat pattern as Lua pattern instead of plain text. Used by: search, replace. Default: false.
   - `maxResults` - number - Maximum results to return. Used by: search. Default: 100.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.replace`
 
@@ -671,6 +827,9 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
 - Optional params:
   - `usePattern` - boolean - Treat pattern as Lua pattern instead of plain text. Used by: search, replace. Default: false.
   - `dryRun` - boolean - [PRO] Show what would be replaced without making changes. Used by: replace. Default: false.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.get_dependencies`
 
@@ -680,7 +839,10 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
 - Param aliases: none
 - Required params:
   - `path` - string - Path to the script instance. Used by: get_source, set_source, delete, edit_replace, edit_insert, edit_delete, search, get_dependencies, replace.
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_ui`
 
@@ -695,6 +857,9 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
 - Required params: none
 - Optional params:
   - `brief` - object - 완성 또는 부분 design_brief 구조체. Used by: design_brief (optional; partial allowed).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_ui.create_tree`
 
@@ -706,6 +871,9 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
   - `tree` - object - UI 트리 선언형 JSON. 루트는 ScreenGui. 스키마: {className: string, name?: string, parent?: string, properties?: {...}, children?: Tree[]} parent 생략 시 StarterGui. className은 Roblox GUI 계열(ScreenGui/Frame/TextLabel/TextButton/ImageLabel/ImageButton/ScrollingFrame/TextBox/UIListLayout/UIGridLayout/UIPadding/UICorner/UIStroke/UIAspectRatioConstraint/UIGradient/UITextSizeConstraint/UISizeConstraint) 한정. In-game UI 기본 구조(HUD / button / toast / card / 대부분의 menu): ScreenGui > Frame(BackgroundTransparency=1) > 실제 UI 요소. ScreenGui 직속 풀스크린 불투명 Frame 은 modal 용도에만 사용한다. Property 값 인코딩: UDim2는 {xScale, xOffset, yScale, yOffset}, UDim은 {scale, offset}, Color3는 {r, g, b}, Vector2/Vector3는 {x,y}/{x,y,z}, Enum은 item name string을 사용한다.
 - Optional params:
   - `briefId` - string - design_brief 가 반환한 brief 식별자. Used by: create_tree, update, delete (optional).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_ui.update`
 
@@ -718,6 +886,9 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
   - `changes` - object - 부분 변경 스펙. {properties?: {...}, addChildren?: Tree[], removeChildren?: [string]} properties는 `Instance:SetPropertyValue` 호환 키·값 쌍. 값 인코딩은 tree 설명의 Property 값 인코딩을 따른다.
 - Optional params:
   - `briefId` - string - design_brief 가 반환한 brief 식별자. Used by: create_tree, update, delete (optional).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_ui.delete`
 
@@ -727,7 +898,10 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
 - Param aliases: none
 - Required params:
   - `targetPath` - string - Path to existing UI instance. Both `StarterGui.MyGui` and `game.StarterGui.MyGui` are accepted. Used by: update, delete (required).
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_ui.preview`
 
@@ -739,6 +913,9 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
 - Optional params:
   - `targetPath` - string - Path to existing UI instance. Both `StarterGui.MyGui` and `game.StarterGui.MyGui` are accepted. Used by: update, delete (required).
   - `briefId` - string - design_brief 가 반환한 brief 식별자. Used by: create_tree, update, delete (optional).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_ui.check`
 
@@ -752,6 +929,9 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
   - `briefId` - string - design_brief 가 반환한 brief 식별자. Used by: create_tree, update, delete (optional).
   - `includeVisualAnalysis` - boolean - Opt-in only. Used by: check. When true, the server may read a saved preview snapshot PNG + visible GUI metadata and merge AI visual suggestions into check_results. Default false; no screenshot capture is triggered by check.
   - `snapshotId` - string - Saved manage_ui.preview snapshot_id to use for visual analysis. Used by: check when includeVisualAnalysis=true. If omitted, the latest compatible saved snapshot is used when available.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_lighting`
 
@@ -768,6 +948,9 @@ set Lighting service properties.
 - Required params: none
 - Optional params:
   - `properties` - object - Dictionary of properties to set. Used by: lighting, atmosphere, sky, terrain_props. Supports Color3 {r,g,b} (0-255), numbers, booleans, Enum strings.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_lighting.atmosphere`
 
@@ -781,6 +964,9 @@ set Atmosphere properties.
 - Optional params:
   - `properties` - object - Dictionary of properties to set. Used by: lighting, atmosphere, sky, terrain_props. Supports Color3 {r,g,b} (0-255), numbers, booleans, Enum strings.
   - `createIfMissing` - boolean - Create Atmosphere/Sky instance if missing. Used by: atmosphere, sky. Default: true.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_lighting.sky`
 
@@ -794,6 +980,9 @@ set Sky properties.
 - Optional params:
   - `properties` - object - Dictionary of properties to set. Used by: lighting, atmosphere, sky, terrain_props. Supports Color3 {r,g,b} (0-255), numbers, booleans, Enum strings.
   - `createIfMissing` - boolean - Create Atmosphere/Sky instance if missing. Used by: atmosphere, sky. Default: true.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_lighting.terrain_props`
 
@@ -806,6 +995,9 @@ set Terrain water/visual properties.
 - Required params: none
 - Optional params:
   - `properties` - object - Dictionary of properties to set. Used by: lighting, atmosphere, sky, terrain_props. Supports Color3 {r,g,b} (0-255), numbers, booleans, Enum strings.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_lighting.time`
 
@@ -819,6 +1011,9 @@ set time of day.
 - Optional params:
   - `time` - string - Time string in "HH:MM:SS" format (e.g., "14:30:00"). Used by: time. Provide this OR clockTime.
   - `clockTime` - number - Numeric time in 24-hour format (e.g., 14.5 for 2:30 PM). Used by: time. Provide this OR time.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_selection`
 
@@ -831,7 +1026,10 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.set`
 
@@ -841,7 +1039,10 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
 - Param aliases: none
 - Required params:
   - `paths` - array<string> - Array of instance paths. Used by: set (required), add (required), remove (required).
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.clear`
 
@@ -850,7 +1051,10 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.cached`
 
@@ -873,6 +1077,9 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
   - `includeSource` - boolean - [PRO] Include script source code. Used by: context. Default: true.
   - `includeProperties` - boolean - [PRO] Include all readable properties. Used by: context. Default: true.
   - `includeChildren` - boolean - [PRO] Include immediate children. Used by: context. Default: false.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.details`
 
@@ -884,6 +1091,9 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
 - Optional params:
   - `maxDepth` - number - [PRO] Maximum depth for descendant tree traversal. Used by: details. Default: 1.
   - `includeAncestors` - boolean - [PRO] Include full ancestor chain. Used by: details. Default: false.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.add`
 
@@ -893,7 +1103,10 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
 - Param aliases: none
 - Required params:
   - `paths` - array<string> - Array of instance paths. Used by: set (required), add (required), remove (required).
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.remove`
 
@@ -903,7 +1116,10 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
 - Param aliases: none
 - Required params:
   - `paths` - array<string> - Array of instance paths. Used by: set (required), add (required), remove (required).
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.watch`
 
@@ -912,7 +1128,10 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_camera`
 
@@ -927,7 +1146,10 @@ get current camera position, rotation, FOV, viewport size.
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_camera.focus_path`
 
@@ -944,6 +1166,9 @@ move camera to focus on instance by path.
   - `duration` - number - Animation duration in seconds. Used by: focus_path, focus_position. Default: 0.5.
   - `offset` - object - Camera offset direction from target (normalized and scaled by distance). Used by: focus_path, focus_position. Default: {x:1, y:0.5, z:1}.
   - `respectAutoFocusSetting` - boolean - If true, only focus when plugin Auto Focus setting is enabled. Used by: focus_path, focus_position. Default: false.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_camera.focus_position`
 
@@ -961,6 +1186,9 @@ move camera to focus on world position.
   - `offset` - object - Camera offset direction from target (normalized and scaled by distance). Used by: focus_path, focus_position. Default: {x:1, y:0.5, z:1}.
   - `lookAt` - object - Point for camera to look at. Used by: focus_position.
   - `respectAutoFocusSetting` - boolean - If true, only focus when plugin Auto Focus setting is enabled. Used by: focus_path, focus_position. Default: false.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_camera.suggest`
 
@@ -974,6 +1202,9 @@ get suggested camera view for a target.
 - Required params: none
 - Optional params:
   - `path` - string - Instance path to focus on. Used by: focus_path (if not provided, focuses on selection), suggest (if not provided, uses selection).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_camera.screenshot`
 
@@ -984,7 +1215,10 @@ get suggested camera view for a target.
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_tween`
 
@@ -1003,6 +1237,9 @@ create a new tween with target properties.
 - Optional params:
   - `tweenInfo` - object - Tween configuration. Used by: create.
   - `properties` - object - Target property values to tween to. Used by: create. Supports Vector3, Color3, numbers, etc.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_tween.play`
 
@@ -1015,6 +1252,9 @@ play a created tween.
 - Required params: none
 - Optional params:
   - `tweenId` - string - Tween identifier returned by create. Used by: play, pause, cancel.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_tween.pause`
 
@@ -1027,6 +1267,9 @@ pause a running tween.
 - Required params: none
 - Optional params:
   - `tweenId` - string - Tween identifier returned by create. Used by: play, pause, cancel.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_tween.cancel`
 
@@ -1039,6 +1282,9 @@ cancel a tween.
 - Required params: none
 - Optional params:
   - `tweenId` - string - Tween identifier returned by create. Used by: play, pause, cancel.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_audio`
 
@@ -1059,6 +1305,9 @@ play a sound (creates Sound if needed).
   - `volume` - number - Sound volume (0-10). Used by: play. Default: 0.5.
   - `looped` - boolean - Whether the sound loops. Used by: play. Default: false.
   - `playbackSpeed` - number - Playback speed multiplier. Used by: play. Default: 1.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_audio.stop`
 
@@ -1071,6 +1320,9 @@ stop a playing sound.
 - Required params: none
 - Optional params:
   - `path` - string - Path to the Sound instance or parent to create Sound in. Used by: play, stop, pause, resume.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_audio.pause`
 
@@ -1083,6 +1335,9 @@ pause a playing sound.
 - Required params: none
 - Optional params:
   - `path` - string - Path to the Sound instance or parent to create Sound in. Used by: play, stop, pause, resume.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_audio.resume`
 
@@ -1095,6 +1350,9 @@ resume a paused sound.
 - Required params: none
 - Optional params:
   - `path` - string - Path to the Sound instance or parent to create Sound in. Used by: play, stop, pause, resume.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_audio.set_listener`
 
@@ -1108,6 +1366,9 @@ set the audio listener type/target.
 - Optional params:
   - `listenerType` - "Camera" | "CFrame" | "ObjectPosition" | "ObjectCFrame" - Listener type for SoundService. Used by: set_listener.
   - `listenerPath` - string - Instance path for ObjectPosition/ObjectCFrame listener type. Used by: set_listener.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_animation`
 
@@ -1125,6 +1386,9 @@ load an animation on a Humanoid/AnimationController.
 - Optional params:
   - `path` - string - Path to the Humanoid, AnimationController, or Model containing one. Used by: load, play, stop, get_tracks.
   - `animationId` - string - Roblox animation asset ID (e.g., "rbxassetid://1234567"). Used by: load.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_animation.play`
 
@@ -1142,6 +1406,9 @@ play a loaded animation track.
   - `fadeTime` - number - Fade time in seconds when starting/stopping. Used by: play, stop. Default: 0.1.
   - `weight` - number - Animation weight (0-1) for blending. Used by: play. Default: 1.
   - `priority` - "Core" | "Idle" | "Movement" | "Action" | "Action2" | "Action3" | "Action4" - Animation priority. Used by: play.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_animation.stop`
 
@@ -1156,6 +1423,9 @@ stop a playing animation.
 - Optional params:
   - `path` - string - Path to the Humanoid, AnimationController, or Model containing one. Used by: load, play, stop, get_tracks.
   - `fadeTime` - number - Fade time in seconds when starting/stopping. Used by: play, stop. Default: 0.1.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_animation.get_tracks`
 
@@ -1168,6 +1438,9 @@ list all loaded animation tracks.
 - Required params: none
 - Optional params:
   - `path` - string - Path to the Humanoid, AnimationController, or Model containing one. Used by: load, play, stop, get_tracks.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_physics`
 
@@ -1183,7 +1456,10 @@ register a new collision group with PhysicsService.
 - Param aliases: none
 - Required params:
   - `groupName` - string - Collision group name. Used by: register_group (required).
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_physics.set_collidable`
 
@@ -1197,7 +1473,10 @@ set whether two groups can collide.
   - `group1` - string - First collision group name. Used by: set_collidable (required).
   - `group2` - string - Second collision group name. Used by: set_collidable (required).
   - `collidable` - boolean - Whether the two groups can collide. Used by: set_collidable (required).
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_physics.get_groups`
 
@@ -1208,7 +1487,10 @@ list all registered collision groups.
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_effects`
 
@@ -1226,6 +1508,9 @@ emit a burst of particles from a ParticleEmitter.
 - Optional params:
   - `path` - string - Path to the effect instance (ParticleEmitter, Beam, Trail) or parent containing effects. Used by: emit, clear, toggle.
   - `count` - number - Number of particles to emit in a burst. Used by: emit. Default: 16.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_effects.clear`
 
@@ -1238,6 +1523,9 @@ clear all particles from a ParticleEmitter or all emitters under an instance.
 - Required params: none
 - Optional params:
   - `path` - string - Path to the effect instance (ParticleEmitter, Beam, Trail) or parent containing effects. Used by: emit, clear, toggle.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_effects.toggle`
 
@@ -1251,6 +1539,9 @@ enable or disable a ParticleEmitter, Beam, Trail, or other effect.
 - Optional params:
   - `path` - string - Path to the effect instance (ParticleEmitter, Beam, Trail) or parent containing effects. Used by: emit, clear, toggle.
   - `enabled` - boolean - Enable or disable the effect. Used by: toggle.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_terrain`
 
@@ -1266,6 +1557,9 @@ enable or disable a ParticleEmitter, Beam, Trail, or other effect.
 - Optional params:
   - `cframe` - object - Position and rotation for fill shapes. Used by: fill_block, fill_cylinder, fill_wedge.
   - `size` - object - Size in studs. Used by: fill_block, fill_wedge.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.fill_ball`
 
@@ -1277,6 +1571,9 @@ enable or disable a ParticleEmitter, Beam, Trail, or other effect.
 - Optional params:
   - `center` - object - Center position as Vector3. Used by: fill_ball.
   - `radius` - number - Radius in studs. Used by: fill_ball, fill_cylinder.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.fill_cylinder`
 
@@ -1289,6 +1586,9 @@ enable or disable a ParticleEmitter, Beam, Trail, or other effect.
   - `cframe` - object - Position and rotation for fill shapes. Used by: fill_block, fill_cylinder, fill_wedge.
   - `radius` - number - Radius in studs. Used by: fill_ball, fill_cylinder.
   - `height` - number - Height in studs. Used by: fill_cylinder.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.fill_wedge`
 
@@ -1302,6 +1602,9 @@ fill shapes with material. clear_region/clear_bounds: clear terrain. replace_mat
 - Optional params:
   - `cframe` - object - Position and rotation for fill shapes. Used by: fill_block, fill_cylinder, fill_wedge.
   - `size` - object - Size in studs. Used by: fill_block, fill_wedge.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.clear_region`
 
@@ -1312,6 +1615,9 @@ fill shapes with material. clear_region/clear_bounds: clear terrain. replace_mat
 - Required params: none
 - Optional params:
   - `region` - object - Rectangular region with min/max corners. Used by: clear_region, replace_material, read_voxels, write_voxels, generate, smooth.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.clear_bounds`
 
@@ -1325,6 +1631,9 @@ clear terrain.
 - Optional params:
   - `min` - object - Minimum corner for bounds-based clear. Used by: clear_bounds.
   - `max` - object - Maximum corner for bounds-based clear. Used by: clear_bounds.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.replace_material`
 
@@ -1340,6 +1649,9 @@ swap materials in region. colors_get/colors_set: manage material colors. read_vo
   - `region` - object - Rectangular region with min/max corners. Used by: clear_region, replace_material, read_voxels, write_voxels, generate, smooth.
   - `sourceMaterial` - string - Material to replace. Used by: replace_material.
   - `targetMaterial` - string - Replacement material. Used by: replace_material.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.colors_get`
 
@@ -1350,6 +1662,9 @@ swap materials in region. colors_get/colors_set: manage material colors. read_vo
 - Required params: none
 - Optional params:
   - `material` - string - Terrain material name (e.g., Grass, Rock, Water, Sand, Slate, Concrete). Used by: fill_*, replace_material, colors_get, colors_set.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.colors_set`
 
@@ -1363,6 +1678,9 @@ manage material colors.
 - Optional params:
   - `material` - string - Terrain material name (e.g., Grass, Rock, Water, Sand, Slate, Concrete). Used by: fill_*, replace_material, colors_get, colors_set.
   - `color` - object - RGB color (0-255). Used by: colors_set.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.read_voxel`
 
@@ -1375,6 +1693,9 @@ single voxel. read_voxels/write_voxels: bulk voxels. generate: procedural terrai
 - Required params: none
 - Optional params:
   - `position` - object - Position as Vector3. Used by: read_voxel.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.read_voxels`
 
@@ -1386,6 +1707,9 @@ single voxel. read_voxels/write_voxels: bulk voxels. generate: procedural terrai
 - Optional params:
   - `region` - object - Rectangular region with min/max corners. Used by: clear_region, replace_material, read_voxels, write_voxels, generate, smooth.
   - `resolution` - number - Voxel resolution (studs per voxel). Used by: read_voxels, write_voxels. Default: 4.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.write_voxels`
 
@@ -1401,6 +1725,9 @@ bulk voxels.
   - `resolution` - number - Voxel resolution (studs per voxel). Used by: read_voxels, write_voxels. Default: 4.
   - `materials` - array<array<array<string>>> - 3D array of material names [x][y][z]. Used by: write_voxels.
   - `occupancy` - array<array<array<number>>> - 3D array of occupancy values [x][y][z] (0-1). Used by: write_voxels.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.generate`
 
@@ -1418,6 +1745,9 @@ procedural terrain.
   - `frequency` - number - Noise frequency (0.001-0.1). Used by: generate. Default: 0.01.
   - `seed` - number - Random seed for terrain generation. Used by: generate.
   - `layers` - array<object> - Material layers by height. Used by: generate. Each: {material, maxHeight}.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.smooth`
 
@@ -1431,6 +1761,9 @@ smooth terrain.
 - Optional params:
   - `region` - object - Rectangular region with min/max corners. Used by: clear_region, replace_material, read_voxels, write_voxels, generate, smooth.
   - `intensity` - number - Smoothing intensity (0-1). Used by: smooth. Default: 0.5.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `spatial_query`
 
@@ -1452,6 +1785,9 @@ single ray.
   - `filterList` - array<string> - Instance paths to filter. Used by: raycast, multi_raycast, find_ground, check_placement, scan_area. Alias: filterInstances.
   - `filterInstances` - array<string> - Instance paths to filter (alias for filterList). Used by: raycast, multi_raycast, find_ground, check_placement, scan_area.
   - `ignoreWater` - boolean - Ignore terrain water. Used by: raycast, multi_raycast. Default: false.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.find_ground`
 
@@ -1468,6 +1804,9 @@ ground below point.
   - `filterList` - array<string> - Instance paths to filter. Used by: raycast, multi_raycast, find_ground, check_placement, scan_area. Alias: filterInstances.
   - `filterInstances` - array<string> - Instance paths to filter (alias for filterList). Used by: raycast, multi_raycast, find_ground, check_placement, scan_area.
   - `offset` - number - Vertical offset for ground position. Used by: find_ground. Default: 0.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.check_placement`
 
@@ -1485,6 +1824,9 @@ collision-free placement check.
   - `filterInstances` - array<string> - Instance paths to filter (alias for filterList). Used by: raycast, multi_raycast, find_ground, check_placement, scan_area.
   - `rotation` - object - Rotation in degrees. Used by: check_placement.
   - `checkGround` - boolean - Verify ground support for placement. Used by: check_placement. Default: true.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.multi_raycast`
 
@@ -1501,6 +1843,9 @@ batch rays.
   - `filterInstances` - array<string> - Instance paths to filter (alias for filterList). Used by: raycast, multi_raycast, find_ground, check_placement, scan_area.
   - `ignoreWater` - boolean - Ignore terrain water. Used by: raycast, multi_raycast. Default: false.
   - `rays` - array<object> - Array of ray specifications. Used by: multi_raycast. Max 50 rays.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.scan_area`
 
@@ -1518,6 +1863,9 @@ heightmap generation.
   - `center` - object - Center point for area scan. Used by: scan_area.
   - `resolution` - number - Grid resolution in studs. Used by: scan_area, analyze_walkable. Default: 4.
   - `maxResults` - number - Maximum results. Used by: spatial_map (default: 500), scan_area (default: 500), find_flat (default: 10).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.find_flat`
 
@@ -1534,6 +1882,9 @@ flat areas for building.
   - `maxSlope` - number - Maximum slope in degrees. Used by: find_flat (default: 10), analyze_walkable (default: 45).
   - `tolerance` - number - Height variation tolerance in studs. Used by: find_flat.
   - `maxResults` - number - Maximum results. Used by: spatial_map (default: 500), scan_area (default: 500), find_flat (default: 10).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.find_spawn`
 
@@ -1550,6 +1901,9 @@ spawn positions.
   - `minSpacing` - number - Minimum distance between spawn positions. Used by: find_spawn. Default: 10.
   - `preferOutdoor` - boolean - Prefer open sky positions. Used by: find_spawn. Default: false.
   - `count` - number - Number of results to find. Used by: find_spawn. Default: 10.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.analyze_walkable`
 
@@ -1566,6 +1920,9 @@ walkability grid.
   - `resolution` - number - Grid resolution in studs. Used by: scan_area, analyze_walkable. Default: 4.
   - `characterHeight` - number - Character height for clearance checks. Used by: analyze_walkable. Default: 5.
   - `maxStepHeight` - number - Maximum step height. Used by: analyze_walkable. Default: 2.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.spatial_map`
 
@@ -1582,6 +1939,9 @@ all BasePart positions.
   - `rootPath` - string - Root path for spatial map scan. Used by: spatial_map. Default: "game.Workspace".
   - `includeModels` - boolean - Include Model bounding boxes. Used by: spatial_map. Default: true.
   - `maxResults` - number - Maximum results. Used by: spatial_map (default: 500), scan_area (default: 500), find_flat (default: 10).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.find_space`
 
@@ -1598,6 +1958,9 @@ empty space for object.
   - `gridSize` - number - Grid snap size in studs. Used by: snap_grid (default: 4), find_space (default: 4).
   - `gridSnap` - number - Grid snap size. Alias for gridSize.
   - `padding` - number - Minimum distance from other objects. Used by: find_space. Default: 1.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.bounds`
 
@@ -1611,6 +1974,9 @@ bounding box.
 - Optional params:
   - `path` - string - Instance path. Used by: bounds (optional), snap_grid (required), collision (required), spatial_map (rootPath alias).
   - `paths` - array<string> - Multiple instance paths for batch bounds. Used by: bounds.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.snap_grid`
 
@@ -1626,6 +1992,9 @@ snap position to grid.
   - `gridSize` - number - Grid snap size in studs. Used by: snap_grid (default: 4), find_space (default: 4).
   - `gridSnap` - number - Grid snap size. Alias for gridSize.
   - `axes` - array<"x" | "y" | "z"> - Axes to snap. Used by: snap_grid. Default: ["x","y","z"]. Use ["x","z"] for horizontal only.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.collision`
 
@@ -1640,6 +2009,9 @@ AABB collision check.
 - Optional params:
   - `position` - object - Position as Vector3. Used by: find_ground (cast from here), check_placement (center), collision (hypothetical position).
   - `ignorePaths` - array<string> - Instance paths to ignore in collision check. Used by: collision.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_assets`
 
@@ -1659,6 +2031,9 @@ insert model by asset ID.
   - `parent` - string - Parent path for inserted asset. Used by: insert, search_insert, insert_free, insert_package. Default: "game.Workspace".
   - `name` - string - Optional name for inserted instance.
   - `position` - object - Position to place the model. Used by: insert, insert_free.
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.info`
 
@@ -1670,7 +2045,10 @@ get asset metadata.
 - Param aliases: none
 - Required params:
   - `assetId` - number - Roblox asset ID. Used by: insert (required), info (required), insert_free (required), insert_package (required).
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.search`
 
@@ -1687,6 +2065,9 @@ search Creator Store.
   - `maxResults` - number - Maximum search results. Used by: search. Default: 10.
   - `category` - string - Asset category filter. Used by: search, export_selection_rbxm, export_path_rbxm, import_rbxm, generate_thumbnail.
   - `sortType` - string - Sort order for search results. Used by: search.
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.search_insert`
 
@@ -1701,6 +2082,9 @@ search and insert first match.
 - Optional params:
   - `parent` - string - Parent path for inserted asset. Used by: insert, search_insert, insert_free, insert_package. Default: "game.Workspace".
   - `name` - string - Optional name for inserted instance.
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.insert_free`
 
@@ -1716,6 +2100,9 @@ insert free model.
   - `parent` - string - Parent path for inserted asset. Used by: insert, search_insert, insert_free, insert_package. Default: "game.Workspace".
   - `name` - string - Optional name for inserted instance.
   - `position` - object - Position to place the model. Used by: insert, insert_free.
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.insert_package`
 
@@ -1730,6 +2117,9 @@ insert package.
 - Optional params:
   - `parent` - string - Parent path for inserted asset. Used by: insert, search_insert, insert_free, insert_package. Default: "game.Workspace".
   - `name` - string - Optional name for inserted instance.
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.export_selection_json`
 
@@ -1745,6 +2135,9 @@ return a JSON snapshot of the current Studio selection.
   - `includeProperties` - boolean - Include all properties in export. Used by: export_selection_json. Default: false.
   - `includeChildren` - boolean - Include children in export. Used by: export_selection_json. Default: false.
   - `maxDepth` - number - Maximum depth for recursive child export. Used by: export_selection_json. Default: 5.
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.export_selection_rbxm`
 
@@ -1761,10 +2154,12 @@ serialize the current Studio selection to a local Asset Library .rbxm asset.
   - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
   - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
   - `scope` - "place" | "shared" - Asset Library scope. Used by: export_selection_rbxm, export_path_rbxm, import_rbxm, generate_thumbnail. Default: place.
-  - `placeId` - number - Place ID for place-scoped Asset Library operations. Used by: export_selection_rbxm, export_path_rbxm, import_rbxm, generate_thumbnail.
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
   - `displayName` - string - Asset Library display name. Used by: export_selection_rbxm, export_path_rbxm.
   - `description` - string - Asset Library description. Used by: export_selection_rbxm, export_path_rbxm.
   - `thumbnailMode` - "none" | "auto" - Thumbnail capture mode. Used by: export_selection_rbxm, export_path_rbxm. Default: none.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.export_path_rbxm`
 
@@ -1782,10 +2177,12 @@ serialize one Studio instance path to a local Asset Library .rbxm asset.
   - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
   - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
   - `scope` - "place" | "shared" - Asset Library scope. Used by: export_selection_rbxm, export_path_rbxm, import_rbxm, generate_thumbnail. Default: place.
-  - `placeId` - number - Place ID for place-scoped Asset Library operations. Used by: export_selection_rbxm, export_path_rbxm, import_rbxm, generate_thumbnail.
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
   - `displayName` - string - Asset Library display name. Used by: export_selection_rbxm, export_path_rbxm.
   - `description` - string - Asset Library description. Used by: export_selection_rbxm, export_path_rbxm.
   - `thumbnailMode` - "none" | "auto" - Thumbnail capture mode. Used by: export_selection_rbxm, export_path_rbxm. Default: none.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.import_rbxm`
 
@@ -1803,9 +2200,11 @@ import an Asset Library .rbxm asset into Studio under a target parent.
   - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
   - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
   - `scope` - "place" | "shared" - Asset Library scope. Used by: export_selection_rbxm, export_path_rbxm, import_rbxm, generate_thumbnail. Default: place.
-  - `placeId` - number - Place ID for place-scoped Asset Library operations. Used by: export_selection_rbxm, export_path_rbxm, import_rbxm, generate_thumbnail.
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
   - `targetParent` - string - Studio parent path for imported instances. Used by: import_rbxm. Default: game.Workspace.
   - `name` - string - Optional name for inserted instance.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.generate_thumbnail`
 
@@ -1823,7 +2222,9 @@ generate or replace thumbnail.png for an Asset Library .rbxm asset.
   - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
   - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
   - `scope` - "place" | "shared" - Asset Library scope. Used by: export_selection_rbxm, export_path_rbxm, import_rbxm, generate_thumbnail. Default: place.
-  - `placeId` - number - Place ID for place-scoped Asset Library operations. Used by: export_selection_rbxm, export_path_rbxm, import_rbxm, generate_thumbnail.
+  - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_open_cloud_assets`
 
@@ -2019,6 +2420,9 @@ fetch current Workspace state (hierarchy, history, stats).
 - Required params: none
 - Optional params:
   - `includeMetadata` - boolean - Include metadata (instance counts, timestamps). Used by: sync. Default: true.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.snapshot`
 
@@ -2029,7 +2433,10 @@ get full instance tree structure.
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.changes`
 
@@ -2042,6 +2449,9 @@ get recent changes (added/removed/modified).
 - Required params: none
 - Optional params:
   - `limit` - number - Maximum number of changes to return. Used by: changes. Default: 20.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.viewport`
 
@@ -2055,6 +2465,9 @@ get camera position, FOV, viewport size, selection bounds.
 - Optional params:
   - `includeCameraInfo` - boolean - Include camera position and settings. Used by: viewport. Default: true.
   - `includeSelectionBounds` - boolean - Include current selection bounds info. Used by: viewport. Default: true.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.clear_history`
 
@@ -2065,7 +2478,10 @@ clear change history.
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.metadata`
 
@@ -2076,7 +2492,10 @@ get workspace metadata.
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.scripts`
 
@@ -2087,7 +2506,10 @@ get script list.
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.selection_info`
 
@@ -2098,7 +2520,10 @@ get selection info.
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.clear_cache`
 
@@ -2109,7 +2534,10 @@ clear state cache.
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_logs`
 
@@ -2131,6 +2559,9 @@ retrieve logs with optional level/limit/since/sinceSeq filters.
   - `pattern` - string - Text pattern to filter log messages. Used by: get.
   - `since` - number - Unix timestamp in milliseconds. Only logs after this time. Used by: get.
   - `sinceSeq` - number - Return only logs after this sequence number. Cursor mode returns logs oldest-to-newest and includes lastSeq/oldestSeq/hasMore/cursorStatus. Used by: get.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_logs.clear`
 
@@ -2141,7 +2572,10 @@ clear internal log buffer without resetting seq.
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_logs.errors`
 
@@ -2154,6 +2588,9 @@ quick access to recent errors only.
 - Required params: none
 - Optional params:
   - `limit` - number - Maximum entries to return. Used by: get (default: 100, max: 500), errors (default: 20, max: 100).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `system_info`
 
@@ -2168,6 +2605,9 @@ System info: ping, connection status, usage tier. [PRO] place info, services lis
 - Required params: none
 - Optional params:
   - `message` - string - Optional message to echo back. Used by: ping.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `system_info.connection`
 
@@ -2185,7 +2625,10 @@ System info: ping, connection status, usage tier. [PRO] place info, services lis
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `system_info.place_info`
 
@@ -2194,7 +2637,10 @@ System info: ping, connection status, usage tier. [PRO] place info, services lis
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `system_info.services`
 
@@ -2203,7 +2649,10 @@ System info: ping, connection status, usage tier. [PRO] place info, services lis
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `system_info.studio_settings`
 
@@ -2212,7 +2661,10 @@ System info: ping, connection status, usage tier. [PRO] place info, services lis
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_studio`
 
@@ -2227,6 +2679,9 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Required params: none
 - Optional params:
   - `enabled` - boolean - Boolean value to set. Omit to toggle the current value. Used by: toggle_ui_preview (optional).
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.play_start`
 
@@ -2237,6 +2692,9 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Required params: none
 - Optional params:
   - `mode` - "play" | "run" - Playtest mode. "play" = Play mode (F5, default), "run" = Run mode (F8). Used by: play_start, run_test.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.play_stop`
 
@@ -2245,7 +2703,10 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.play_pause`
 
@@ -2254,7 +2715,10 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.play_resume`
 
@@ -2263,7 +2727,10 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Execution mode: `unspecified`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.play_status`
 
@@ -2272,7 +2739,10 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Execution mode: `readonly`
 - Param aliases: none
 - Required params: none
-- Optional params: none
+- Optional params:
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.run_test`
 
@@ -2286,6 +2756,9 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
   - `mode` - "play" | "run" - Playtest mode. "play" = Play mode (F5, default), "run" = Run mode (F8). Used by: play_start, run_test.
   - `test_name` - string - Optional report display name for the automated playtest run. Used by: run_test.
   - `timeout` - number - Timeout in seconds for the automated playtest run. Default: 60. Maximum: 300. Used by: run_test.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
   - `contextId` - string - Optional execution context identifier. Used to continue an existing context for mutating actions.
   - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
   - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
@@ -2301,6 +2774,9 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
   - `commands` - array<object> - Array of commands to execute sequentially. Each command specifies a tool name and its arguments.
 - Optional params:
   - `stopOnError` - boolean - If true, stop executing remaining commands when one fails. Default: true.
+  - `placeId` - number - Optional Studio target selector for the entire batch. Per-item selectors inside commands[].args are rejected.
+  - `clientId` - string - Optional Studio target selector for the entire batch. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `execute_luau`
 
@@ -2315,4 +2791,7 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
   - `contextId` - string - Optional execution context identifier. Used to continue an existing context for mutating actions.
   - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
   - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this Luau execution to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 

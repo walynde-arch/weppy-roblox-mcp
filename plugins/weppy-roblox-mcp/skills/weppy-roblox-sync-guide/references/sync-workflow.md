@@ -29,4 +29,4 @@ Default direction is `forward`. Default apply mode is `manual`. Basic tier force
 
 ## Multi-Place
 
-The project sync root is `${resolvedProjectRoot}/weppy-project-sync`. Place data is isolated in `place_<id>/` directories. The runtime keeps one active project sync root and stores place metadata separately.
+The project sync root is `${resolvedProjectRoot}/weppy-project-sync`. Place data is isolated in `place_<id>/` directories. The runtime keeps one active project sync root, stores place metadata separately, and keeps up to five synced Places active in memory before older contexts are evicted.

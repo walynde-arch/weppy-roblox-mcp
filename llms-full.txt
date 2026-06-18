@@ -2,6 +2,8 @@
 
 > WEPPY is an MCP server that lets AI coding agents control a live Roblox Studio session and interact with scripts, instances, terrain, lighting, assets, audio, animations, and UI Studio workflows.
 
+The web dashboard includes a Connection topology for multiple AI agents, the MCP server, and multiple connected Studio Targets, with copyable Studio IDs and routing status for multi-Studio workflows.
+
 This package intentionally does not ship a standalone full documentation surface.
 
 Canonical documentation lives on the web:

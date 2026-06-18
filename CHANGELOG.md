@@ -10,6 +10,21 @@ All notable changes to this project will be documented in this file.
 
 
 
+
+## [2.9.0] - 2026-06-18
+
+### Features
+
+- **Multiple Roblox Studio windows from one MCP server** — WEPPY can now keep several Roblox Studio windows connected as separate Studio targets. This helps lobby games and multi-place experiences: open each place in its own Studio window, then tell the AI which `Studio ID` or `placeId` to use. Requests without a named target follow the Dashboard Studio Routing setting.
+- **New Dashboard Controls tab** — MCP behavior settings now have a dedicated Controls page. Use **Controls > Studio Routing** to switch between automatic recent priority and a pinned Studio window, set the priority target, and copy Studio IDs. Project Root and General Settings also live in Controls, while Settings stays focused on license, data, environment, and language.
+- **Clearer connection view for Studio targets** — The Connection page now shows Studio targets instead of a generic plugin list, with Studio ID, place, connection, routing, and in-flight request details. This makes it easier to see which Studio window will receive AI requests.
+- **Place-aware Dashboard data** — Dashboard areas that read saved data now keep the selected place clearer, so tool history, reports, assets, and current-place context stay tied to the Studio target or place you are working with.
+
+### Stability
+
+- **More reliable multi-place routing** — WEPPY now preserves selected Studio targets across routed requests, handles disconnected pinned targets by returning to automatic routing, and keeps asset and Playtest work scoped to the intended place.
+- **Larger multi-place sync cache** — Project Sync can keep up to five place contexts in memory at once. Existing `place_*` folders are preserved on disk, and no manual migration is required.
+
 ## [2.8.2] - 2026-06-15
 
 ### Bug Fixes
