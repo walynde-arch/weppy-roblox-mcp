@@ -11,6 +11,13 @@ All notable changes to this project will be documented in this file.
 
 
 
+
+## [2.9.1] - 2026-06-21
+
+### Stability
+
+- **Cleaner Pro upgrade links from the Studio plugin** — The Pro guide now shows a shorter plans link that is easier to copy from Roblox Studio, while WEPPY still records the visit as plugin traffic on the website. This improves purchase-path reporting without changing the upgrade flow or requiring any setup change.
+
 ## [2.9.0] - 2026-06-18
 
 ### Features

@@ -8,17 +8,11 @@ body:
         **First:** check the [Installation Guide](https://github.com/hope1026/weppy-roblox-mcp/blob/main/docs/en/installation/README.md)
         and [Troubleshooting](https://github.com/hope1026/weppy-roblox-mcp/blob/main/docs/en/troubleshooting.md).
         For general questions, use [Discussions](https://github.com/hope1026/weppy-roblox-mcp/discussions) instead.
-  - type: dropdown
+  - type: input
     id: ai-client
     attributes:
       label: AI client
-      options:
-        - Claude Code
-        - Claude Desktop
-        - Cursor
-        - Codex CLI
-        - Gemini CLI
-        - Other
+      placeholder: "Claude Code 1.x / Cursor 0.4x / Codex App / Gemini CLI"
     validations:
       required: true
   - type: input
@@ -35,6 +29,11 @@ body:
       placeholder: "node --version output"
     validations:
       required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: MCP / Plugin / Studio version
+      placeholder: "MCP 2.x / Plugin 2.x / Studio 0.x, or leave blank if not installed yet"
   - type: textarea
     id: issue
     attributes:
