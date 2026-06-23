@@ -211,7 +211,7 @@ For app setup details, open the web docs hub and choose the relevant AI client g
 
 ## Privacy & Telemetry
 
-WEPPY uses Google Analytics 4 Measurement Protocol telemetry to understand product usage, reliability, platform coverage, and feature adoption. Telemetry can be disabled by setting `ENABLE_TELEMETRY=false` or `ENABLE_TELEMETRY=0` in the MCP server environment.
+WEPPY uses Google Analytics 4 Measurement Protocol telemetry and a best-effort anonymous operations device observation to understand product usage, reliability, platform coverage, and feature adoption. Telemetry can be disabled by setting `ENABLE_TELEMETRY=false` or `ENABLE_TELEMETRY=0` in the MCP server environment.
 
 WEPPY does not collect your name, email address, raw license key, local file paths, script source, or Roblox project contents through telemetry.
 

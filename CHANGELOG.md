@@ -12,6 +12,13 @@ All notable changes to this project will be documented in this file.
 
 
 
+
+## [2.9.2] - 2026-06-23
+
+### Stability
+
+- **Stability improvements** — WEPPY can now verify MCP launches with an additional anonymous operations check, helping us spot release-health gaps sooner while keeping Studio workflows unchanged. No setup changes are required.
+
 ## [2.9.1] - 2026-06-21
 
 ### Stability
