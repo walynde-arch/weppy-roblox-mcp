@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 
 
 
+
+## [2.9.3] - 2026-06-27
+
+### Bug Fixes
+
+- **Recover from invalid licenses without leaving Roblox Studio** — When an existing Pro license becomes invalid, revoked, or needs manual reactivation, the Dashboard and Studio plugin now keep the recovery controls available. You can enter a new license key or reset the old local registration instead of getting stuck with disabled license buttons.
+
+### Stability
+
+- **More reliable Project Sync restart cleanup** — If a full sync fails or is restarted while Studio reconnects, WEPPY now recognizes cleanup requests from the same plugin process even when the temporary client ID changed. This reduces cases where a stale sync session blocks the next sync attempt.
+- **Clearer sync conflict details in Studio logs** — Sync ownership conflicts now preserve the server's detailed message in the Studio plugin logs, making it easier to see which connection or sync session is blocking the action.
+
 ## [2.9.2] - 2026-06-23
 
 ### Stability
