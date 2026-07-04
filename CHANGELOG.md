@@ -15,6 +15,13 @@ All notable changes to this project will be documented in this file.
 
 
 
+
+## [2.10.1] - 2026-07-04
+
+### Bug Fixes
+
+- **Improved Test and Run state detection in Roblox Studio** — The Dashboard now reports Studio targets as Running or Paused more accurately when you start Test or Run from Roblox Studio, pause the simulation, or let WEPPY start a playtest. This makes it easier to tell whether an AI agent is working against Edit mode, an active playtest, or a paused simulation without changing your setup.
+
 ## [2.10.0] - 2026-07-03
 
 ### Features
