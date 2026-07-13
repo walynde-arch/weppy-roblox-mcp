@@ -26,11 +26,15 @@ jobs:
           const expectedSkills = [
             {
               name: 'weppy-roblox-mcp-guide',
-              references: ['mcp-actions.md', 'ui-studio.md', 'playtest.md'],
+              references: ['mcp-actions.md', 'multi-studio-routing.md', 'ui-studio.md', 'playtest.md'],
             },
             {
               name: 'weppy-roblox-sync-guide',
-              references: ['sync-workflow.md', 'sync-format.md', 'conflicts.md', 'roblox-explorer.md'],
+              references: ['sync-workflow.md', 'sync-format.md', 'conflicts.md', 'sourcemap.md', 'roblox-explorer.md'],
+            },
+            {
+              name: 'weppy-roblox-assets-guide',
+              references: ['asset-library.md', 'generated-assets.md', 'studio-upload.md', 'open-cloud-upload.md'],
             },
           ];
           const required = [
@@ -48,8 +52,12 @@ jobs:
             'plugins/weppy-roblox-mcp/.claude-plugin/plugin.json',
             'plugins/weppy-roblox-mcp/.codex-plugin/plugin.json',
             'plugins/weppy-roblox-mcp/.mcp.json',
+            'plugins/weppy-roblox-mcp/plugin.json',
+            'plugins/weppy-roblox-mcp/mcp_config.json',
+            'plugins/weppy-roblox-mcp/skill-coverage.yaml',
             'plugins/weppy-roblox-mcp/skills/weppy-roblox-mcp-guide/SKILL.md',
             'plugins/weppy-roblox-mcp/skills/weppy-roblox-sync-guide/SKILL.md',
+            'plugins/weppy-roblox-mcp/skills/weppy-roblox-assets-guide/SKILL.md',
           ];
           const forbidden = [
             'package.json',
@@ -77,6 +85,9 @@ jobs:
             'plugins/weppy-roblox-mcp/.claude-plugin/plugin.json',
             'plugins/weppy-roblox-mcp/.codex-plugin/plugin.json',
             'plugins/weppy-roblox-mcp/.mcp.json',
+            'plugins/weppy-roblox-mcp/plugin.json',
+            'plugins/weppy-roblox-mcp/mcp_config.json',
+            'plugins/weppy-roblox-mcp/skill-coverage.yaml',
           ]) {
             JSON.parse(fs.readFileSync(path.join(root, jsonPath), 'utf8'));
           }
@@ -85,6 +96,8 @@ jobs:
           const codexPlugin = JSON.parse(fs.readFileSync(path.join(root, 'plugins/weppy-roblox-mcp/.codex-plugin/plugin.json'), 'utf8'));
           const codexMarketplace = JSON.parse(fs.readFileSync(path.join(root, '.agents/plugins/marketplace.json'), 'utf8'));
           const codexMcp = JSON.parse(fs.readFileSync(path.join(root, 'plugins/weppy-roblox-mcp/.mcp.json'), 'utf8'));
+          const antigravityPlugin = JSON.parse(fs.readFileSync(path.join(root, 'plugins/weppy-roblox-mcp/plugin.json'), 'utf8'));
+          const antigravityMcp = JSON.parse(fs.readFileSync(path.join(root, 'plugins/weppy-roblox-mcp/mcp_config.json'), 'utf8'));
           const expected = { command: 'npx', args: ['-y', '@weppy/roblox-mcp@latest'] };
 
           if (codexMarketplace.interface?.displayName !== 'WEPPY Roblox AI Toolkit') {
@@ -119,6 +132,15 @@ jobs:
           }
           if (JSON.stringify(codexMcp.mcp_servers?.['weppy-roblox-mcp']) !== JSON.stringify(expected)) {
             throw new Error('Codex plugin MCP command is not @latest npm command');
+          }
+          if (JSON.stringify(antigravityPlugin) !== JSON.stringify({
+            name: 'weppy-roblox-ai-toolkit',
+            description: 'WEPPY Roblox AI Toolkit setup for Antigravity.',
+          })) {
+            throw new Error('Antigravity plugin manifest is invalid');
+          }
+          if (JSON.stringify(antigravityMcp.mcpServers?.['weppy-roblox-mcp']) !== JSON.stringify(expected)) {
+            throw new Error('Antigravity plugin MCP command is not @latest npm command');
           }
 
           const parseFrontmatter = (markdown) => {
@@ -164,15 +186,53 @@ jobs:
             throw new Error('mcp-actions.md must be generated from tool-codegen');
           }
 
+          const coverage = JSON.parse(fs.readFileSync(
+            path.join(root, 'plugins/weppy-roblox-mcp/skill-coverage.yaml'),
+            'utf8',
+          ));
+          if (coverage.version !== 1) {
+            throw new Error(`Unsupported skill coverage version: ${coverage.version}`);
+          }
+          const mappedActions = new Set();
+          for (const [groupName, group] of Object.entries(coverage.groups || {})) {
+            const referencePath = path.join(
+              root,
+              'plugins/weppy-roblox-mcp/skills',
+              group.skill,
+              group.reference,
+            );
+            if (!fs.existsSync(referencePath)) {
+              throw new Error(`Missing workflow reference for ${groupName}: ${referencePath}`);
+            }
+            for (const action of group.actions || []) {
+              if (!/^[a-z][a-z0-9_]*\.[a-z][a-z0-9_]*$/.test(action)) {
+                throw new Error(`Invalid workflow action for ${groupName}: ${action}`);
+              }
+              if (mappedActions.has(action)) {
+                throw new Error(`Duplicate workflow action mapping: ${action}`);
+              }
+              mappedActions.add(action);
+            }
+          }
+          for (const exception of coverage.exceptions || []) {
+            if (!exception.action || !exception.generatedOnlyReason?.trim()) {
+              throw new Error('Invalid generated-only workflow exception');
+            }
+            if (mappedActions.has(exception.action)) {
+              throw new Error(`Duplicate workflow action mapping: ${exception.action}`);
+            }
+            mappedActions.add(exception.action);
+          }
+
           console.log('✓ Public repo WEPPY Roblox AI Toolkit layout verified');
           NODE
 
-      - name: Verify — npm package runtime tarball shape
+      - name: Verify — published npm package runtime tarball shape
         run: |
-          npm pack --dry-run --json @weppy/roblox-mcp@latest > npm-pack.json
+          npm pack --dry-run --json @weppy/roblox-mcp@latest > npm-pack-published.json
           node <<'NODE'
           const fs = require('fs');
-          const pack = JSON.parse(fs.readFileSync('npm-pack.json', 'utf8'))[0];
+          const pack = JSON.parse(fs.readFileSync('npm-pack-published.json', 'utf8'))[0];
           const paths = pack.files.map((file) => file.path);
           const required = [
             'dist/index.js',
@@ -199,7 +259,7 @@ jobs:
             }
           }
 
-          console.log(`✓ npm package runtime tarball verified (${pack.entryCount} files)`);
+          console.log(`✓ published npm package runtime tarball verified (${pack.entryCount} files)`);
           NODE
 
   test-bash:
@@ -281,15 +341,166 @@ jobs:
           EOF
           sudo chmod +x /usr/local/bin/codex
 
+      - name: Stub Antigravity CLI binary
+        run: |
+          sudo tee /usr/local/bin/agy > /dev/null <<'EOF'
+          #!/usr/bin/env bash
+          set -e
+          target="$HOME/.gemini/antigravity-cli/plugins/weppy-roblox-ai-toolkit"
+          if [ "${WEPPY_AGY_FAIL:-}" = "1" ] && [ "${1:-}" = "plugin" ]; then
+            exit 9
+          fi
+          if [ "${1:-}" = "plugin" ] && [ "${2:-}" = "install" ]; then
+            source_path="${3:-}"
+            test -f "$source_path/plugin.json"
+            test ! -e "$source_path/.claude-plugin"
+            rm -rf "$target"
+            mkdir -p "$(dirname "$target")"
+            cp -R "$source_path" "$target"
+            exit 0
+          fi
+          if [ "${1:-}" = "plugin" ] && [ "${2:-}" = "list" ]; then
+            if [ -f "$target/plugin.json" ]; then
+              printf 'weppy-roblox-ai-toolkit enabled\n'
+            fi
+            exit 0
+          fi
+          if [ "${1:-}" = "plugin" ] && [ "${2:-}" = "uninstall" ]; then
+            rm -rf "$target"
+            exit 0
+          fi
+          exit 0
+          EOF
+          sudo chmod +x /usr/local/bin/agy
+
+      - name: Seed Antigravity hybrid profile
+        run: |
+          mkdir -p "$HOME/.gemini/config" "$HOME/.gemini/antigravity-cli"
+          cat > "$HOME/.gemini/config/mcp_config.json" <<'EOF'
+          {
+            "mcpServers": {
+              "other-server": {
+                "command": "other-command",
+                "args": []
+              }
+            }
+          }
+          EOF
+
       - name: Run install.sh (CI mode, pipe — simulates curl | bash)
         env:
           CI: true
+          WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}/plugins/weppy-roblox-mcp
         run: |
           cat install.sh | bash 2>&1 | tee install-output.log
           if grep -q 'SyntaxError' install-output.log; then
             echo "❌ SyntaxError detected in install output"
             exit 1
           fi
+
+      - name: Verify — Antigravity IDE and CLI hybrid mode
+        run: |
+          target="$HOME/.gemini/config/plugins/weppy-roblox-ai-toolkit"
+          test -f "$target/plugin.json"
+          test -f "$target/skills/weppy-roblox-mcp-guide/SKILL.md"
+          test -f "$target/skills/weppy-roblox-sync-guide/SKILL.md"
+          test -f "$target/skills/weppy-roblox-assets-guide/SKILL.md"
+          test ! -f "$target/mcp_config.json"
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const home = process.env.HOME;
+          const shared = JSON.parse(fs.readFileSync(path.join(home, '.gemini/config/mcp_config.json'), 'utf8'));
+          if (!shared.mcpServers?.['other-server']) throw new Error('other-server was not preserved');
+          if (!shared.mcpServers?.['weppy-roblox-mcp']) throw new Error('WEPPY shared MCP fallback is missing');
+          const cliPath = path.join(home, '.gemini/antigravity-cli/mcp_config.json');
+          if (fs.existsSync(cliPath)) {
+            const cli = JSON.parse(fs.readFileSync(cliPath, 'utf8'));
+            if (cli.mcpServers?.['weppy-roblox-mcp']) throw new Error('duplicate CLI direct MCP remains');
+          }
+          const cliPlugin = path.join(home, '.gemini/antigravity-cli/plugins/weppy-roblox-ai-toolkit');
+          if (!fs.existsSync(path.join(cliPlugin, 'plugin.json'))) throw new Error('CLI skill-only plugin is missing');
+          if (fs.existsSync(path.join(cliPlugin, 'mcp_config.json'))) throw new Error('CLI hybrid plugin retained native MCP config');
+          console.log('✓ Antigravity IDE and CLI hybrid mode verified');
+          NODE
+
+      - name: Verify — Antigravity CLI hybrid skill-only view
+        run: |
+          target="$HOME/.gemini/antigravity-cli/plugins/weppy-roblox-ai-toolkit"
+          test -f "$target/plugin.json"
+          test ! -f "$target/mcp_config.json"
+          test -f "$target/skills/weppy-roblox-mcp-guide/SKILL.md"
+          test -f "$target/skills/weppy-roblox-sync-guide/SKILL.md"
+          test -f "$target/skills/weppy-roblox-assets-guide/SKILL.md"
+          test ! -e "$target/.claude-plugin"
+          printf '✓ Antigravity CLI hybrid skill-only plugin verified\n'
+
+      - name: Verify — Antigravity CLI native-only mode
+        env:
+          WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}/plugins/weppy-roblox-mcp
+        run: |
+          fixture_home=$(mktemp -d)
+          fixture_bin=$(mktemp -d)
+          printf '#!/usr/bin/env bash\nexit 0\n' > "$fixture_bin/npx"
+          chmod +x "$fixture_bin/npx"
+          HOME="$fixture_home" PATH="$fixture_bin:$PATH" CI=true bash install.sh > "$fixture_home/install.log" 2>&1
+          TEST_HOME="$fixture_home" node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const home = process.env.TEST_HOME;
+          const sharedPath = path.join(home, '.gemini/config/mcp_config.json');
+          const pluginPath = path.join(home, '.gemini/antigravity-cli/plugins/weppy-roblox-ai-toolkit/mcp_config.json');
+          const shared = fs.existsSync(sharedPath) ? JSON.parse(fs.readFileSync(sharedPath, 'utf8')) : {};
+          const count = Number(Boolean(shared.mcpServers?.['weppy-roblox-mcp'])) + Number(fs.existsSync(pluginPath));
+          if (count !== 1 || !fs.existsSync(pluginPath)) throw new Error(`expected one native WEPPY definition, found ${count}`);
+          NODE
+
+      - name: Verify — Antigravity native failure fallback
+        env:
+          WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}/plugins/weppy-roblox-mcp
+        run: |
+          fixture_home=$(mktemp -d)
+          fixture_bin=$(mktemp -d)
+          printf '#!/usr/bin/env bash\nexit 0\n' > "$fixture_bin/npx"
+          chmod +x "$fixture_bin/npx"
+          HOME="$fixture_home" PATH="$fixture_bin:$PATH" CI=true WEPPY_AGY_FAIL=1 bash install.sh > "$fixture_home/install.log" 2>&1
+          grep -q 'MCP fallback preserved' "$fixture_home/install.log"
+          TEST_HOME="$fixture_home" node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const home = process.env.TEST_HOME;
+          const shared = JSON.parse(fs.readFileSync(path.join(home, '.gemini/config/mcp_config.json'), 'utf8'));
+          const pluginPath = path.join(home, '.gemini/antigravity-cli/plugins/weppy-roblox-ai-toolkit/mcp_config.json');
+          const count = Number(Boolean(shared.mcpServers?.['weppy-roblox-mcp'])) + Number(fs.existsSync(pluginPath));
+          if (count !== 1 || fs.existsSync(pluginPath)) throw new Error(`expected one shared fallback definition, found ${count}`);
+          NODE
+
+      - name: Verify — Antigravity legacy config migration
+        env:
+          WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}/plugins/weppy-roblox-mcp
+        run: |
+          fixture_home=$(mktemp -d)
+          fixture_bin=$(mktemp -d)
+          printf '#!/usr/bin/env bash\nexit 0\n' > "$fixture_bin/npx"
+          chmod +x "$fixture_bin/npx"
+          mkdir -p "$fixture_home/.gemini/config" "$fixture_home/.gemini/antigravity-cli"
+          printf '{"mcpServers":{"other-server":{"command":"other","args":[]}}}\n' > "$fixture_home/.gemini/config/mcp_config.json"
+          printf '{"topLevel":"keep","mcpServers":{"other-server":{"command":"legacy-other","args":[]},"weppy-roblox-mcp":{"command":"npx","args":["-y","@weppy/roblox-mcp@latest"]}}}\n' > "$fixture_home/.gemini/antigravity-cli/mcp_config.json"
+          HOME="$fixture_home" PATH="$fixture_bin:$PATH" CI=true bash install.sh > "$fixture_home/install.log" 2>&1
+          compgen -G "$fixture_home/.gemini/config/mcp_config.json.weppy-backup-*" >/dev/null
+          compgen -G "$fixture_home/.gemini/antigravity-cli/mcp_config.json.weppy-backup-*" >/dev/null
+          TEST_HOME="$fixture_home" node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const home = process.env.TEST_HOME;
+          const shared = JSON.parse(fs.readFileSync(path.join(home, '.gemini/config/mcp_config.json'), 'utf8'));
+          const legacy = JSON.parse(fs.readFileSync(path.join(home, '.gemini/antigravity-cli/mcp_config.json'), 'utf8'));
+          const idePlugin = path.join(home, '.gemini/config/plugins/weppy-roblox-ai-toolkit/mcp_config.json');
+          const cliPlugin = path.join(home, '.gemini/antigravity-cli/plugins/weppy-roblox-ai-toolkit/mcp_config.json');
+          const count = Number(Boolean(shared.mcpServers?.['weppy-roblox-mcp'])) + Number(Boolean(legacy.mcpServers?.['weppy-roblox-mcp'])) + Number(fs.existsSync(idePlugin)) + Number(fs.existsSync(cliPlugin));
+          if (count !== 1) throw new Error(`expected one migrated WEPPY definition, found ${count}`);
+          if (!shared.mcpServers?.['other-server'] || !legacy.mcpServers?.['other-server'] || legacy.topLevel !== 'keep') throw new Error('non-WEPPY config was not preserved');
+          NODE
 
       - name: Verify — plugin file exists
         run: |
@@ -450,17 +661,155 @@ jobs:
           Set-Content -Path (Join-Path $stubDir 'codex.cmd') -Value $stubCmd -Encoding ASCII
           Add-Content -Path $env:GITHUB_PATH -Value $stubDir
 
+      - name: Stub Antigravity CLI binary on Windows
+        shell: pwsh
+        run: |
+          $stubDir = Join-Path $env:RUNNER_TEMP 'agy-stub'
+          New-Item -ItemType Directory -Path $stubDir -Force | Out-Null
+          $stubJs = @'
+          const fs = require('fs');
+          const path = require('path');
+          const args = process.argv.slice(2);
+          const home = process.env.USERPROFILE || process.env.HOME;
+          const target = path.join(home, '.gemini', 'antigravity-cli', 'plugins', 'weppy-roblox-ai-toolkit');
+          if (process.env.WEPPY_AGY_FAIL === '1' && args[0] === 'plugin') process.exit(9);
+          if (args[0] === 'plugin' && args[1] === 'install') {
+            const source = args[2];
+            if (!fs.existsSync(path.join(source, 'plugin.json'))) process.exit(2);
+            if (fs.existsSync(path.join(source, '.claude-plugin'))) process.exit(4);
+            fs.rmSync(target, { recursive: true, force: true });
+            fs.mkdirSync(path.dirname(target), { recursive: true });
+            fs.cpSync(source, target, { recursive: true });
+          } else if (args[0] === 'plugin' && args[1] === 'list') {
+            if (fs.existsSync(path.join(target, 'plugin.json'))) console.log('weppy-roblox-ai-toolkit enabled');
+          } else if (args[0] === 'plugin' && args[1] === 'uninstall') {
+            fs.rmSync(target, { recursive: true, force: true });
+          }
+          process.exit(0);
+          '@
+          Set-Content -Path (Join-Path $stubDir 'agy-stub.js') -Value $stubJs -Encoding UTF8
+          $stubCmd = "@echo off`r`nnode `"$stubDir\agy-stub.js`" %*"
+          Set-Content -Path (Join-Path $stubDir 'agy.cmd') -Value $stubCmd -Encoding ASCII
+          Add-Content -Path $env:GITHUB_PATH -Value $stubDir
+
+      - name: Seed Antigravity Windows fallback profiles
+        shell: pwsh
+        run: |
+          $sharedDir = Join-Path $env:USERPROFILE '.gemini\config'
+          $cliDir = Join-Path $env:USERPROFILE '.gemini\antigravity-cli'
+          New-Item -ItemType Directory -Path $sharedDir -Force | Out-Null
+          New-Item -ItemType Directory -Path $cliDir -Force | Out-Null
+          @{
+            mcpServers = @{
+              'other-server' = @{ command = 'other-command'; args = @() }
+            }
+          } | ConvertTo-Json -Depth 10 | Set-Content (Join-Path $sharedDir 'mcp_config.json') -Encoding UTF8
+          @{
+            mcpServers = @{
+              'weppy-roblox-mcp' = @{ command = 'npx'; args = @('-y', '@weppy/roblox-mcp@latest') }
+            }
+          } | ConvertTo-Json -Depth 10 | Set-Content (Join-Path $cliDir 'mcp_config.json') -Encoding UTF8
+
       - name: Run install.ps1 (CI mode, pipe — simulates irm | iex)
         env:
           CI: true
+          WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}\plugins\weppy-roblox-mcp
         shell: pwsh
         run: |
           $log = Join-Path $env:RUNNER_TEMP 'install-output.log'
           Get-Content install.ps1 -Raw | Invoke-Expression *>&1 | Tee-Object -FilePath $log
-          if (Select-String -Path $log -Pattern 'SyntaxError' -Quiet) {
+           if (Select-String -Path $log -Pattern 'SyntaxError' -Quiet) {
             Write-Error "❌ SyntaxError detected in install output"
             exit 1
+           }
+
+      - name: Verify — Antigravity IDE and CLI hybrid mode on Windows
+        shell: pwsh
+        run: |
+          $configPath = Join-Path $env:USERPROFILE '.gemini\config\mcp_config.json'
+          $config = Get-Content $configPath -Raw | ConvertFrom-Json
+          if (-not $config.mcpServers.'other-server') { throw 'other-server was not preserved' }
+          if (-not $config.mcpServers.'weppy-roblox-mcp') { throw 'shared WEPPY MCP fallback is missing' }
+          $pluginTarget = Join-Path $env:USERPROFILE '.gemini\config\plugins\weppy-roblox-ai-toolkit'
+          if (Test-Path $pluginTarget) { throw 'unverified Windows IDE plugin path must not be staged' }
+          $cliPluginConfig = Join-Path $env:USERPROFILE '.gemini\antigravity-cli\plugins\weppy-roblox-ai-toolkit\mcp_config.json'
+          if (Test-Path $cliPluginConfig) { throw 'hybrid CLI plugin retained native MCP config' }
+          Write-Host '✓ Antigravity IDE and CLI hybrid mode verified on Windows'
+
+      - name: Verify — Antigravity legacy config migration on Windows
+        shell: pwsh
+        run: |
+          $target = Join-Path $env:USERPROFILE '.gemini\antigravity-cli\plugins\weppy-roblox-ai-toolkit'
+          @(
+            'plugin.json',
+            'skills\weppy-roblox-mcp-guide\SKILL.md',
+            'skills\weppy-roblox-sync-guide\SKILL.md',
+            'skills\weppy-roblox-assets-guide\SKILL.md'
+          ) | ForEach-Object {
+            if (-not (Test-Path (Join-Path $target $_))) { throw "Missing hybrid plugin file: $_" }
           }
+          if (Test-Path (Join-Path $target '.claude-plugin')) { throw 'Claude manifest leaked into native view' }
+          if (Test-Path (Join-Path $target 'mcp_config.json')) { throw 'hybrid plugin retained native MCP config' }
+          $legacyPath = Join-Path $env:USERPROFILE '.gemini\antigravity-cli\mcp_config.json'
+          $cliConfig = Get-Content $legacyPath -Raw | ConvertFrom-Json
+          if ($cliConfig.mcpServers.'weppy-roblox-mcp') { throw 'duplicate CLI direct MCP remains' }
+          if (-not (Get-ChildItem "$legacyPath.weppy-backup-*" -ErrorAction SilentlyContinue)) { throw 'legacy config backup is missing' }
+          Write-Host '✓ Antigravity legacy config migration verified on Windows'
+
+      - name: Verify — Antigravity CLI native-only mode on Windows
+        shell: pwsh
+        env:
+          WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}\plugins\weppy-roblox-mcp
+        run: |
+          $fixtureHome = Join-Path $env:RUNNER_TEMP ("weppy-agy-native-" + [Guid]::NewGuid().ToString('N'))
+          $fixtureBin = Join-Path $fixtureHome 'bin'
+          New-Item -ItemType Directory -Path $fixtureBin -Force | Out-Null
+          Set-Content (Join-Path $fixtureBin 'npm.cmd') "@echo off`r`nexit /b 0" -Encoding ASCII
+          Set-Content (Join-Path $fixtureBin 'npx.cmd') "@echo off`r`nexit /b 0" -Encoding ASCII
+          $env:USERPROFILE = $fixtureHome
+          $env:HOME = $fixtureHome
+          $env:APPDATA = Join-Path $fixtureHome 'AppData\Roaming'
+          $env:LOCALAPPDATA = Join-Path $fixtureHome 'AppData\Local'
+          $env:PATH = "$fixtureBin;$env:PATH"
+          $env:CI = 'true'
+          & pwsh -NoProfile -ExecutionPolicy Bypass -File "$env:GITHUB_WORKSPACE\install.ps1" *> (Join-Path $fixtureHome 'install.log')
+          if ($LASTEXITCODE -ne 0) { throw 'native-only installer fixture failed' }
+          $sharedPath = Join-Path $fixtureHome '.gemini\config\mcp_config.json'
+          $pluginConfig = Join-Path $fixtureHome '.gemini\antigravity-cli\plugins\weppy-roblox-ai-toolkit\mcp_config.json'
+          $sharedCount = 0
+          if (Test-Path $sharedPath) {
+            $shared = Get-Content $sharedPath -Raw | ConvertFrom-Json
+            if ($shared.mcpServers.'weppy-roblox-mcp') { $sharedCount = 1 }
+          }
+          $count = $sharedCount + [int](Test-Path $pluginConfig)
+          if ($count -ne 1 -or -not (Test-Path $pluginConfig)) { throw "expected one native WEPPY definition, found $count" }
+
+      - name: Verify — Antigravity native failure fallback on Windows
+        shell: pwsh
+        env:
+          WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}\plugins\weppy-roblox-mcp
+        run: |
+          $fixtureHome = Join-Path $env:RUNNER_TEMP ("weppy-agy-failure-" + [Guid]::NewGuid().ToString('N'))
+          $fixtureBin = Join-Path $fixtureHome 'bin'
+          New-Item -ItemType Directory -Path $fixtureBin -Force | Out-Null
+          Set-Content (Join-Path $fixtureBin 'npm.cmd') "@echo off`r`nexit /b 0" -Encoding ASCII
+          Set-Content (Join-Path $fixtureBin 'npx.cmd') "@echo off`r`nexit /b 0" -Encoding ASCII
+          $env:USERPROFILE = $fixtureHome
+          $env:HOME = $fixtureHome
+          $env:APPDATA = Join-Path $fixtureHome 'AppData\Roaming'
+          $env:LOCALAPPDATA = Join-Path $fixtureHome 'AppData\Local'
+          $env:PATH = "$fixtureBin;$env:PATH"
+          $env:CI = 'true'
+          $env:WEPPY_AGY_FAIL = '1'
+          $log = Join-Path $fixtureHome 'install.log'
+          & pwsh -NoProfile -ExecutionPolicy Bypass -File "$env:GITHUB_WORKSPACE\install.ps1" *> $log
+          if ($LASTEXITCODE -ne 0) { throw 'native failure installer fixture failed' }
+          if (-not (Select-String -Path $log -Pattern 'MCP fallback preserved' -Quiet)) { throw 'fallback status was not reported' }
+          $sharedPath = Join-Path $fixtureHome '.gemini\config\mcp_config.json'
+          $pluginConfig = Join-Path $fixtureHome '.gemini\antigravity-cli\plugins\weppy-roblox-ai-toolkit\mcp_config.json'
+          $shared = Get-Content $sharedPath -Raw | ConvertFrom-Json
+          $count = [int]($null -ne $shared.mcpServers.'weppy-roblox-mcp') + [int](Test-Path $pluginConfig)
+          if ($count -ne 1 -or (Test-Path $pluginConfig)) { throw "expected one shared fallback definition, found $count" }
 
       - name: Verify — plugin file exists
         shell: pwsh

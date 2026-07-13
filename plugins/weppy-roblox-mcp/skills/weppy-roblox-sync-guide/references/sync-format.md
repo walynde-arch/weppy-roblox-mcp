@@ -34,3 +34,7 @@ weppy-project-sync/
 ## Collision Encoding
 
 Same-name siblings use collision suffixes such as `SpawnLocation~1`. Literal `~` characters are escaped as `~~`.
+
+## Binary Strings
+
+Non-UTF-8 Roblox string values use a `{ "__type": "BinaryString", "encoding": "base64", "data": string, "byteLength": number }` marker. Preserve the marker for round-trip and report only path, scope, key, and byte length in diagnostics; never print raw binary data.

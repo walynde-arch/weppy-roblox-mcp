@@ -45,7 +45,7 @@ irm https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/install.ps1
 Then reopen your AI app and restart Roblox Studio.
 
 Automatic MCP registration supports Claude Code, Claude Desktop, Cursor, Codex CLI/App, Gemini CLI, and Antigravity / Antigravity IDE / Antigravity CLI.
-For Claude Code, the installer also tries to add and install the WEPPY Roblox AI Toolkit. For Codex, it adds the WEPPY Roblox AI Toolkit marketplace and then asks you to install WEPPY Roblox AI Toolkit from Plugin Directory.
+For Claude Code, the installer also tries to add and install the WEPPY Roblox AI Toolkit. For Codex, it adds the WEPPY Roblox AI Toolkit marketplace and then asks you to install WEPPY Roblox AI Toolkit from Plugin Directory. For Antigravity, it installs `weppy-roblox-ai-toolkit` where native plugin discovery has been verified and keeps direct registration as the MCP fallback when plugin-scoped MCP is unavailable.
 
 ### Browser Web Install
 
@@ -67,7 +67,7 @@ Supported AI apps are Claude Code, Claude Desktop, Cursor, Codex CLI, Codex App,
 
 ### Optional WEPPY Roblox AI Toolkit
 
-Claude Code and Codex can also use the WEPPY Roblox AI Toolkit. The MCP server command above is enough to use WEPPY; the plugin adds client-native setup and workflow guidance.
+Claude Code, Codex, and Antigravity can also use the WEPPY Roblox AI Toolkit. The MCP server command above is enough to use WEPPY; the plugin adds client-native setup and workflow guidance for Studio control, sync, and assets.
 
 **Claude Code**
 
@@ -83,6 +83,12 @@ codex plugin marketplace add hope1026/weppy-roblox-mcp
 ```
 
 After adding the Codex marketplace, restart Codex, open Plugin Directory, and install **WEPPY Roblox AI Toolkit**.
+
+**Antigravity**
+
+The installer uses `~/.gemini/config/mcp_config.json` as the shared global MCP config. In a CLI-only profile, verified native plugin MCP replaces the shared direct WEPPY entry. When Antigravity IDE and CLI coexist, both plugin views stay skill-only and one shared direct `weppy-roblox-mcp` definition serves both. Outside the verified OS and version matrix, or when native discovery fails, the installer keeps that shared definition as the MCP fallback and asks you to restart and verify.
+
+GitHub URLs are not passed directly to `agy plugin install`; the installer downloads the repository archive and installs from a prepared local path.
 
 ## Compatibility
 

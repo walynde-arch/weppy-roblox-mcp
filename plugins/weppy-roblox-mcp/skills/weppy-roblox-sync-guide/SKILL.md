@@ -1,6 +1,6 @@
 ---
 name: weppy-roblox-sync-guide
-description: Use when working with WEPPY Roblox MCP Studio-local sync, bidirectional file mirrors, sync directions, multi-place project folders, conflicts, reverse apply, or Roblox Explorer context.
+description: Use when working with WEPPY Roblox MCP Studio-local sync, bidirectional file mirrors, sync directions, multi-place project folders, conflicts, reverse apply and delete safety, sourcemaps, detector recovery, or Roblox Explorer context.
 ---
 
 # WEPPY Roblox Sync Guide
@@ -16,13 +16,15 @@ Use this skill when local files and Roblox Studio state must stay aligned throug
 3. Use the v2 nested directory format when reading or editing mirrored files.
 4. Treat play mode as a sync suppression window; reconcile after play exits.
 5. Resolve conflicts according to direction policy, not by silently overwriting both sides.
-6. Verify by checking sync status, changed files, and Roblox Explorer when relevant.
+6. Confirm destructive local deletes before applying them to Studio unless delete auto-apply was explicitly enabled.
+7. Verify by checking sync status, changed files, sourcemaps, and Roblox Explorer when relevant.
 
 ## References
 
 - `references/sync-workflow.md`: status, directions, apply modes, and runtime lifecycle.
 - `references/sync-format.md`: v2 nested directory and file naming rules.
 - `references/conflicts.md`: direction enforcement and conflict resolution.
+- `references/sourcemap.md`: Place sourcemaps and `luau-lsp` integration.
 - `references/roblox-explorer.md`: VSCode Explorer view over the sync mirror.
 
 ## Guardrails

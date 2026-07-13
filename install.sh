@@ -129,11 +129,15 @@ add_antigravity_mcp_config() {
   mkdir -p "$parent_dir"
   MCP_CONFIG_PATH="$config_path" node --input-type=commonjs -e '
 const fs = require("fs");
+const path = require("path");
 const configPath = process.env.MCP_CONFIG_PATH;
 let config = {};
-try { config = JSON.parse(fs.readFileSync(configPath, "utf8")); } catch {}
+const exists = fs.existsSync(configPath);
+if (exists) {
+  config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+}
 if (!config || typeof config !== "object" || Array.isArray(config)) {
-  config = {};
+  throw new Error("Antigravity config must be an object");
 }
 const mcpServers = config.mcpServers;
 if (mcpServers !== undefined && (typeof mcpServers !== "object" || mcpServers === null || Array.isArray(mcpServers))) {
@@ -145,8 +149,13 @@ next.mcpServers = {
   ...(mcpServers || {}),
   "weppy-roblox-mcp": { command: "npx", args: ["-y", "@weppy/roblox-mcp@latest"] }
 };
-config = next;
-fs.writeFileSync(configPath, JSON.stringify(config, null, 2) + "\n");
+const tempPath = `${configPath}.weppy-tmp-${process.pid}`;
+if (exists) {
+  fs.copyFileSync(configPath, `${configPath}.weppy-backup-${Date.now()}`);
+}
+fs.mkdirSync(path.dirname(configPath), { recursive: true });
+fs.writeFileSync(tempPath, JSON.stringify(next, null, 2) + "\n");
+fs.renameSync(tempPath, configPath);
 '
 }
 
@@ -215,19 +224,7 @@ has_any_antigravity_config_candidate() {
 }
 
 add_antigravity_mcp_configs() {
-  local config_path
-  local wrote_existing=0
-
-  for config_path in "${ANTIGRAVITY_CONFIG_CANDIDATES[@]}"; do
-    if [ -f "$config_path" ]; then
-      add_antigravity_mcp_config "$config_path"
-      wrote_existing=1
-    fi
-  done
-
-  if [ "$wrote_existing" -eq 0 ]; then
-    add_antigravity_mcp_config "${ANTIGRAVITY_CONFIG_CANDIDATES[0]}"
-  fi
+  migrate_legacy_antigravity_entry "$ANTIGRAVITY_SHARED_CONFIG" "$ANTIGRAVITY_LEGACY_CLI_CONFIG"
 }
 
 is_codex_config_configured() {
@@ -817,6 +814,229 @@ is_already_ai_agent_plugin_result() {
   grep -Eqi "already|exists|installed|duplicate" "$stderr_file"
 }
 
+ANTIGRAVITY_PLUGIN_SOURCE_PATH=""
+ANTIGRAVITY_PLUGIN_SOURCE_TEMP=""
+ANTIGRAVITY_NATIVE_VIEW_PATH=""
+
+prepare_antigravity_plugin_source() {
+  local tmp archive marker
+
+  if [ -n "${WEPPY_ANTIGRAVITY_PLUGIN_SOURCE:-}" ]; then
+    [ -f "$WEPPY_ANTIGRAVITY_PLUGIN_SOURCE/plugin.json" ] || return 1
+    [ -f "$WEPPY_ANTIGRAVITY_PLUGIN_SOURCE/mcp_config.json" ] || return 1
+    [ -f "$WEPPY_ANTIGRAVITY_PLUGIN_SOURCE/skills/weppy-roblox-mcp-guide/SKILL.md" ] || return 1
+    [ -f "$WEPPY_ANTIGRAVITY_PLUGIN_SOURCE/skills/weppy-roblox-sync-guide/SKILL.md" ] || return 1
+    [ -f "$WEPPY_ANTIGRAVITY_PLUGIN_SOURCE/skills/weppy-roblox-assets-guide/SKILL.md" ] || return 1
+    ANTIGRAVITY_PLUGIN_SOURCE_PATH="$WEPPY_ANTIGRAVITY_PLUGIN_SOURCE"
+    return 0
+  fi
+
+  tmp=$(mktemp -d "${TMPDIR:-/tmp}/weppy-antigravity-plugin-XXXXXX") || return 1
+  archive="$tmp/repo.tar.gz"
+  curl -fsSL "https://codeload.github.com/hope1026/weppy-roblox-mcp/tar.gz/refs/heads/main" -o "$archive" || {
+    rm -rf "$tmp"
+    return 1
+  }
+  tar -xzf "$archive" -C "$tmp" || {
+    rm -rf "$tmp"
+    return 1
+  }
+  marker=$(find "$tmp" -path '*/plugins/weppy-roblox-mcp/plugin.json' -print -quit)
+  [ -n "$marker" ] || {
+    rm -rf "$tmp"
+    return 1
+  }
+  ANTIGRAVITY_PLUGIN_SOURCE_PATH=$(dirname "$marker")
+  ANTIGRAVITY_PLUGIN_SOURCE_TEMP="$tmp"
+}
+
+stage_antigravity_native_view() {
+  local source="$1" native_view
+  native_view=$(mktemp -d "${TMPDIR:-/tmp}/weppy-antigravity-native-XXXXXX") || return 1
+  cp -R "$source/." "$native_view/" || {
+    rm -rf "$native_view"
+    return 1
+  }
+  # agy 1.0.0은 이 manifest가 있으면 Claude import로 오분류한다.
+  rm -rf "$native_view/.claude-plugin"
+  [ -f "$native_view/plugin.json" ] && [ -f "$native_view/mcp_config.json" ] || {
+    rm -rf "$native_view"
+    return 1
+  }
+  ANTIGRAVITY_NATIVE_VIEW_PATH="$native_view"
+}
+
+stage_antigravity_skill_only_view() {
+  stage_antigravity_native_view "$1" || return 1
+  rm -f "$ANTIGRAVITY_NATIVE_VIEW_PATH/mcp_config.json"
+}
+
+ensure_weppy_antigravity_mcp_entry() {
+  local config_path="$1"
+  add_antigravity_mcp_config "$config_path"
+}
+
+remove_weppy_antigravity_mcp_entry() {
+  local config_path="$1"
+  [ -f "$config_path" ] || return 0
+
+  MCP_CONFIG_PATH="$config_path" node --input-type=commonjs <<'NODE'
+const fs = require('fs');
+const path = require('path');
+const configPath = process.env.MCP_CONFIG_PATH;
+const source = fs.readFileSync(configPath, 'utf8');
+const config = JSON.parse(source);
+
+if (!config || typeof config !== 'object' || Array.isArray(config)) {
+  throw new Error('Antigravity config must be an object');
+}
+
+const hasCanonical = Boolean(config.mcpServers?.['weppy-roblox-mcp']);
+const hasLegacy = Object.prototype.hasOwnProperty.call(config, 'weppy-roblox-mcp');
+if (!hasCanonical && !hasLegacy) process.exit(0);
+if (config.mcpServers !== undefined && (typeof config.mcpServers !== 'object' || config.mcpServers === null || Array.isArray(config.mcpServers))) {
+  throw new Error('Antigravity mcpServers must be an object');
+}
+
+const backupPath = `${configPath}.weppy-backup-${Date.now()}`;
+const tempPath = `${configPath}.weppy-tmp-${process.pid}`;
+fs.copyFileSync(configPath, backupPath);
+const next = { ...config, mcpServers: { ...(config.mcpServers || {}) } };
+delete next['weppy-roblox-mcp'];
+delete next.mcpServers['weppy-roblox-mcp'];
+fs.mkdirSync(path.dirname(configPath), { recursive: true });
+fs.writeFileSync(tempPath, `${JSON.stringify(next, null, 2)}\n`);
+fs.renameSync(tempPath, configPath);
+NODE
+}
+
+migrate_legacy_antigravity_entry() {
+  local shared_config="$1"
+  local legacy_config="$2"
+
+  ANTIGRAVITY_SHARED_CONFIG_PATH="$shared_config" \
+  ANTIGRAVITY_LEGACY_CONFIG_PATH="$legacy_config" \
+  node --input-type=commonjs <<'NODE'
+const fs = require('fs');
+const path = require('path');
+
+const sharedPath = process.env.ANTIGRAVITY_SHARED_CONFIG_PATH;
+const legacyPath = process.env.ANTIGRAVITY_LEGACY_CONFIG_PATH;
+const canonicalEntry = { command: 'npx', args: ['-y', '@weppy/roblox-mcp@latest'] };
+
+function readConfig(configPath) {
+  if (!fs.existsSync(configPath)) return { config: {}, exists: false };
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  if (!config || typeof config !== 'object' || Array.isArray(config)) {
+    throw new Error('Antigravity config must be an object');
+  }
+  if (config.mcpServers !== undefined && (typeof config.mcpServers !== 'object' || config.mcpServers === null || Array.isArray(config.mcpServers))) {
+    throw new Error('Antigravity mcpServers must be an object');
+  }
+  return { config, exists: true };
+}
+
+function timestamp() {
+  const date = new Date();
+  const parts = [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, '0'),
+    String(date.getDate()).padStart(2, '0'),
+    String(date.getHours()).padStart(2, '0'),
+    String(date.getMinutes()).padStart(2, '0'),
+    String(date.getSeconds()).padStart(2, '0'),
+  ];
+  return parts.join('');
+}
+
+function writeConfig(configPath, next, exists) {
+  const tempPath = `${configPath}.weppy-tmp-${process.pid}`;
+  if (exists) fs.copyFileSync(configPath, `${configPath}.weppy-backup-${timestamp()}`);
+  fs.mkdirSync(path.dirname(configPath), { recursive: true });
+  fs.writeFileSync(tempPath, `${JSON.stringify(next, null, 2)}\n`);
+  fs.renameSync(tempPath, configPath);
+}
+
+const shared = readConfig(sharedPath);
+const legacy = readConfig(legacyPath);
+const nextShared = { ...shared.config };
+delete nextShared['weppy-roblox-mcp'];
+nextShared.mcpServers = {
+  ...(shared.config.mcpServers || {}),
+  'weppy-roblox-mcp': canonicalEntry,
+};
+writeConfig(sharedPath, nextShared, shared.exists);
+
+const legacyHasWeppy =
+  Object.prototype.hasOwnProperty.call(legacy.config, 'weppy-roblox-mcp') ||
+  Boolean(legacy.config.mcpServers?.['weppy-roblox-mcp']);
+if (legacy.exists && legacyHasWeppy) {
+  const nextLegacy = { ...legacy.config, mcpServers: { ...(legacy.config.mcpServers || {}) } };
+  delete nextLegacy['weppy-roblox-mcp'];
+  delete nextLegacy.mcpServers['weppy-roblox-mcp'];
+  writeConfig(legacyPath, nextLegacy, true);
+}
+NODE
+}
+
+install_antigravity_cli_plugin() {
+  local source="$1"
+  local mode="${2:-native-only}"
+  [ -n "${ANTIGRAVITY_CLI_COMMAND:-}" ] || return 1
+  if [ "$mode" = "hybrid" ]; then
+    stage_antigravity_skill_only_view "$source" || return 1
+  else
+    stage_antigravity_native_view "$source" || return 1
+  fi
+  "$ANTIGRAVITY_CLI_COMMAND" plugin install "$ANTIGRAVITY_NATIVE_VIEW_PATH" >/dev/null 2>&1 || {
+    "$ANTIGRAVITY_CLI_COMMAND" plugin list 2>/dev/null | grep -q 'weppy-roblox-ai-toolkit' || return 1
+  }
+  "$ANTIGRAVITY_CLI_COMMAND" plugin list 2>/dev/null | grep -q 'weppy-roblox-ai-toolkit' || return 1
+  if [ "$mode" = "native-only" ]; then
+    remove_weppy_antigravity_mcp_entry "$ANTIGRAVITY_SHARED_CONFIG" || {
+      "$ANTIGRAVITY_CLI_COMMAND" plugin uninstall weppy-roblox-ai-toolkit >/dev/null 2>&1 || true
+      return 1
+    }
+  else
+    ensure_weppy_antigravity_mcp_entry "$ANTIGRAVITY_SHARED_CONFIG" || return 1
+  fi
+  rm -rf "$ANTIGRAVITY_NATIVE_VIEW_PATH"
+  ANTIGRAVITY_NATIVE_VIEW_PATH=""
+}
+
+install_antigravity_skill_plugin() {
+  local source="$1"
+  local target="$HOME/.gemini/config/plugins/weppy-roblox-ai-toolkit"
+  local staged backup=""
+
+  staged=$(mktemp -d "${TMPDIR:-/tmp}/weppy-antigravity-skills-XXXXXX") || return 1
+  cp -R "$source/." "$staged/" || {
+    rm -rf "$staged"
+    return 1
+  }
+  # Antigravity 2.2.1에서는 plugin MCP가 비활성이므로 shared view를 skill-only로 고정한다.
+  rm -rf "$staged/.claude-plugin" "$staged/.codex-plugin"
+  rm -f "$staged/.mcp.json" "$staged/mcp_config.json"
+  [ -f "$staged/plugin.json" ] || return 1
+  [ -f "$staged/skills/weppy-roblox-assets-guide/SKILL.md" ] || return 1
+
+  mkdir -p "$(dirname "$target")"
+  if [ -e "$target" ]; then
+    backup="${target}.weppy-backup-$(date +%Y%m%d%H%M%S)"
+    mv "$target" "$backup" || return 1
+  fi
+  if ! mv "$staged" "$target"; then
+    [ -n "$backup" ] && mv "$backup" "$target" || true
+    return 1
+  fi
+  if ! ensure_weppy_antigravity_mcp_entry "$ANTIGRAVITY_SHARED_CONFIG"; then
+    rm -rf "$target"
+    [ -n "$backup" ] && mv "$backup" "$target" || true
+    return 1
+  fi
+  [ -n "$backup" ] && rm -rf "$backup"
+}
+
 # ── Header ──
 # shellcheck disable=SC2059
 printf "\n${BOLD}WEPPY Installer${NC}\n"
@@ -878,7 +1098,8 @@ step "2/3" "Register MCP with AI apps"
 printf "  Automatic registration: Claude Code, Claude Desktop, Cursor, Codex CLI/App, Gemini CLI, Antigravity / Antigravity IDE, Antigravity CLI\n"
 
 MCP_COMMAND='npx -y @weppy/roblox-mcp@latest'
-ANTIGRAVITY_CLI_CONFIG="$HOME/.gemini/antigravity-cli/mcp_config.json"
+ANTIGRAVITY_SHARED_CONFIG="$HOME/.gemini/config/mcp_config.json"
+ANTIGRAVITY_LEGACY_CLI_CONFIG="$HOME/.gemini/antigravity-cli/mcp_config.json"
 ANTIGRAVITY_CLI_COMMAND="$(resolve_optional_cli_command agy 2>/dev/null || true)"
 ANTIGRAVITY_CONFIG_CANDIDATES=(
   "$HOME/.gemini/config/mcp_config.json"
@@ -984,10 +1205,10 @@ else
 fi
 
 # Antigravity CLI
-if is_antigravity_mcp_configured "$ANTIGRAVITY_CLI_CONFIG"; then
+if is_antigravity_mcp_configured "$ANTIGRAVITY_LEGACY_CLI_CONFIG"; then
   DETECTED_NAMES+=("Antigravity CLI (configured)")
   DETECTED_TYPES+=("antigravity-cli")
-elif [ -f "$ANTIGRAVITY_CLI_CONFIG" ] || [ -d "$HOME/.gemini/antigravity-cli" ]; then
+elif [ -f "$ANTIGRAVITY_LEGACY_CLI_CONFIG" ] || [ -d "$HOME/.gemini/antigravity-cli" ]; then
   DETECTED_NAMES+=("Antigravity CLI")
   DETECTED_TYPES+=("antigravity-cli")
 elif [ -n "$ANTIGRAVITY_CLI_COMMAND" ]; then
@@ -1143,7 +1364,7 @@ else
         fi
         ;;
       antigravity-cli)
-        if add_antigravity_mcp_config "$ANTIGRAVITY_CLI_CONFIG"; then
+        if migrate_legacy_antigravity_entry "$ANTIGRAVITY_SHARED_CONFIG" "$ANTIGRAVITY_LEGACY_CLI_CONFIG"; then
           success "Updated: $app_name"
         else
           fail "Failed: $app_name"
@@ -1207,8 +1428,61 @@ else
     warn "WEPPY Roblox AI Toolkit for Codex skipped (codex CLI not found)"
   fi
 
+  antigravity_detected=false
+  antigravity_cli_detected=false
+  if printf '%s\n' "${DETECTED_TYPES[@]}" | grep -qx 'antigravity'; then
+    antigravity_detected=true
+  fi
+  if printf '%s\n' "${DETECTED_TYPES[@]}" | grep -qx 'antigravity-cli'; then
+    antigravity_cli_detected=true
+  fi
+
+  ANTIGRAVITY_MODE="fallback"
+  if [ "$antigravity_cli_detected" = true ] && [ "$antigravity_detected" = false ]; then
+    ANTIGRAVITY_MODE="native-only"
+  elif [ "$antigravity_detected" = true ] || [ "$antigravity_cli_detected" = true ]; then
+    ANTIGRAVITY_MODE="hybrid"
+  fi
+
+  if [ "$antigravity_detected" = true ] || [ "$antigravity_cli_detected" = true ]; then
+    ai_agent_plugin_any=true
+    if migrate_legacy_antigravity_entry "$ANTIGRAVITY_SHARED_CONFIG" "$ANTIGRAVITY_LEGACY_CLI_CONFIG" \
+       && prepare_antigravity_plugin_source; then
+      if [ "$ANTIGRAVITY_MODE" = "native-only" ]; then
+        if install_antigravity_cli_plugin "$ANTIGRAVITY_PLUGIN_SOURCE_PATH" "$ANTIGRAVITY_MODE"; then
+          success "WEPPY Roblox AI Toolkit for Antigravity CLI ready"
+        else
+          ensure_weppy_antigravity_mcp_entry "$ANTIGRAVITY_SHARED_CONFIG" || true
+          warn "Antigravity CLI plugin setup failed; MCP fallback preserved"
+        fi
+      else
+        if [ "$antigravity_detected" = true ]; then
+          if install_antigravity_skill_plugin "$ANTIGRAVITY_PLUGIN_SOURCE_PATH"; then
+            success "WEPPY Roblox AI Toolkit for Antigravity skills installed; restart and verify"
+          else
+            warn "WEPPY Roblox AI Toolkit for Antigravity skipped or failed (MCP fallback preserved)"
+          fi
+        fi
+        if [ "$antigravity_cli_detected" = true ]; then
+          if install_antigravity_cli_plugin "$ANTIGRAVITY_PLUGIN_SOURCE_PATH" "$ANTIGRAVITY_MODE"; then
+            success "WEPPY Roblox AI Toolkit for Antigravity CLI skills installed; restart and verify"
+          else
+            ensure_weppy_antigravity_mcp_entry "$ANTIGRAVITY_SHARED_CONFIG" || true
+            warn "Antigravity CLI plugin setup failed; MCP fallback preserved"
+          fi
+        fi
+      fi
+    else
+      ensure_weppy_antigravity_mcp_entry "$ANTIGRAVITY_SHARED_CONFIG" || true
+      warn "Antigravity plugin source could not be prepared; MCP fallback preserved"
+    fi
+  fi
+
+  [ -n "$ANTIGRAVITY_NATIVE_VIEW_PATH" ] && rm -rf "$ANTIGRAVITY_NATIVE_VIEW_PATH"
+  [ -n "$ANTIGRAVITY_PLUGIN_SOURCE_TEMP" ] && rm -rf "$ANTIGRAVITY_PLUGIN_SOURCE_TEMP"
+
   if [ "$ai_agent_plugin_any" = false ]; then
-    info "WEPPY Roblox AI Toolkit can be installed later from Claude Code or Codex plugin marketplace"
+    info "WEPPY Roblox AI Toolkit can be installed later from a supported AI app"
   fi
 fi
 
@@ -1226,6 +1500,6 @@ printf "  1. Restart Roblox Studio\n"
 printf "  2. Look for the ${BOLD}WEPPY${NC} button in the Plugins tab\n"
 printf "  3. Click Connect and start building with AI!\n\n"
 printf "  Auto registration: Claude Code, Claude Desktop, Cursor, Codex CLI/App, Gemini CLI, Antigravity / Antigravity IDE, Antigravity CLI\n\n"
-printf "  WEPPY Roblox AI Toolkit: Claude Code installs automatically when supported; Codex opens from Plugin Directory after marketplace add.\n\n"
+printf "  WEPPY Roblox AI Toolkit: Claude Code and Antigravity install automatically when supported; Codex opens from Plugin Directory after marketplace add.\n\n"
 # shellcheck disable=SC2059
 printf "  ${DIM}Docs: https://weppyai.com/en/install${NC}\n\n"

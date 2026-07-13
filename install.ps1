@@ -185,11 +185,15 @@ function Add-AntigravityMcpConfig($configPath) {
     try {
         node --input-type=commonjs -e @"
 const fs = require('fs');
+const path = require('path');
 const configPath = process.env.MCP_CONFIG_PATH;
 let config = {};
-try { config = JSON.parse(fs.readFileSync(configPath, 'utf8')); } catch {}
+const exists = fs.existsSync(configPath);
+if (exists) {
+  config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+}
 if (!config || typeof config !== 'object' || Array.isArray(config)) {
-  config = {};
+  throw new Error('Antigravity config must be an object');
 }
 const mcpServers = config.mcpServers;
 if (mcpServers !== undefined && (typeof mcpServers !== 'object' || mcpServers === null || Array.isArray(mcpServers))) {
@@ -201,8 +205,13 @@ next.mcpServers = {
   ...(mcpServers || {}),
   'weppy-roblox-mcp': { command: 'npx', args: ['-y', '@weppy/roblox-mcp@latest'] }
 };
-config = next;
-fs.writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n');
+const tempPath = configPath + '.weppy-tmp-' + process.pid;
+if (exists) {
+  fs.copyFileSync(configPath, configPath + '.weppy-backup-' + Date.now());
+}
+fs.mkdirSync(path.dirname(configPath), { recursive: true });
+fs.writeFileSync(tempPath, JSON.stringify(next, null, 2) + '\n');
+fs.renameSync(tempPath, configPath);
 "@
     } finally {
         Remove-Item Env:\MCP_CONFIG_PATH -ErrorAction SilentlyContinue
@@ -258,18 +267,77 @@ function Test-AnyAntigravityConfigCandidate($configPaths, $dirPaths) {
     return $false
 }
 
-function Add-AntigravityMcpConfigs($configPaths) {
-    $wroteExisting = $false
+function Migrate-LegacyAntigravityEntry($sharedConfigPath, $legacyConfigPath) {
+    $env:ANTIGRAVITY_SHARED_CONFIG_PATH = $sharedConfigPath
+    $env:ANTIGRAVITY_LEGACY_CONFIG_PATH = $legacyConfigPath
+    try {
+        @'
+const fs = require('fs');
+const path = require('path');
 
-    foreach ($configPath in $configPaths) {
-        if (Test-Path $configPath) {
-            Add-AntigravityMcpConfig $configPath
-            $wroteExisting = $true
+const sharedPath = process.env.ANTIGRAVITY_SHARED_CONFIG_PATH;
+const legacyPath = process.env.ANTIGRAVITY_LEGACY_CONFIG_PATH;
+const canonicalEntry = { command: 'npx', args: ['-y', '@weppy/roblox-mcp@latest'] };
+
+function readConfig(configPath) {
+  if (!fs.existsSync(configPath)) return { config: {}, exists: false };
+  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  if (!config || typeof config !== 'object' || Array.isArray(config)) {
+    throw new Error('Antigravity config must be an object');
+  }
+  if (config.mcpServers !== undefined && (typeof config.mcpServers !== 'object' || config.mcpServers === null || Array.isArray(config.mcpServers))) {
+    throw new Error('Antigravity mcpServers must be an object');
+  }
+  return { config, exists: true };
+}
+
+function timestamp() {
+  const date = new Date();
+  return [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, '0'),
+    String(date.getDate()).padStart(2, '0'),
+    String(date.getHours()).padStart(2, '0'),
+    String(date.getMinutes()).padStart(2, '0'),
+    String(date.getSeconds()).padStart(2, '0'),
+  ].join('');
+}
+
+function writeConfig(configPath, next, exists) {
+  const tempPath = configPath + '.weppy-tmp-' + process.pid;
+  if (exists) fs.copyFileSync(configPath, configPath + '.weppy-backup-' + timestamp());
+  fs.mkdirSync(path.dirname(configPath), { recursive: true });
+  fs.writeFileSync(tempPath, JSON.stringify(next, null, 2) + '\n');
+  fs.renameSync(tempPath, configPath);
+}
+
+const shared = readConfig(sharedPath);
+const legacy = readConfig(legacyPath);
+const nextShared = { ...shared.config };
+delete nextShared['weppy-roblox-mcp'];
+nextShared.mcpServers = {
+  ...(shared.config.mcpServers || {}),
+  'weppy-roblox-mcp': canonicalEntry,
+};
+writeConfig(sharedPath, nextShared, shared.exists);
+
+const legacyHasWeppy =
+  Object.prototype.hasOwnProperty.call(legacy.config, 'weppy-roblox-mcp') ||
+  Boolean(legacy.config.mcpServers?.['weppy-roblox-mcp']);
+if (legacy.exists && legacyHasWeppy) {
+  const nextLegacy = { ...legacy.config, mcpServers: { ...(legacy.config.mcpServers || {}) } };
+  delete nextLegacy['weppy-roblox-mcp'];
+  delete nextLegacy.mcpServers['weppy-roblox-mcp'];
+  writeConfig(legacyPath, nextLegacy, true);
+}
+'@ | node --input-type=commonjs
+        if ($LASTEXITCODE -ne 0) {
+            throw 'Antigravity config migration failed'
         }
     }
-
-    if (-not $wroteExisting) {
-        Add-AntigravityMcpConfig $configPaths[0]
+    finally {
+        Remove-Item Env:\ANTIGRAVITY_SHARED_CONFIG_PATH -ErrorAction SilentlyContinue
+        Remove-Item Env:\ANTIGRAVITY_LEGACY_CONFIG_PATH -ErrorAction SilentlyContinue
     }
 }
 
@@ -871,6 +939,166 @@ fs.writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n');
     }
 }
 
+$script:AntigravityPluginSourceTemp = $null
+
+function Get-AntigravityPluginSource {
+    if (-not [string]::IsNullOrWhiteSpace($env:WEPPY_ANTIGRAVITY_PLUGIN_SOURCE)) {
+        $source = $env:WEPPY_ANTIGRAVITY_PLUGIN_SOURCE
+        $required = @(
+            'plugin.json',
+            'mcp_config.json',
+            'skills\weppy-roblox-mcp-guide\SKILL.md',
+            'skills\weppy-roblox-sync-guide\SKILL.md',
+            'skills\weppy-roblox-assets-guide\SKILL.md'
+        )
+        foreach ($relativePath in $required) {
+            if (-not (Test-Path (Join-Path $source $relativePath))) {
+                throw "Invalid Antigravity plugin source: missing $relativePath"
+            }
+        }
+        return $source
+    }
+
+    $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("weppy-antigravity-plugin-{0}" -f [Guid]::NewGuid().ToString('N'))
+    $archive = Join-Path $tempRoot 'repo.zip'
+    New-Item -ItemType Directory -Path $tempRoot -Force | Out-Null
+    try {
+        Invoke-WebRequest 'https://github.com/hope1026/weppy-roblox-mcp/archive/refs/heads/main.zip' -OutFile $archive
+        Expand-Archive -Path $archive -DestinationPath $tempRoot -Force
+        $manifest = Get-ChildItem $tempRoot -Recurse -Filter plugin.json |
+            Where-Object { $_.FullName -match 'plugins[\\/]weppy-roblox-mcp[\\/]plugin.json$' } |
+            Select-Object -First 1
+        if (-not $manifest) {
+            throw 'Antigravity plugin payload not found'
+        }
+        $script:AntigravityPluginSourceTemp = $tempRoot
+        return $manifest.Directory.FullName
+    }
+    catch {
+        Remove-Item $tempRoot -Recurse -Force -ErrorAction SilentlyContinue
+        throw
+    }
+}
+
+function New-AntigravityNativeView($source) {
+    $nativeView = Join-Path ([System.IO.Path]::GetTempPath()) ("weppy-antigravity-native-{0}" -f [Guid]::NewGuid().ToString('N'))
+    New-Item -ItemType Directory -Path $nativeView -Force | Out-Null
+    try {
+        Copy-Item (Join-Path $source '*') $nativeView -Recurse -Force
+        $claudeManifest = Join-Path $nativeView '.claude-plugin'
+        if (Test-Path $claudeManifest) {
+            Remove-Item $claudeManifest -Recurse -Force
+        }
+        if (-not (Test-Path (Join-Path $nativeView 'plugin.json')) -or
+            -not (Test-Path (Join-Path $nativeView 'mcp_config.json'))) {
+            throw 'Invalid Antigravity native plugin view'
+        }
+        return $nativeView
+    }
+    catch {
+        Remove-Item $nativeView -Recurse -Force -ErrorAction SilentlyContinue
+        throw
+    }
+}
+
+function New-AntigravitySkillOnlyView($source) {
+    $skillOnlyView = New-AntigravityNativeView $source
+    Remove-Item (Join-Path $skillOnlyView 'mcp_config.json') -Force
+    return $skillOnlyView
+}
+
+function Remove-WeppyAntigravityMcpEntry($configPath) {
+    if (-not (Test-Path $configPath)) {
+        return $true
+    }
+
+    $env:MCP_CONFIG_PATH = $configPath
+    try {
+        node --input-type=commonjs -e @"
+const fs = require('fs');
+const path = require('path');
+const configPath = process.env.MCP_CONFIG_PATH;
+const source = fs.readFileSync(configPath, 'utf8');
+const config = JSON.parse(source);
+if (!config || typeof config !== 'object' || Array.isArray(config)) {
+  throw new Error('Antigravity config must be an object');
+}
+const mcpServers = config.mcpServers;
+if (mcpServers !== undefined && (typeof mcpServers !== 'object' || mcpServers === null || Array.isArray(mcpServers))) {
+  throw new Error('Antigravity mcpServers must be an object');
+}
+const hasCanonical = Boolean(mcpServers?.['weppy-roblox-mcp']);
+const hasLegacy = Object.prototype.hasOwnProperty.call(config, 'weppy-roblox-mcp');
+if (!hasCanonical && !hasLegacy) process.exit(0);
+const backupPath = configPath + '.weppy-backup-' + Date.now();
+const tempPath = configPath + '.weppy-tmp-' + process.pid;
+fs.copyFileSync(configPath, backupPath);
+const next = { ...config, mcpServers: { ...(mcpServers || {}) } };
+delete next['weppy-roblox-mcp'];
+delete next.mcpServers['weppy-roblox-mcp'];
+fs.mkdirSync(path.dirname(configPath), { recursive: true });
+fs.writeFileSync(tempPath, JSON.stringify(next, null, 2) + '\n');
+fs.renameSync(tempPath, configPath);
+"@
+        return $LASTEXITCODE -eq 0
+    }
+    catch {
+        return $false
+    }
+    finally {
+        Remove-Item Env:\MCP_CONFIG_PATH -ErrorAction SilentlyContinue
+    }
+}
+
+function Install-AntigravityCliPlugin($source, $agyCommand, $sharedConfigPath, $mode) {
+    if (-not $agyCommand) {
+        return $false
+    }
+
+    $nativeView = $null
+    $stderrPath = Join-Path ([System.IO.Path]::GetTempPath()) ("weppy-agy-{0}.err" -f [Guid]::NewGuid().ToString('N'))
+    try {
+        if ($mode -eq 'hybrid') {
+            $nativeView = New-AntigravitySkillOnlyView $source
+        }
+        else {
+            $nativeView = New-AntigravityNativeView $source
+        }
+        $installExit = Invoke-AiAgentPluginCommand $agyCommand @('plugin', 'install', $nativeView) $stderrPath
+        if ($installExit -ne 0) {
+            $listOutput = & $agyCommand @('plugin', 'list') 2>$null | Out-String
+            if ($listOutput -notmatch 'weppy-roblox-ai-toolkit') {
+                return $false
+            }
+        }
+        $listOutput = & $agyCommand @('plugin', 'list') 2>$null | Out-String
+        if ($listOutput -notmatch 'weppy-roblox-ai-toolkit') {
+            return $false
+        }
+        if ($mode -eq 'native-only') {
+            if (-not (Remove-WeppyAntigravityMcpEntry $sharedConfigPath)) {
+                try { & $agyCommand plugin uninstall weppy-roblox-ai-toolkit 2>$null | Out-Null } catch {}
+                return $false
+            }
+        }
+        else {
+            Add-AntigravityMcpConfig $sharedConfigPath
+        }
+        return $true
+    }
+    finally {
+        if ($nativeView) {
+            Remove-Item $nativeView -Recurse -Force -ErrorAction SilentlyContinue
+        }
+        Remove-Item $stderrPath -Force -ErrorAction SilentlyContinue
+    }
+}
+
+function Install-AntigravityIdePlugin($source) {
+    # Windows IDE plugin global path는 아직 실기 검증되지 않아 direct MCP를 유지한다.
+    return $false
+}
+
 # ── Header ──
 Write-Host ""
 Write-Host "WEPPY Installer" -ForegroundColor White -BackgroundColor DarkCyan
@@ -942,7 +1170,8 @@ Write-Host "  Automatic registration: Claude Code, Claude Desktop, Cursor, Codex
 $detectedNames = @()
 $detectedTypes = @()
 $notDetected = @()
-$antigravityCliConfig = Join-Path $env:USERPROFILE '.gemini\antigravity-cli\mcp_config.json'
+$antigravitySharedConfig = Join-Path $env:USERPROFILE '.gemini\config\mcp_config.json'
+$antigravityLegacyCliConfig = Join-Path $env:USERPROFILE '.gemini\antigravity-cli\mcp_config.json'
 $antigravityCliCommand = Resolve-OptionalCliCommand 'agy'
 $antigravityConfigCandidates = @(
     (Join-Path $env:USERPROFILE '.gemini\config\mcp_config.json'),
@@ -1067,11 +1296,11 @@ else {
 }
 
 # Antigravity CLI
-if (Test-AntigravityMcpConfigured $antigravityCliConfig) {
+if (Test-AntigravityMcpConfigured $antigravityLegacyCliConfig) {
     $detectedNames += 'Antigravity CLI (configured)'
     $detectedTypes += 'antigravity-cli'
 }
-elseif ((Test-Path $antigravityCliConfig) -or (Test-Path (Join-Path $env:USERPROFILE '.gemini\antigravity-cli')) -or $antigravityCliCommand) {
+elseif ((Test-Path $antigravityLegacyCliConfig) -or (Test-Path (Join-Path $env:USERPROFILE '.gemini\antigravity-cli')) -or $antigravityCliCommand) {
     $detectedNames += 'Antigravity CLI'
     $detectedTypes += 'antigravity-cli'
 }
@@ -1209,11 +1438,11 @@ else {
                     Write-Ok "Updated: $appName"
                 }
                 "antigravity" {
-                    Add-AntigravityMcpConfigs $antigravityConfigCandidates
+                    Migrate-LegacyAntigravityEntry $antigravitySharedConfig $antigravityLegacyCliConfig
                     Write-Ok "Updated: $appName"
                 }
                 "antigravity-cli" {
-                    Add-AntigravityMcpConfig $antigravityCliConfig
+                    Migrate-LegacyAntigravityEntry $antigravitySharedConfig $antigravityLegacyCliConfig
                     Write-Ok "Updated: $appName"
                 }
             }
@@ -1284,8 +1513,53 @@ else {
         Write-Warn "WEPPY Roblox AI Toolkit for Codex skipped (codex CLI not found)"
     }
 
+    $antigravitySelected = $detectedTypes -contains 'antigravity'
+    $antigravityCliSelected = $detectedTypes -contains 'antigravity-cli'
+    $antigravityMode = if ($antigravityCliSelected -and -not $antigravitySelected) { 'native-only' } else { 'hybrid' }
+    if ($antigravitySelected -or $antigravityCliSelected) {
+        $aiAgentPluginAny = $true
+        try {
+            Migrate-LegacyAntigravityEntry $antigravitySharedConfig $antigravityLegacyCliConfig
+            $antigravityPluginSource = Get-AntigravityPluginSource
+
+            if ($antigravitySelected) {
+                if (Install-AntigravityIdePlugin $antigravityPluginSource) {
+                    Write-Ok "WEPPY Roblox AI Toolkit for Antigravity ready"
+                }
+                else {
+                    Write-Ok "Antigravity IDE MCP fallback ready"
+                }
+            }
+
+            if ($antigravityCliSelected) {
+                if (Install-AntigravityCliPlugin $antigravityPluginSource $antigravityCliCommand $antigravitySharedConfig $antigravityMode) {
+                    if ($antigravityMode -eq 'native-only') {
+                        Write-Ok "WEPPY Roblox AI Toolkit for Antigravity CLI ready"
+                    }
+                    else {
+                        Write-Ok "WEPPY Roblox AI Toolkit for Antigravity CLI skills installed; restart and verify"
+                    }
+                }
+                else {
+                    Add-AntigravityMcpConfig $antigravitySharedConfig
+                    Write-Warn "Antigravity CLI plugin setup failed; MCP fallback preserved"
+                }
+            }
+        }
+        catch {
+            Add-AntigravityMcpConfig $antigravitySharedConfig
+            Write-Warn "Antigravity plugin source could not be prepared; MCP fallback preserved ($_)"
+        }
+        finally {
+            if ($script:AntigravityPluginSourceTemp) {
+                Remove-Item $script:AntigravityPluginSourceTemp -Recurse -Force -ErrorAction SilentlyContinue
+                $script:AntigravityPluginSourceTemp = $null
+            }
+        }
+    }
+
     if (-not $aiAgentPluginAny) {
-        Write-Info "WEPPY Roblox AI Toolkit can be installed later from Claude Code or Codex plugin marketplace"
+        Write-Info "WEPPY Roblox AI Toolkit can be installed later from a supported AI app"
     }
 }
 
@@ -1303,7 +1577,7 @@ Write-Host "  3. Click Connect and start building with AI!"
 Write-Host ""
 Write-Host "  Auto registration: Claude Code, Claude Desktop, Cursor, Codex CLI/App, Gemini CLI, Antigravity / Antigravity IDE, Antigravity CLI"
 Write-Host ""
-Write-Host "  WEPPY Roblox AI Toolkit: Claude Code installs automatically when supported; Codex opens from Plugin Directory after marketplace add."
+Write-Host "  WEPPY Roblox AI Toolkit: Claude Code and Antigravity install automatically when supported; Codex opens from Plugin Directory after marketplace add."
 Write-Host ""
 Write-Host "  Docs: https://weppyai.com/en/install" -ForegroundColor DarkGray
 Write-Host ""

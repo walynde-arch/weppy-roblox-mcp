@@ -2,9 +2,14 @@
 
 Use UI Studio for Roblox `StarterGui` work instead of hand-rolling many GUI mutations.
 
+## Runtime Resources
+
+Before creating or redesigning UI, read `weppy://ui-studio/guide`. Read `weppy://ui-studio/tokens` when choosing palette, spacing, typography, motion, imagery, or composition vocabulary. Treat these runtime resources as the current design guidance; use this reference for the action sequence and safety gates.
+
 ## Product Loop
 
 1. Start with `manage_ui.design_brief`. It may accept no brief, a partial brief, or a complete brief.
+   Keep the accepted `brief_id` and use the returned quality plan through create, update, preview, and check. For an existing target, follow the analysis-first redesign or targeted-update scope returned by `design_brief`.
 2. If the response is `brief_incomplete`, use its recommendation or next question to fill missing intent. Do not dump enum lists at the user.
 3. If asset recommendations are returned with status `recommended`, ask the user before using them.
 4. Create new UI with `manage_ui.create_tree` or update existing UI with `manage_ui.update`.

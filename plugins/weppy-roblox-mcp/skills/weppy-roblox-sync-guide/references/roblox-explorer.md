@@ -12,6 +12,8 @@ weppy-project-sync/place_<id>/explorer/
 
 It uses service `_tree.json` files plus adjacent synced script, props, and value files to render the tree and resolve file opens.
 
+The Explorer tree source and the generated sourcemap have different roles: Explorer renders `_tree.json`, while `luau-lsp` uses the sourcemap for script file resolution.
+
 ## What To Check
 
 - Confirm the active place ID before interpreting Explorer output.

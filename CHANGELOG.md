@@ -16,6 +16,19 @@ All notable changes to this project will be documented in this file.
 
 
 
+
+## [2.10.2] - 2026-07-13
+
+### Features
+
+- **Antigravity plugin support** — Antigravity and Antigravity CLI can now load WEPPY's Roblox workflow skills from the shared WEPPY AI Agent Plugin. Antigravity uses the verified skill plugin plus one shared MCP connection, while Antigravity CLI can use the native plugin when its MCP startup is confirmed.
+- **Expanded Roblox workflow skills** — Added dedicated guidance for Asset Library, Creator Store, generated assets, and Studio or Open Cloud uploads. The MCP and Sync skills also cover Multi-Studio routing, UI Studio resources, delete approval and Undo, sourcemaps, and recovery workflows more completely.
+
+### Stability
+
+- **Safer Antigravity installs and upgrades** — The installers now keep Antigravity and its CLI on one shared global MCP configuration when needed, migrate older CLI entries without overwriting other servers, and prevent duplicate WEPPY connections. Native plugin failures fall back to the shared MCP setup instead of leaving a partially configured install.
+- **Stronger distribution checks** — Release validation now covers plugin layout, skill references, native and fallback installer modes, legacy configuration migration, Windows and Ubuntu installation, and npm package contents before deployment.
+
 ## [2.10.1] - 2026-07-04
 
 ### Bug Fixes

@@ -1,0 +1,4 @@
+interface:
+  display_name: "WEPPY Roblox Assets Guide"
+  short_description: "Asset Library, generation, and upload guide"
+  default_prompt: "Use $weppy-roblox-assets-guide to create, review, upload, and verify Roblox assets safely."

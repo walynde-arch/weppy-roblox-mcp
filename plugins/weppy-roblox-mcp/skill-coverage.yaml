@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "trackedTools": [
+    "manage_assets",
+    "manage_open_cloud_assets",
+    "manage_studio",
+    "manage_ui",
+    "manage_sync"
+  ],
+  "groups": {
+    "asset-library": {
+      "skill": "weppy-roblox-assets-guide",
+      "reference": "references/asset-library.md",
+      "actions": [
+        "manage_assets.export_selection_json",
+        "manage_assets.export_selection_rbxm",
+        "manage_assets.export_path_rbxm",
+        "manage_assets.review_model",
+        "manage_assets.import_rbxm",
+        "manage_assets.generate_thumbnail"
+      ]
+    },
+    "generated-assets": {
+      "skill": "weppy-roblox-assets-guide",
+      "reference": "references/generated-assets.md",
+      "actions": ["manage_assets.generate_model"]
+    },
+    "creator-store": {
+      "skill": "weppy-roblox-assets-guide",
+      "reference": "references/creator-store.md",
+      "actions": [
+        "manage_assets.insert",
+        "manage_assets.info",
+        "manage_assets.search",
+        "manage_assets.search_insert",
+        "manage_assets.insert_free",
+        "manage_assets.insert_package"
+      ]
+    },
+    "studio-upload": {
+      "skill": "weppy-roblox-assets-guide",
+      "reference": "references/studio-upload.md",
+      "actions": ["manage_assets.upload_asset"]
+    },
+    "open-cloud-assets": {
+      "skill": "weppy-roblox-assets-guide",
+      "reference": "references/open-cloud-upload.md",
+      "actions": [
+        "manage_open_cloud_assets.credential_status",
+        "manage_open_cloud_assets.capabilities",
+        "manage_open_cloud_assets.upload",
+        "manage_open_cloud_assets.update",
+        "manage_open_cloud_assets.info",
+        "manage_open_cloud_assets.operation_status"
+      ]
+    },
+    "studio-ui-preview": {
+      "skill": "weppy-roblox-mcp-guide",
+      "reference": "references/ui-studio.md",
+      "actions": ["manage_studio.toggle_ui_preview"]
+    },
+    "playtest": {
+      "skill": "weppy-roblox-mcp-guide",
+      "reference": "references/playtest.md",
+      "actions": [
+        "manage_studio.play_start",
+        "manage_studio.play_stop",
+        "manage_studio.play_pause",
+        "manage_studio.play_resume",
+        "manage_studio.play_status",
+        "manage_studio.run_test"
+      ]
+    },
+    "ui-studio": {
+      "skill": "weppy-roblox-mcp-guide",
+      "reference": "references/ui-studio.md",
+      "actions": [
+        "manage_ui.design_brief",
+        "manage_ui.create_tree",
+        "manage_ui.update",
+        "manage_ui.delete",
+        "manage_ui.preview",
+        "manage_ui.check"
+      ]
+    },
+    "sync": {
+      "skill": "weppy-roblox-sync-guide",
+      "reference": "references/sync-workflow.md",
+      "actions": [
+        "manage_sync.status_current_place",
+        "manage_sync.history",
+        "manage_sync.directions",
+        "manage_sync.read_file",
+        "manage_sync.write_file",
+        "manage_sync.progress"
+      ]
+    }
+  },
+  "exceptions": []
+}

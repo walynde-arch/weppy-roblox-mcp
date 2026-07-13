@@ -21,6 +21,10 @@ Post-play reconciliation:
 
 `apply-studio` must overwrite disk content with the last Studio payload, not only update hashes. Script conflicts need source text. Props conflicts need the full serialized props payload.
 
+## Destructive Deletes
+
+Local `instanceRemoved` changes are destructive and enter the manual queue even when the category apply mode is `auto`. Enable `autoApplyDeletes` only after explicit user opt-in. When the plugin applies a delete, it uses `Parent = nil` so ChangeHistoryService can restore the instance with Undo; it must not call `Destroy()` for this path.
+
 ## Temporary Instances
 
 Instances whose names start with `__MCP_` are temporary WEPPY test/control objects and must not be treated as synced game content.

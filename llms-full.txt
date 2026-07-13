@@ -16,6 +16,8 @@ For installation, start from the web install page and follow its recommended one
 
 Optional WEPPY Roblox AI Toolkit:
 
+The shared plugin id is `weppy-roblox-ai-toolkit`. Claude Code, Codex, and Antigravity use the same Roblox workflow skill payload.
+
 - Claude Code:
 
 ```bash
@@ -30,3 +32,7 @@ codex plugin marketplace add hope1026/weppy-roblox-mcp
 ```
 
 After adding the Codex marketplace, restart Codex, open Plugin Directory, and install WEPPY Roblox AI Toolkit.
+
+- Antigravity:
+
+The installer uses `~/.gemini/config/mcp_config.json` as the shared global MCP config. In a CLI-only profile, verified native plugin MCP replaces the shared direct WEPPY entry. When Antigravity IDE and CLI coexist, both plugin views stay skill-only and one shared direct `weppy-roblox-mcp` definition serves both. Outside the verified OS and version matrix, or when native discovery fails, the installer keeps that shared definition as the MCP fallback and asks the user to restart and verify. Other MCP servers are preserved. Do not pass a GitHub URL directly to `agy plugin install`.
