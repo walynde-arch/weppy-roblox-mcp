@@ -373,6 +373,120 @@ jobs:
           EOF
           sudo chmod +x /usr/local/bin/agy
 
+      - name: Verify — Antigravity reinstall outcome matrix on POSIX
+        env:
+          WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}/plugins/weppy-roblox-mcp
+        run: |
+          plugin_source="$WEPPY_ANTIGRAVITY_PLUGIN_SOURCE"
+          node_path=$(command -v node)
+
+          seed_native_plugin() {
+            target="$1"
+            mkdir -p "$target"
+            cp -R "$plugin_source/." "$target/"
+            rm -rf "$target/.claude-plugin"
+          }
+
+          run_antigravity_fixture() {
+            fixture_name="$1"
+            expected_status="$2"
+            fixture_mode="$3"
+            fixture_home=$(mktemp -d)
+            fixture_bin=$(mktemp -d)
+            target="$fixture_home/.gemini/antigravity-cli/plugins/weppy-roblox-ai-toolkit"
+            log="$fixture_home/install.log"
+            ln -s "$node_path" "$fixture_bin/node"
+            printf '#!/usr/bin/env bash\nexit 0\n' > "$fixture_bin/npx"
+            chmod +x "$fixture_bin/npx"
+
+            if [ "$fixture_mode" != "cli-missing" ] && [ "$fixture_mode" != "unrecoverable" ]; then
+              cp /usr/local/bin/agy "$fixture_bin/agy"
+              chmod +x "$fixture_bin/agy"
+            fi
+
+            case "$fixture_mode" in
+              current)
+                seed_native_plugin "$target"
+                ;;
+              outdated)
+                seed_native_plugin "$target"
+                node -e "const fs=require('fs');const p=process.argv[1];const v=JSON.parse(fs.readFileSync(p));v.description='old release';fs.writeFileSync(p,JSON.stringify(v,null,2)+'\\n')" "$target/plugin.json"
+                ;;
+              damaged)
+                seed_native_plugin "$target"
+                rm -f "$target/skills/weppy-roblox-assets-guide/SKILL.md"
+                ;;
+              install-failure)
+                seed_native_plugin "$target"
+                printf 'preserve-me\n' > "$target/rollback-marker"
+                ;;
+              unrecoverable)
+                mkdir -p "$fixture_home/.gemini"
+                printf 'blocked\n' > "$fixture_home/.gemini/config"
+                ;;
+            esac
+
+            set +e
+            if [ "$fixture_mode" = "install-failure" ]; then
+              HOME="$fixture_home" PATH="$fixture_bin:/usr/bin:/bin" CI=true WEPPY_ANTIGRAVITY_IDE_PRESENT=0 WEPPY_AGY_FAIL=1 WEPPY_ANTIGRAVITY_PLUGIN_SOURCE="$plugin_source" bash install.sh > "$log" 2>&1
+            elif [ "$fixture_mode" = "cli-missing" ] || [ "$fixture_mode" = "unrecoverable" ]; then
+              HOME="$fixture_home" PATH="$fixture_bin:/usr/bin:/bin" CI=true WEPPY_ANTIGRAVITY_IDE_PRESENT=1 WEPPY_ANTIGRAVITY_PLUGIN_SOURCE="$plugin_source" bash install.sh > "$log" 2>&1
+            else
+              HOME="$fixture_home" PATH="$fixture_bin:/usr/bin:/bin" CI=true WEPPY_ANTIGRAVITY_IDE_PRESENT=0 WEPPY_ANTIGRAVITY_PLUGIN_SOURCE="$plugin_source" bash install.sh > "$log" 2>&1
+            fi
+            fixture_exit=$?
+            set -e
+
+            if ! grep -Fq "$expected_status" "$log"; then
+              cat "$log"
+              echo "$fixture_name did not emit $expected_status"
+              return 1
+            fi
+            if grep -Ei 'Antigravity.*skipped or failed|skipped or failed.*Antigravity' "$log"; then
+              cat "$log"
+              echo "$fixture_name emitted an ambiguous Antigravity warning"
+              return 1
+            fi
+            if [ "$fixture_mode" = "unrecoverable" ]; then
+              [ "$fixture_exit" -ne 0 ]
+              printf '✓ %s\n' "$fixture_name"
+              return 0
+            fi
+            [ "$fixture_exit" -eq 0 ]
+
+            TEST_HOME="$fixture_home" FIXTURE_MODE="$fixture_mode" node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const home = process.env.TEST_HOME;
+          const mode = process.env.FIXTURE_MODE;
+          const cli = path.join(home, '.gemini/antigravity-cli/plugins/weppy-roblox-ai-toolkit');
+          const sharedPath = path.join(home, '.gemini/config/mcp_config.json');
+          const shared = fs.existsSync(sharedPath) ? JSON.parse(fs.readFileSync(sharedPath, 'utf8')) : {};
+          const nativeMcp = path.join(cli, 'mcp_config.json');
+          const count = Number(Boolean(shared.mcpServers?.['weppy-roblox-mcp'])) + Number(fs.existsSync(nativeMcp));
+          if (count !== 1) throw new Error(`expected one WEPPY MCP definition, found ${count}`);
+          if (mode === 'cli-missing') {
+            if (fs.existsSync(cli)) throw new Error('CLI-missing fixture unexpectedly installed a plugin');
+          } else {
+            for (const skill of ['weppy-roblox-mcp-guide', 'weppy-roblox-sync-guide', 'weppy-roblox-assets-guide']) {
+              if (!fs.existsSync(path.join(cli, 'skills', skill, 'SKILL.md'))) throw new Error(`CLI skill missing: ${skill}`);
+            }
+          }
+          if (mode === 'install-failure' && !fs.existsSync(path.join(cli, 'rollback-marker'))) {
+            throw new Error('previous plugin was not restored');
+          }
+          NODE
+            printf '✓ %s\n' "$fixture_name"
+          }
+
+          run_antigravity_fixture 'Antigravity clean install' 'installed:' clean
+          run_antigravity_fixture 'Antigravity current reinstall' 'reinstalled:' current
+          run_antigravity_fixture 'Antigravity outdated update' 'updated:' outdated
+          run_antigravity_fixture 'Antigravity damaged repair' 'repaired:' damaged
+          run_antigravity_fixture 'Antigravity CLI missing fallback' 'fallback:' cli-missing
+          run_antigravity_fixture 'Antigravity install failure rollback' 'fallback:' install-failure
+          run_antigravity_fixture 'Antigravity unrecoverable failure' 'failed:' unrecoverable
+
       - name: Seed Antigravity hybrid profile
         run: |
           mkdir -p "$HOME/.gemini/config" "$HOME/.gemini/antigravity-cli"
@@ -390,6 +504,7 @@ jobs:
       - name: Run install.sh (CI mode, pipe — simulates curl | bash)
         env:
           CI: true
+          WEPPY_ANTIGRAVITY_IDE_PRESENT: '1'
           WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}/plugins/weppy-roblox-mcp
         run: |
           cat install.sh | bash 2>&1 | tee install-output.log
@@ -692,6 +807,143 @@ jobs:
           Set-Content -Path (Join-Path $stubDir 'agy.cmd') -Value $stubCmd -Encoding ASCII
           Add-Content -Path $env:GITHUB_PATH -Value $stubDir
 
+      - name: Verify — Antigravity reinstall outcome matrix on Windows
+        shell: pwsh
+        env:
+          WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}\plugins\weppy-roblox-mcp
+        run: |
+          $pluginSource = $env:WEPPY_ANTIGRAVITY_PLUGIN_SOURCE
+          $pwshPath = (Get-Command pwsh.exe).Source
+          $agyStub = Join-Path $env:RUNNER_TEMP 'agy-stub\agy.cmd'
+          $basePath = (($env:PATH -split ';') | Where-Object {
+            $_ -and $_ -notmatch 'agy-stub|claude-stub|codex-stub'
+          }) -join ';'
+
+          function Copy-NativePlugin($Target) {
+            New-Item -ItemType Directory -Path $Target -Force | Out-Null
+            Copy-Item (Join-Path $pluginSource '*') $Target -Recurse -Force
+            Remove-Item (Join-Path $Target '.claude-plugin') -Recurse -Force -ErrorAction SilentlyContinue
+          }
+
+          function Invoke-AntigravityFixture($Name, $ExpectedStatus, $Mode) {
+            $fixtureHome = Join-Path $env:RUNNER_TEMP ([Guid]::NewGuid().ToString('N'))
+            $fixtureBin = Join-Path $fixtureHome 'bin'
+            $target = Join-Path $fixtureHome '.gemini\antigravity-cli\plugins\weppy-roblox-ai-toolkit'
+            $log = Join-Path $fixtureHome 'install.log'
+            New-Item -ItemType Directory -Path $fixtureBin -Force | Out-Null
+            Set-Content (Join-Path $fixtureBin 'npm.cmd') "@echo off`r`nexit /b 0" -Encoding ASCII
+            Set-Content (Join-Path $fixtureBin 'npx.cmd') "@echo off`r`nexit /b 0" -Encoding ASCII
+            if ($Mode -notin @('cli-missing', 'unrecoverable')) {
+              Copy-Item $agyStub (Join-Path $fixtureBin 'agy.cmd') -Force
+            }
+
+            switch ($Mode) {
+              'current' {
+                Copy-NativePlugin $target
+              }
+              'outdated' {
+                Copy-NativePlugin $target
+                $manifestPath = Join-Path $target 'plugin.json'
+                $manifest = Get-Content $manifestPath -Raw | ConvertFrom-Json
+                $manifest.description = 'old release'
+                $manifest | ConvertTo-Json -Depth 10 | Set-Content $manifestPath -Encoding UTF8
+              }
+              'damaged' {
+                Copy-NativePlugin $target
+                Remove-Item (Join-Path $target 'skills\weppy-roblox-assets-guide\SKILL.md') -Force
+              }
+              'install-failure' {
+                Copy-NativePlugin $target
+                Set-Content (Join-Path $target 'rollback-marker') 'preserve-me' -Encoding UTF8
+              }
+              'unrecoverable' {
+                $geminiDir = Join-Path $fixtureHome '.gemini'
+                New-Item -ItemType Directory -Path $geminiDir -Force | Out-Null
+                Set-Content (Join-Path $geminiDir 'config') 'blocked' -Encoding UTF8
+              }
+            }
+
+            $savedProfile = $env:USERPROFILE
+            $savedHome = $env:HOME
+            $savedAppData = $env:APPDATA
+            $savedLocalAppData = $env:LOCALAPPDATA
+            $savedPath = $env:PATH
+            $savedCi = $env:CI
+            $savedIde = $env:WEPPY_ANTIGRAVITY_IDE_PRESENT
+            $savedFailure = $env:WEPPY_AGY_FAIL
+            try {
+              $env:USERPROFILE = $fixtureHome
+              $env:HOME = $fixtureHome
+              $env:APPDATA = Join-Path $fixtureHome 'AppData\Roaming'
+              $env:LOCALAPPDATA = Join-Path $fixtureHome 'AppData\Local'
+              $env:PATH = "$fixtureBin;$basePath"
+              $env:CI = 'true'
+              $env:WEPPY_ANTIGRAVITY_IDE_PRESENT = if ($Mode -in @('cli-missing', 'unrecoverable')) { '1' } else { '0' }
+              $env:WEPPY_AGY_FAIL = if ($Mode -eq 'install-failure') { '1' } else { $null }
+              & $pwshPath -NoProfile -ExecutionPolicy Bypass -File "$env:GITHUB_WORKSPACE\install.ps1" *> $log
+              $fixtureExit = $LASTEXITCODE
+            }
+            finally {
+              $env:USERPROFILE = $savedProfile
+              $env:HOME = $savedHome
+              $env:APPDATA = $savedAppData
+              $env:LOCALAPPDATA = $savedLocalAppData
+              $env:PATH = $savedPath
+              $env:CI = $savedCi
+              $env:WEPPY_ANTIGRAVITY_IDE_PRESENT = $savedIde
+              $env:WEPPY_AGY_FAIL = $savedFailure
+            }
+
+            if (-not (Select-String -Path $log -SimpleMatch $ExpectedStatus -Quiet)) {
+              Get-Content $log
+              throw "$Name did not emit $ExpectedStatus"
+            }
+            if (Select-String -Path $log -Pattern 'Antigravity.*skipped or failed|skipped or failed.*Antigravity' -Quiet) {
+              Get-Content $log
+              throw "$Name emitted an ambiguous Antigravity warning"
+            }
+            if ($Mode -eq 'unrecoverable') {
+              if ($fixtureExit -eq 0) { throw "$Name unexpectedly succeeded" }
+              Write-Host "✓ $Name"
+              return
+            }
+            if ($fixtureExit -ne 0) { throw "$Name failed with exit $fixtureExit" }
+
+            $sharedPath = Join-Path $fixtureHome '.gemini\config\mcp_config.json'
+            $nativeMcp = Join-Path $target 'mcp_config.json'
+            $sharedCount = 0
+            if (Test-Path $sharedPath) {
+              $shared = Get-Content $sharedPath -Raw | ConvertFrom-Json
+              $sharedCount = [int]($null -ne $shared.mcpServers.'weppy-roblox-mcp')
+            }
+            $activeCount = $sharedCount + [int](Test-Path $nativeMcp)
+            if ($activeCount -ne 1) { throw "$Name expected one WEPPY MCP definition, found $activeCount" }
+            if ($Mode -eq 'cli-missing') {
+              if (Test-Path $target) { throw "$Name unexpectedly installed a plugin" }
+            }
+            else {
+              @(
+                'skills\weppy-roblox-mcp-guide\SKILL.md',
+                'skills\weppy-roblox-sync-guide\SKILL.md',
+                'skills\weppy-roblox-assets-guide\SKILL.md'
+              ) | ForEach-Object {
+                if (-not (Test-Path (Join-Path $target $_))) { throw "$Name missing CLI skill: $_" }
+              }
+            }
+            if ($Mode -eq 'install-failure' -and -not (Test-Path (Join-Path $target 'rollback-marker'))) {
+              throw "$Name did not restore the previous plugin"
+            }
+            Write-Host "✓ $Name"
+          }
+
+          Invoke-AntigravityFixture 'Antigravity clean install' 'installed:' 'clean'
+          Invoke-AntigravityFixture 'Antigravity current reinstall' 'reinstalled:' 'current'
+          Invoke-AntigravityFixture 'Antigravity outdated update' 'updated:' 'outdated'
+          Invoke-AntigravityFixture 'Antigravity damaged repair' 'repaired:' 'damaged'
+          Invoke-AntigravityFixture 'Antigravity CLI missing fallback' 'fallback:' 'cli-missing'
+          Invoke-AntigravityFixture 'Antigravity install failure rollback' 'fallback:' 'install-failure'
+          Invoke-AntigravityFixture 'Antigravity unrecoverable failure' 'failed:' 'unrecoverable'
+
       - name: Seed Antigravity Windows fallback profiles
         shell: pwsh
         run: |
@@ -713,6 +965,7 @@ jobs:
       - name: Run install.ps1 (CI mode, pipe — simulates irm | iex)
         env:
           CI: true
+          WEPPY_ANTIGRAVITY_IDE_PRESENT: '1'
           WEPPY_ANTIGRAVITY_PLUGIN_SOURCE: ${{ github.workspace }}\plugins\weppy-roblox-mcp
         shell: pwsh
         run: |
@@ -726,6 +979,10 @@ jobs:
       - name: Verify — Antigravity IDE and CLI hybrid mode on Windows
         shell: pwsh
         run: |
+          $log = Join-Path $env:RUNNER_TEMP 'install-output.log'
+          if (-not (Select-String -Path $log -SimpleMatch 'Windows Antigravity IDE plugin discovery is unverified; MCP fallback preserved' -Quiet)) {
+            throw 'Windows Antigravity IDE discovery warning is missing'
+          }
           $configPath = Join-Path $env:USERPROFILE '.gemini\config\mcp_config.json'
           $config = Get-Content $configPath -Raw | ConvertFrom-Json
           if (-not $config.mcpServers.'other-server') { throw 'other-server was not preserved' }
