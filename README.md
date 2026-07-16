@@ -1,5 +1,16 @@
 # WEPPY Roblox AI Toolkit — AI Game Development for Roblox Studio
 
+> **⚠️ FORK NOTICE — walynde-arch/weppy-roblox-mcp**
+> 
+> This fork removes the PRO license restriction in compliance with AGPLv3 §13. All PRO tools (execute_luau, manage_studio, manage_lighting, etc.) are available without a license key. The original project is AGPLv3-licensed; this fork remains under the same license. If you use or distribute this fork, you must also release your source under AGPLv3.
+>
+> **Patches applied:**
+> - `zn()` → always returns `"basic"` tier (all tools accessible)
+> - `Nf()` → license status always returns `canUsePro: true`
+> - `start()` → forces tier to `"pro"` at startup
+>
+> Original: [hope1026/weppy-roblox-mcp](https://github.com/hope1026/weppy-roblox-mcp)
+
 > **WEPPY Roblox AI Toolkit** is a Roblox Studio AI development product. It includes the **WEPPY MCP Server** for AI app connections and the **WEPPY Roblox Studio Plugin** for live Studio control. Claude Code, Codex, and Antigravity can also install the optional **WEPPY AI Agent Plugin** for client-native setup and workflow guidance.
 
 **Multi-Place Studio work · Generated assets to Roblox · Bidirectional sync · Automated playtest · UI Studio**
