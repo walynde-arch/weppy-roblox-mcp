@@ -18,6 +18,23 @@ All notable changes to this project will be documented in this file.
 
 
 
+
+## [2.11.0] - 2026-07-19
+
+### Features
+
+- **Cleaner Project Sync files with a reviewed v3 update** — New Sync projects now use a canonical file format that avoids unnecessary Git diffs when the same Studio state is synced again. Existing v2 projects stay unchanged until you review the exact metadata additions, modifications, deletions, and blockers in the Dashboard Sync page and explicitly apply the update. WEPPY creates a runtime backup before applying it and does not modify Luau source files. After a place is updated to v3, opening that Sync data with an older MCP server is not supported; projects that remain on v2 continue to work normally.
+- **Read-only Studio readiness checks before AI work** — AI agents can now use `system_info.preflight` to check the selected Studio connection, place identity, Edit or Play state, publish status, screenshot readiness, and security capabilities before starting a task. The check reports specific setup actions without changing Studio settings, the DataModel, or DataStore state.
+- **Read-only Open Cloud upload checks** — Pro users can now verify the saved API key, Assets Read and Write permissions, Creator target, requested asset category, and local file format and size before uploading. Running `manage_open_cloud_assets.preflight` does not upload or update a Roblox asset and does not expose the raw API key.
+
+### Bug Fixes
+
+- **No duplicate events in completed Playtest reports** — `manage_studio.run_test` no longer records the same logs and signals twice when a completed test reports them through both the final result and the live event stream. Timeout and cancellation reports still preserve the available partial stream evidence, including intentional repeated messages.
+
+### Stability
+
+- **Less Sync metadata noise in Git and Dashboard history** — Runtime files such as session and timestamp state are ignored by WEPPY-managed Git rules and excluded from game-change history, while generated files can be distinguished from user source and canonical mirror changes. Existing user `.gitignore` rules and already tracked files are left in place.
+
 ## [2.10.4] - 2026-07-18
 
 ### Features

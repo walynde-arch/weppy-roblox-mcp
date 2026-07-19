@@ -46,6 +46,7 @@
       "skill": "weppy-roblox-assets-guide",
       "reference": "references/open-cloud-upload.md",
       "actions": [
+        "manage_open_cloud_assets.preflight",
         "manage_open_cloud_assets.credential_status",
         "manage_open_cloud_assets.capabilities",
         "manage_open_cloud_assets.upload",
