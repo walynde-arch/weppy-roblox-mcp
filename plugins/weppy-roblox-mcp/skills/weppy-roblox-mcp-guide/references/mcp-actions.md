@@ -1248,7 +1248,7 @@ get suggested camera view for a target.
 
 ### `manage_camera.screenshot`
 
-**EDIT MODE ONLY — DO NOT call during an active playtest.** Captures the current Studio Edit-mode viewport as a PNG image (MCP image content). Pre-check: call manage_studio.play_status and only proceed when state == "edit". The handler will fail with a clear error if a playtest is running. Requires the Studio setting "Allow Mesh / Image APIs" (Game Settings > Security). v1 does not support Play-mode capture because Roblox blocks converting CaptureService temporary contentId into EditableImage outside the edit DM plugin context (confirmed by Roblox engineers on devforum).
+**EDIT MODE ONLY — DO NOT call during an active playtest.** Captures the current Studio Edit-mode viewport as a PNG image (MCP image content). Pre-check: call manage_studio.play_status and only proceed when state == "edit". The handler will fail with a clear error if a playtest is running. Requires Studio Mesh/Image capability. In Studio, open File → Experience Settings → Security and enable "Allow Mesh / Image APIs". v1 does not support Play-mode capture because Roblox blocks converting CaptureService temporary contentId into EditableImage outside the edit DM plugin context (confirmed by Roblox engineers on devforum).
 
 - Tier: `pro`
 - Route: `plugin`
@@ -2374,7 +2374,22 @@ generate or replace thumbnail.png for an Asset Library .rbxm asset.
 
 ## Tool: `manage_open_cloud_assets`
 
-[PRO] Roblox Open Cloud asset upload: credential status, category capabilities, upload local files, update assets, read metadata, and poll operation status. Does not expose delete/archive/restore actions.
+[PRO] Roblox Open Cloud asset upload: preflight diagnostics, credential status, category capabilities, upload local files, update assets, read metadata, and poll operation status. Does not expose delete/archive/restore actions.
+
+### `manage_open_cloud_assets.preflight`
+
+diagnose credential, Assets Read/Write permissions, Creator target, category, and local file readiness without uploading. Credential guidance: In Roblox Creator Hub, create an API key, add Assets under Access Permissions, enable both Read and Write, then save and test the key in WEPPY Assets settings. File guidance: Check that the selected asset category, file extension, and file size satisfy the Roblox Assets API requirements.
+
+- Tier: `pro`
+- Route: `internal`
+- Execution mode: `readonly`
+- Param aliases: none
+- Required params: none
+- Optional params:
+  - `filePath` - string - Local file path on the MCP server machine. Used by: upload, update.
+  - `category` - "image" | "decal" | "audio" | "mesh" | "model" | "video" | "animation" - WEPPY asset category. Used by: upload, update.
+  - `creatorType` - "user" | "group" - Asset creator owner type. Used by: upload, update. Defaults to saved credential metadata when available.
+  - `creatorId` - string - User ID or group ID for the asset creator. Used by: upload, update. Defaults to saved credential metadata when available.
 
 ### `manage_open_cloud_assets.credential_status`
 
@@ -2740,7 +2755,7 @@ quick access to recent errors only.
 
 ## Tool: `system_info`
 
-System info: ping, connection status, usage tier. [PRO] place info, services list, studio settings.
+System info: ping, connection status, usage tier, and read-only Studio preflight diagnostics. [PRO] place info and services list.
 
 ### `system_info.ping`
 
@@ -2800,11 +2815,13 @@ System info: ping, connection status, usage tier. [PRO] place info, services lis
   - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
   - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
-### `system_info.studio_settings`
+### `system_info.preflight`
 
-- Tier: `pro`
-- Route: `plugin`
-- Execution mode: `unspecified`
+diagnose Studio connection, identity, state, publish status, and security capabilities without changing Studio or DataStore state. API Services guidance: In Studio, open File → Experience Settings → Security and enable "Enable Studio Access to API Services". Mesh/Image guidance: In Studio, open File → Experience Settings → Security and enable "Allow Mesh / Image APIs".
+
+- Tier: `basic`
+- Route: `internal`
+- Execution mode: `readonly`
 - Param aliases: none
 - Required params: none
 - Optional params:
