@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Weppy Batch Helper
+ * NovaMCP Batch Helper
  * 
- * Exécute des opérations Weppy en batch via HTTP direct.
+ * Exécute des opérations NovaMCP en batch via HTTP direct.
  * Utile pour des tâches répétitives que le MCP traite un par un.
  * 
  * Usage:
@@ -13,12 +13,12 @@
 
 const http = require('http');
 
-const WEPPY_URL = 'http://127.0.0.1:3002';
+const NovaMCP_URL = 'http://127.0.0.1:3002';
 
 async function weppyRequest(endpoint, body) {
   return new Promise((resolve, reject) => {
     const data = JSON.stringify(body);
-    const req = http.request(`${WEPPY_URL}${endpoint}`, {
+    const req = http.request(`${NovaMCP_URL}${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(data) },
       timeout: 10000
@@ -92,7 +92,7 @@ switch (command) {
   case 'get-sources': batchGetSources(args); break;
   case 'create-instances': batchCreateInstances(args); break;
   default:
-    console.log('Weppy Batch Helper');
+    console.log('NovaMCP Batch Helper');
     console.log('──────────────────');
     console.log('Commandes:');
     console.log('  set-properties <path prop value ...>  — Set props sur N instances');

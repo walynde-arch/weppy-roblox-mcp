@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Weppy Edit Replace Validator
+ * NovaMCP Edit Replace Validator
  * 
- * Validates edit_replace operations before they reach the Weppy server.
+ * Validates edit_replace operations before they reach the NovaMCP server.
  * Prevents the silent duplication/corruption bug on large scripts.
  * 
  * Usage:

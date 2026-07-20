@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Weppy Script Cache
+ * NovaMCP Script Cache
  * 
- * Cache les sources de scripts lues via Weppy pour éviter les relectures.
+ * Cache les sources de scripts lues via NovaMCP pour éviter les relectures.
  * Stocke dans weppy-cache/ avec TTL configurable.
  * 
  * Usage:
@@ -18,7 +18,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const WEPPY_URL = 'http://127.0.0.1:3002';
+const NovaMCP_URL = 'http://127.0.0.1:3002';
 const CACHE_DIR = path.join(__dirname, 'cache');
 const TTL_MS = 300000; // 5 minutes
 
@@ -75,7 +75,7 @@ function hitCache(scriptPath) {
   } catch {}
 }
 
-// ─── Weppy API ───────────────────────────────────────────
+// ─── NovaMCP API ───────────────────────────────────────────
 
 async function weppyGetSource(scriptPath) {
   return new Promise((resolve, reject) => {
@@ -89,7 +89,7 @@ async function weppyGetSource(scriptPath) {
       }
     });
     
-    const req = http.request(`${WEPPY_URL}/mcp`, {
+    const req = http.request(`${NovaMCP_URL}/mcp`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
       timeout: 10000
@@ -128,8 +128,8 @@ async function cmdGet(scriptPath) {
     return;
   }
   
-  // Fetch from Weppy
-  console.log(`[CACHE MISS] ${scriptPath} — fetch depuis Weppy...`);
+  // Fetch from NovaMCP
+  console.log(`[CACHE MISS] ${scriptPath} — fetch depuis NovaMCP...`);
   try {
     const source = await weppyGetSource(scriptPath);
     const lineCount = source.split('\n').length;
@@ -213,7 +213,7 @@ switch (cmd) {
   case 'clear': cmdClear(); break;
   case 'stats': cmdStats(); break;
   default:
-    console.log('Weppy Script Cache');
+    console.log('NovaMCP Script Cache');
     console.log('──────────────────');
     console.log('  get <path>    — Lit et cache un script');
     console.log('  read <path>   — Lit depuis le cache');

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Weppy PRO Auto-Patcher
+ * NovaMCP PRO Auto-Patcher
  * 
  * Applies all 5 patches to dist/index.js automatically.
  * Usage: node patch-pro.js [path-to-dist/index.js]
@@ -85,7 +85,7 @@ if (applied > 0) {
   fs.writeFileSync(TARGET, code, 'utf8');
   console.log(`\n[PATCH] ${applied} patches appliqués (${skipped} déjà en place)`);
   console.log(`[PATCH] Taille: ${originalLength} → ${code.length} octets`);
-  console.log(`[PATCH] Redémarrez le serveur Weppy pour appliquer.`);
+  console.log(`[PATCH] Redémarrez le serveur NovaMCP pour appliquer.`);
 } else {
   console.log(`\n[PATCH] Aucun patch nécessaire — tous déjà appliqués.`);
 }
