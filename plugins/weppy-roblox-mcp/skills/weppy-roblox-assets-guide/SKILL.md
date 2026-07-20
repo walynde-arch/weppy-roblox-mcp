@@ -18,6 +18,18 @@ description: Use when creating, importing, reviewing, uploading, updating, or re
 
 Read `../weppy-roblox-mcp-guide/references/mcp-actions.md` for exact action schemas and parameters.
 
+## Roblox Documentation
+
+Before uploading assets or using Roblox asset APIs, consult:
+- **Engine API**: https://create.roblox.com/docs/reference/engine/llms.txt
+- **Creator Docs**: https://create.roblox.com/docs/llms.txt
+- **Open Cloud**: https://create.roblox.com/docs/cloud/llms.txt
+
+## Related Skills
+
+- **roblox-core**: Instance management, service catalog
+- **roblox-mcp**: Official Roblox Studio MCP server tools
+
 ## Guardrails
 
 - Never invent Roblox asset IDs or Creator IDs.

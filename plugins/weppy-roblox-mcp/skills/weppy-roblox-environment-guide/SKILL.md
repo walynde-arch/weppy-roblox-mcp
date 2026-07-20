@@ -17,6 +17,22 @@ description: Use when building natural Roblox backgrounds through WEPPY Roblox M
 
 Read `../weppy-roblox-mcp-guide/references/mcp-actions.md` for exact action schemas and parameters.
 
+## Roblox Documentation
+
+Before setting lighting, atmosphere, or terrain properties, consult:
+- **Engine API**: https://create.roblox.com/docs/reference/engine/llms.txt
+  - `Lighting` class: lighting properties, TimeOfDay, GeographicLatitude, Ambient, etc.
+  - `Atmosphere` class: Dense, Haze, Decay, Glare, etc.
+  - `Terrain` class: FillRegion, Clear, CellMaterial, etc.
+- **Creator Docs**: https://create.roblox.com/docs/llms.txt
+  - `/docs/en-us/environment.md`: Lighting and effects guide
+  - `/docs/en-us/workspace.md`: 3D workspace and terrain
+
+## Related Skills
+
+- **roblox-physics**: Constraints, collisions, rigid-body physics
+- **roblox-core**: Service catalog, environment services
+
 ## Guardrails
 
 - Regions longer than 1024 studs per side are rejected - split into tiles and enable `edgeBlend` so tiles connect seamlessly.

@@ -26,6 +26,21 @@ Use this skill when local files and Roblox Studio state must stay aligned throug
 - `references/conflicts.md`: direction enforcement and conflict resolution.
 - `references/sourcemap.md`: Place sourcemaps and `luau-lsp` integration.
 - `references/roblox-explorer.md`: VSCode Explorer view over the sync mirror.
+- `references/roblox-docs.md`: Roblox documentation sources (llms.txt, engine API, related skills).
+
+## Roblox Documentation
+
+Before working with sync, Script Sync, or Roblox file formats, consult:
+- **Creator Docs**: https://create.roblox.com/docs/llms.txt
+  - `/docs/en-us/scripting/sync.md`: Script Sync guide
+  - `/docs/en-us/projects/data-model.md`: Data model hierarchy
+  - `/docs/en-us/projects/place-files.md`: Place file formats
+- **Engine API**: https://create.roblox.com/docs/reference/engine/llms.txt
+
+## Related Skills
+
+- **roblox-core**: Data model, Instance methods, service catalog
+- **roblox-testing**: Testing, debugging, profiling
 
 ## Guardrails
 

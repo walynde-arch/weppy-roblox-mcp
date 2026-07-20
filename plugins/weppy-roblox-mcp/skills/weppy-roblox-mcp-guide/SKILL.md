@@ -25,6 +25,23 @@ Use this skill to operate Roblox Studio through WEPPY Roblox MCP with the right 
 - `references/multi-studio-routing.md`: deterministic target selection and selector precedence.
 - `references/ui-studio.md`: UI Studio design brief, create/update, preview, and Design Check loop.
 - `references/playtest.md`: playtest controls, automated test runner, logs, and screenshot limitations.
+- `references/roblox-docs.md`: Roblox documentation sources (llms.txt, engine API, related skills).
+
+## Roblox Documentation
+
+Before writing Luau code or using Roblox engine APIs, consult:
+- **Engine API**: https://create.roblox.com/docs/reference/engine/llms.txt
+- **Creator Docs**: https://create.roblox.com/docs/llms.txt
+- **Open Cloud**: https://create.roblox.com/docs/cloud/llms.txt
+
+See `references/roblox-docs.md` for how to use these sources.
+
+## Related Skills
+
+- **roblox-core**: Luau fundamentals, service catalog, Instance methods
+- **roblox-networking**: RemoteEvents/Functions, server-authoritative patterns
+- **roblox-testing**: Testing, debugging, profiling
+- **roblox-mcp**: Official Roblox Studio MCP server tools
 
 ## Guardrails
 
