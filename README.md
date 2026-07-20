@@ -98,13 +98,19 @@ On the install page, copy the one-line script and run it in Terminal or PowerShe
 **macOS / Linux**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/walynde-arch/weppy-roblox-mcp/main/install.sh | bash
 ```
 
 **Windows (PowerShell)**
 
 ```powershell
-irm https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/walynde-arch/weppy-roblox-mcp/main/install.ps1 | iex
+```
+
+**Fork — Version patchée PRO (recommandé)**
+
+```bash
+npx -y @walynde-arch/weppy-roblox-mcp@latest
 ```
 
 Then reopen your AI app and restart Roblox Studio.
@@ -123,12 +129,12 @@ If the one-line install or terminal-free web installer does not work, register t
 Use this server command:
 
 ```bash
-npx -y @weppy/roblox-mcp@latest
+npx -y @walynde-arch/weppy-roblox-mcp@latest
 ```
 
 Supported AI apps are Claude Code, Claude Desktop, Cursor, Codex CLI, Codex App, Gemini CLI, and Antigravity / Antigravity IDE / Antigravity CLI.
 
-> Any MCP-compatible AI client works. The server command is `npx -y @weppy/roblox-mcp@latest`.
+> Any MCP-compatible AI client works. The server command is `npx -y @walynde-arch/weppy-roblox-mcp@latest`.
 
 ### Optional WEPPY AI Agent Plugin
 
@@ -137,14 +143,14 @@ The **WEPPY Roblox AI Toolkit** connects to every supported AI app through the *
 **Claude Code**
 
 ```bash
-claude plugin marketplace add hope1026/weppy-roblox-mcp --scope user
-claude plugin install weppy-roblox-ai-toolkit@hope1026-roblox-mcp --scope user
+claude plugin marketplace add walynde-arch/weppy-roblox-mcp --scope user
+claude plugin install weppy-roblox-ai-toolkit@walynde-arch-roblox-mcp --scope user
 ```
 
 **Codex**
 
 ```bash
-codex plugin marketplace add hope1026/weppy-roblox-mcp
+codex plugin marketplace add walynde-arch/weppy-roblox-mcp
 ```
 
 After adding the Codex marketplace, restart Codex, open Plugin Directory, and install **WEPPY AI Agent Plugin**.
@@ -293,7 +299,7 @@ See [PRIVACY.md](PRIVACY.md) for the full telemetry notice.
 ## FAQ
 
 ### How do I connect Claude Code to Roblox Studio?
-Install from the web install page to register the **WEPPY MCP Server** and install the **WEPPY Roblox Studio Plugin**. You can also add the **WEPPY AI Agent Plugin** for Claude Code with the commands above. Its MCP command remains `npx -y @weppy/roblox-mcp@latest`.
+Install from the web install page to register the **WEPPY MCP Server** and install the **WEPPY Roblox Studio Plugin**. You can also add the **WEPPY AI Agent Plugin** for Claude Code with the commands above. Its MCP command remains `npx -y @walynde-arch/weppy-roblox-mcp@latest`.
 
 ### How do I use Codex CLI with Roblox Studio?
 Install the **WEPPY Roblox Studio Plugin**, then add the **WEPPY MCP Server** config to Codex CLI. You can also add the Codex plugin marketplace and install **WEPPY AI Agent Plugin** from Plugin Directory.
@@ -329,6 +335,6 @@ Use of the Weppy name and logos is governed by [TRADEMARKS.md](TRADEMARKS.md).
 
 ---
 
-[![npm version](https://img.shields.io/npm/v/@weppy/roblox-mcp)](https://www.npmjs.com/package/@weppy/roblox-mcp) [![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org/) [![Smithery](https://smithery.ai/badge/@hope1026/weppy-roblox-mcp)](https://smithery.ai/server/@hope1026/weppy-roblox-mcp)
+[![npm version](https://img.shields.io/npm/v/@walynde-arch/weppy-roblox-mcp)](https://www.npmjs.com/package/@walynde-arch/weppy-roblox-mcp) [![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org/)
 
-[GitHub Issues](https://github.com/hope1026/weppy-roblox-mcp/issues) · [npm](https://www.npmjs.com/package/@weppy/roblox-mcp)
+[GitHub Issues](https://github.com/walynde-arch/weppy-roblox-mcp/issues) · [npm](https://www.npmjs.com/package/@walynde-arch/weppy-roblox-mcp)
