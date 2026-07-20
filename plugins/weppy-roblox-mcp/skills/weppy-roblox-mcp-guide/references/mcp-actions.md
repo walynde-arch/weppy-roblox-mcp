@@ -225,7 +225,7 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
 
 ## Tool: `mutate_instances`
 
-Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass_create, mass_delete, mass_duplicate, smart_duplicate.
+Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass_create, mass_delete, mass_duplicate, smart_duplicate, scatter.
 
 ### `mutate_instances.create`
 
@@ -411,7 +411,31 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `targetParent` - string - Target parent for cloned/duplicated instances. Used by: clone, mass_duplicate, smart_duplicate.
-  - `count` - number - [PRO] Number of copies to create. Used by: smart_duplicate.
+  - `count` - number - [PRO] Number of copies to create. Used by: smart_duplicate, scatter.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+
+### `mutate_instances.scatter`
+
+clone template instances onto natural ground positions in a region: ray-snapped to the surface, slope and water filters, yaw rotation and scale jitter, minimum spacing, deterministic seed, grouped under one Folder.
+
+- Tier: `pro`
+- Route: `plugin`
+- Execution mode: `mutating`
+- Param aliases: none
+- Required params:
+  - `templatePaths` - array<string> - Template instance paths to clone. Used by: scatter. Multiple templates are picked uniformly at random.
+  - `region` - object - Placement region {min, max} in world studs (XZ used for sampling, Y bounds the ground raycast). Used by: scatter.
+  - `count` - number - [PRO] Number of copies to create. Used by: smart_duplicate, scatter.
+- Optional params:
+  - `seed` - number - Deterministic placement seed. Used by: scatter.
+  - `maxSlope` - number - Maximum ground slope in degrees for placement. Used by: scatter. Default: 30.
+  - `avoidWater` - boolean - Skip points whose ground is Water. Used by: scatter. Default: true.
+  - `alignToNormal` - boolean - Align instances to the surface normal (yaw jitter always applies). Used by: scatter. Default: false.
+  - `scaleJitter` - object - Uniform scale jitter range. Used by: scatter. Default: {min: 0.85, max: 1.25}.
+  - `minSpacing` - number - Minimum distance between placements in studs. Used by: scatter.
+  - `parentName` - string - Folder name that groups the results. Used by: scatter. Default: WeppyScatter_<seed>.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
   - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
   - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
@@ -1015,6 +1039,22 @@ set time of day.
   - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
   - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
+### `manage_lighting.mood`
+
+apply a complete environment mood preset (Lighting, Atmosphere, Sky, ColorCorrection/Bloom/SunRays, Terrain water appearance) with optional per-property overrides. Idempotent: existing instances are updated, never duplicated.
+
+- Tier: `pro`
+- Route: `plugin`
+- Execution mode: `mutating`
+- Param aliases: none
+- Required params:
+  - `preset` - "sunny_day" | "golden_hour" | "sunset" | "dawn" | "night" | "moonlit_night" | "overcast" | "foggy" | "stormy" | "eerie" - Environment mood preset. Used by: mood. Applies Lighting + Atmosphere + Sky + post effects + Terrain water appearance in one call.
+- Optional params:
+  - `overrides` - object - Per-section property overrides applied on top of the preset. Used by: mood. Sections: lighting, atmosphere, sky, effects, water. Values follow the same conversion rules as the properties param.
+  - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+
 ## Tool: `manage_selection`
 
 Get, set, or clear selection. [PRO] context, details, add/remove items, watch changes.
@@ -1208,7 +1248,7 @@ get suggested camera view for a target.
 
 ### `manage_camera.screenshot`
 
-**EDIT MODE ONLY — DO NOT call during an active playtest.** Captures the current Studio Edit-mode viewport as a PNG image (MCP image content). Pre-check: call manage_studio.play_status and only proceed when state == "edit". The handler will fail with a clear error if a playtest is running. Requires the Studio setting "Allow Mesh / Image APIs" (Game Settings > Security). v1 does not support Play-mode capture because Roblox blocks converting CaptureService temporary contentId into EditableImage outside the edit DM plugin context (confirmed by Roblox engineers on devforum).
+**EDIT MODE ONLY — DO NOT call during an active playtest.** Captures the current Studio Edit-mode viewport as a PNG image (MCP image content). Pre-check: call manage_studio.play_status and only proceed when state == "edit". The handler will fail with a clear error if a playtest is running. Requires Studio Mesh/Image capability. In Studio, open File → Experience Settings → Security and enable "Allow Mesh / Image APIs". v1 does not support Play-mode capture because Roblox blocks converting CaptureService temporary contentId into EditableImage outside the edit DM plugin context (confirmed by Roblox engineers on devforum).
 
 - Tier: `pro`
 - Route: `plugin`
@@ -1731,19 +1771,25 @@ bulk voxels.
 
 ### `manage_terrain.generate`
 
-procedural terrain.
+natural procedural terrain: multi-octave fBm, slope-based materials, smooth surface occupancy, optional water and edge blending. Presets: mountains, hills, plains, dunes, islands, canyon.
 
 - Tier: `pro`
 - Route: `plugin`
 - Execution mode: `unspecified`
 - Param aliases: none
-- Required params: none
-- Optional params:
+- Required params:
   - `region` - object - Rectangular region with min/max corners. Used by: clear_region, replace_material, read_voxels, write_voxels, generate, smooth.
+- Optional params:
+  - `preset` - "mountains" | "hills" | "plains" | "dunes" | "islands" | "canyon" - Biome preset for natural terrain. Used by: generate. Explicit parameters override preset values.
+  - `seed` - number - Random seed for terrain generation. Used by: generate.
   - `baseHeight` - number - Base terrain height in studs. Used by: generate. Default: 32.
   - `amplitude` - number - Height variation amplitude in studs. Used by: generate. Default: 24.
   - `frequency` - number - Noise frequency (0.001-0.1). Used by: generate. Default: 0.01.
-  - `seed` - number - Random seed for terrain generation. Used by: generate.
+  - `octaves` - number - fBm noise octave count (1-8). Used by: generate. Default: 4.
+  - `persistence` - number - Amplitude decay between octaves (0-1). Used by: generate. Default: 0.5.
+  - `waterLevel` - number - Absolute water surface height in studs. Used by: generate. Empty space below this level is filled with Water.
+  - `edgeBlend` - object - Blend generated heights into existing terrain at region borders. Used by: generate.
+  - `materialPalette` - object - Material palette override {surface, cliff, shore, underwater}. Used by: generate.
   - `layers` - array<object> - Material layers by height. Used by: generate. Each: {material, maxHeight}.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
   - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
@@ -2328,7 +2374,22 @@ generate or replace thumbnail.png for an Asset Library .rbxm asset.
 
 ## Tool: `manage_open_cloud_assets`
 
-[PRO] Roblox Open Cloud asset upload: credential status, category capabilities, upload local files, update assets, read metadata, and poll operation status. Does not expose delete/archive/restore actions.
+[PRO] Roblox Open Cloud asset upload: preflight diagnostics, credential status, category capabilities, upload local files, update assets, read metadata, and poll operation status. Does not expose delete/archive/restore actions.
+
+### `manage_open_cloud_assets.preflight`
+
+diagnose credential, Assets Read/Write permissions, Creator target, category, and local file readiness without uploading. Credential guidance: In Roblox Creator Hub, create an API key, add Assets under Access Permissions, enable both Read and Write, then save and test the key in WEPPY Assets settings. File guidance: Check that the selected asset category, file extension, and file size satisfy the Roblox Assets API requirements.
+
+- Tier: `pro`
+- Route: `internal`
+- Execution mode: `readonly`
+- Param aliases: none
+- Required params: none
+- Optional params:
+  - `filePath` - string - Local file path on the MCP server machine. Used by: upload, update.
+  - `category` - "image" | "decal" | "audio" | "mesh" | "model" | "video" | "animation" - WEPPY asset category. Used by: upload, update.
+  - `creatorType` - "user" | "group" - Asset creator owner type. Used by: upload, update. Defaults to saved credential metadata when available.
+  - `creatorId` - string - User ID or group ID for the asset creator. Used by: upload, update. Defaults to saved credential metadata when available.
 
 ### `manage_open_cloud_assets.credential_status`
 
@@ -2694,7 +2755,7 @@ quick access to recent errors only.
 
 ## Tool: `system_info`
 
-System info: ping, connection status, usage tier. [PRO] place info, services list, studio settings.
+System info: ping, connection status, usage tier, and read-only Studio preflight diagnostics. [PRO] place info and services list.
 
 ### `system_info.ping`
 
@@ -2754,11 +2815,13 @@ System info: ping, connection status, usage tier. [PRO] place info, services lis
   - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
   - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
-### `system_info.studio_settings`
+### `system_info.preflight`
 
-- Tier: `pro`
-- Route: `plugin`
-- Execution mode: `unspecified`
+diagnose Studio connection, identity, state, publish status, and security capabilities without changing Studio or DataStore state. API Services guidance: In Studio, open File → Experience Settings → Security and enable "Enable Studio Access to API Services". Mesh/Image guidance: In Studio, open File → Experience Settings → Security and enable "Allow Mesh / Image APIs".
+
+- Tier: `basic`
+- Route: `internal`
+- Execution mode: `readonly`
 - Param aliases: none
 - Required params: none
 - Optional params:

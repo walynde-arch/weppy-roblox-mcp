@@ -46,6 +46,7 @@
       "skill": "weppy-roblox-assets-guide",
       "reference": "references/open-cloud-upload.md",
       "actions": [
+        "manage_open_cloud_assets.preflight",
         "manage_open_cloud_assets.credential_status",
         "manage_open_cloud_assets.capabilities",
         "manage_open_cloud_assets.upload",
@@ -94,6 +95,21 @@
         "manage_sync.write_file",
         "manage_sync.progress"
       ]
+    },
+    "environment-terrain": {
+      "skill": "weppy-roblox-environment-guide",
+      "reference": "references/preset-catalog.md",
+      "actions": ["manage_terrain.generate"]
+    },
+    "environment-mood": {
+      "skill": "weppy-roblox-environment-guide",
+      "reference": "references/preset-catalog.md",
+      "actions": ["manage_lighting.mood"]
+    },
+    "environment-scatter": {
+      "skill": "weppy-roblox-environment-guide",
+      "reference": "references/preset-catalog.md",
+      "actions": ["mutate_instances.scatter"]
     }
   },
   "exceptions": []
