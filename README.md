@@ -11,57 +11,57 @@
 >
 > Original: [hope1026/weppy-roblox-mcp](https://github.com/hope1026/weppy-roblox-mcp)
 
-> ## Fork Features — Scripts Améliorés
+> ## Fork Features — Additional Scripts
 >
-> Ce fork ajoute plusieurs scripts utilitaires pour un fonctionnement plus robuste :
+> This fork adds several utility scripts for more robust operation:
 >
-> ### `launch-robust.cjs` — Lanceur principal (recommandé)
+> ### `launch-robust.cjs` — Main launcher (recommended)
 > ```
 > node launch-robust.cjs
 > ```
-> - Auto-restart si crash (max 5 tentatives, 3s delay)
-> - Log dans `logs/weppy-YYYY-MM-DD.log`
-> - Tue le process existant avant relance
-> - Désactive `DASHBOARD_AUTO_OPEN`
-> - Health check au démarrage
-> - Définit le nom de l'agent sur "Hermes" dans le dashboard
-> - Sortie propre sur SIGINT/SIGTERM
+> - Auto-restart on crash (max 5 attempts, 3s delay)
+> - Logs to `logs/weppy-YYYY-MM-DD.log`
+> - Kills existing process before restart
+> - Disables `DASHBOARD_AUTO_OPEN`
+> - Health check on startup
+> - Sets agent name to "Hermes" in the dashboard
+> - Clean shutdown on SIGINT/SIGTERM
 >
-> ### `health-check.cjs` — Vérification de santé
+> ### `health-check.cjs` — Health check
 > ```
-> node health-check.cjs          # Affichage humain
-> node health-check.cjs --json   # Sortie JSON (pour scripts/cron)
+> node health-check.cjs          # Human-readable output
+> node health-check.cjs --json   # JSON output (for scripts/cron)
 > ```
-> Vérifie : serveur, port 3002, connexion Studio, license PRO.
+> Checks: server, port 3002, Studio connection, PRO license status.
 >
-> ### `cache.cjs` — Cache de sources de scripts
+> ### `cache.cjs` — Script source cache
 > ```
-> node cache.cjs get game.Workspace.Script    # Lit et cache (TTL 5min)
-> node cache.cjs read game.Workspace.Script   # Depuis le cache uniquement
-> node cache.cjs list                         # Liste le cache
-> node cache.cjs stats                        # Statistiques
-> node cache.cjs clear                        # Vide le cache
+> node cache.cjs get game.Workspace.Script    # Read and cache (TTL 5min)
+> node cache.cjs read game.Workspace.Script   # From cache only
+> node cache.cjs list                         # List cache contents
+> node cache.cjs stats                        # Cache statistics
+> node cache.cjs clear                        # Clear cache
 > ```
-> Stocke dans `cache/` avec TTL 5 minutes. Évite les relectures réseau inutiles.
+> Stores in `cache/` with 5-minute TTL. Avoids unnecessary network re-reads.
 >
-> ### `batch.cjs` — Opérations batch
+> ### `batch.cjs` — Batch operations
 > ```
 > node batch.cjs set-properties <path prop value ...>
 > node batch.cjs get-sources <path1 path2 ...>
 > node batch.cjs create-instances <parent class name1 name2 ...>
 > ```
 >
-> ### `patch-pro.cjs` — Auto-patch PRO (usage interne uniquement)
+> ### `patch-pro.cjs` — Auto-patch PRO (internal use only)
 > ```
 > node patch-pro.cjs
 > ```
-> **ATTENTION** : Ce script est dangereux sur le fork déjà patché. Exécuter sur une copie fraîche de l'upstream uniquement.
+> **WARNING**: Dangerous on the already-patched fork. Only run on a fresh upstream copy.
 >
-> ### `launch.cjs` — Lanceur simple
-> Version minimale de `launch-robust.cjs` sans auto-restart ni logging.
+> ### `launch.cjs` — Simple launcher
+> Minimal version of `launch-robust.cjs` without auto-restart or logging.
 >
-> ### `weppy-safe.cjs` — Lanceur sécurisé
-> Version avec vérifications additionnelles avant démarrage.
+> ### `weppy-safe.cjs` — Safe launcher
+> Version with additional startup checks.
 >
 > ---
 
