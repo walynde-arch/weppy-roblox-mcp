@@ -1,6 +1,6 @@
 {
-  "name": "@walynde-arch/weppy-roblox-mcp",
-  "version": "2.10.3",
+  "name": "@weppy/roblox-mcp",
+  "version": "2.11.0",
   "description": "MCP (Model Context Protocol) server for Roblox Studio integration - enables AI coding agents to interact with Roblox Studio in real-time",
   "main": "dist/index.js",
   "type": "module",
