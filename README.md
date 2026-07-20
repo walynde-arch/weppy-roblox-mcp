@@ -11,7 +11,61 @@
 >
 > Original: [hope1026/weppy-roblox-mcp](https://github.com/hope1026/weppy-roblox-mcp)
 
-> **WEPPY Roblox AI Toolkit** is a Roblox Studio AI development product. It includes the **WEPPY MCP Server** for AI app connections and the **WEPPY Roblox Studio Plugin** for live Studio control. Claude Code, Codex, and Antigravity can also install the optional **WEPPY AI Agent Plugin** for client-native setup and workflow guidance.
+> ## Fork Features — Scripts Améliorés
+>
+> Ce fork ajoute plusieurs scripts utilitaires pour un fonctionnement plus robuste :
+>
+> ### `launch-robust.cjs` — Lanceur principal (recommandé)
+> ```
+> node launch-robust.cjs
+> ```
+> - Auto-restart si crash (max 5 tentatives, 3s delay)
+> - Log dans `logs/weppy-YYYY-MM-DD.log`
+> - Tue le process existant avant relance
+> - Désactive `DASHBOARD_AUTO_OPEN`
+> - Health check au démarrage
+> - Définit le nom de l'agent sur "Hermes" dans le dashboard
+> - Sortie propre sur SIGINT/SIGTERM
+>
+> ### `health-check.cjs` — Vérification de santé
+> ```
+> node health-check.cjs          # Affichage humain
+> node health-check.cjs --json   # Sortie JSON (pour scripts/cron)
+> ```
+> Vérifie : serveur, port 3002, connexion Studio, license PRO.
+>
+> ### `cache.cjs` — Cache de sources de scripts
+> ```
+> node cache.cjs get game.Workspace.Script    # Lit et cache (TTL 5min)
+> node cache.cjs read game.Workspace.Script   # Depuis le cache uniquement
+> node cache.cjs list                         # Liste le cache
+> node cache.cjs stats                        # Statistiques
+> node cache.cjs clear                        # Vide le cache
+> ```
+> Stocke dans `cache/` avec TTL 5 minutes. Évite les relectures réseau inutiles.
+>
+> ### `batch.cjs` — Opérations batch
+> ```
+> node batch.cjs set-properties <path prop value ...>
+> node batch.cjs get-sources <path1 path2 ...>
+> node batch.cjs create-instances <parent class name1 name2 ...>
+> ```
+>
+> ### `patch-pro.cjs` — Auto-patch PRO (usage interne uniquement)
+> ```
+> node patch-pro.cjs
+> ```
+> **ATTENTION** : Ce script est dangereux sur le fork déjà patché. Exécuter sur une copie fraîche de l'upstream uniquement.
+>
+> ### `launch.cjs` — Lanceur simple
+> Version minimale de `launch-robust.cjs` sans auto-restart ni logging.
+>
+> ### `weppy-safe.cjs` — Lanceur sécurisé
+> Version avec vérifications additionnelles avant démarrage.
+>
+> ---
+
+> **WEPPY Roblox AI Toolkit**
 
 **Multi-Place Studio work · Generated assets to Roblox · Bidirectional sync · Automated playtest · UI Studio**
 
