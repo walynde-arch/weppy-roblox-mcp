@@ -1,6 +1,6 @@
-# WEPPY Sourcemap Reference
+# NovaMCP Sourcemap Reference
 
-WEPPY writes a Rojo-style sourcemap for `luau-lsp`.
+NovaMCP writes a Rojo-style sourcemap for `luau-lsp`.
 
 - Canonical per-Place file: `weppy-project-sync/place_<id>/sourcemap.json`
 - Active-Place representative: `weppy-project-sync/sourcemap.json`

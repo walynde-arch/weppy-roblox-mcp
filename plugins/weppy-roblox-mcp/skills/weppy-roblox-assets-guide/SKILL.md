@@ -1,9 +1,9 @@
 ---
 name: weppy-roblox-assets-guide
-description: Use when creating, importing, reviewing, uploading, updating, or reusing Roblox assets through WEPPY Asset Library, Studio-local asset workflows, AI-generated images or models, and Roblox Open Cloud.
+description: Use when creating, importing, reviewing, uploading, updating, or reusing Roblox assets through NovaMCP Asset Library, Studio-local asset workflows, AI-generated images or models, and Roblox Open Cloud.
 ---
 
-# WEPPY Roblox Assets Guide
+# NovaMCP Roblox Assets Guide
 
 ## Workflow
 
@@ -35,5 +35,5 @@ Before uploading assets or using Roblox asset APIs, consult:
 - Never invent Roblox asset IDs or Creator IDs.
 - Never print or request a raw Open Cloud API key through MCP tool arguments.
 - Never set `uploadTemporaryAssets=true` without explicit user approval.
-- Do not imply that WEPPY deletes, archives, or restores remote Roblox assets.
+- Do not imply that NovaMCP deletes, archives, or restores remote Roblox assets.
 - Keep Studio-local upload and Open Cloud upload as separate workflows.

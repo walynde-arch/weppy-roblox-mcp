@@ -1,13 +1,13 @@
 ---
 name: weppy-roblox-mcp-guide
-description: Use when controlling Roblox Studio through WEPPY Roblox MCP, choosing MCP tool actions, selecting among multiple connected Studio targets, creating or checking UI Studio interfaces, running playtests, inspecting logs, or verifying direct Studio workflows.
+description: Use when controlling Roblox Studio through NovaMCP Roblox MCP, choosing MCP tool actions, selecting among multiple connected Studio targets, creating or checking UI Studio interfaces, running playtests, inspecting logs, or verifying direct Studio workflows.
 ---
 
-# WEPPY Roblox MCP Guide
+# NovaMCP Roblox MCP Guide
 
 ## Overview
 
-Use this skill to operate Roblox Studio through WEPPY Roblox MCP with the right tool/action sequence. Keep exact action and parameter lookup in references so the main workflow stays small.
+Use this skill to operate Roblox Studio through NovaMCP Roblox MCP with the right tool/action sequence. Keep exact action and parameter lookup in references so the main workflow stays small.
 
 ## Workflow
 

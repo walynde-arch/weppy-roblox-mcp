@@ -1,12 +1,12 @@
 {
-  "name": "@weppy/roblox-mcp",
+  "name": "@walynde-arch/novamcp",
   "version": "2.11.0",
-  "description": "MCP (Model Context Protocol) server for Roblox Studio integration - enables AI coding agents to interact with Roblox Studio in real-time",
+  "displayName": "NovaMCP",
+  "description": "NovaMCP — Roblox Studio MCP server (fork of @weppy/roblox-mcp with PRO patches and enhancements)",
   "main": "dist/index.js",
   "type": "module",
   "bin": {
-    "weppy-roblox-mcp": "./dist/index.js",
-    "roblox-mcp": "./dist/index.js"
+    "novamcp": "./dist/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -30,24 +30,20 @@
     "automation",
     "game-development",
     "studio-integration",
-    "claude",
-    "claude-code",
-    "codex",
-    "gemini",
-    "cursor",
-    "vscode"
+    "novamcp",
+    "hermes"
   ],
-  "author": "",
+  "author": "walynde-arch",
   "license": "AGPL-3.0",
   "engines": {
     "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hope1026/weppy-roblox-mcp.git"
+    "url": "https://github.com/walynde-arch/weppy-roblox-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/hope1026/weppy-roblox-mcp/issues"
+    "url": "https://github.com/walynde-arch/weppy-roblox-mcp/issues"
   },
-  "homepage": "https://github.com/hope1026/weppy-roblox-mcp#readme"
+  "homepage": "https://github.com/walynde-arch/weppy-roblox-mcp#readme"
 }

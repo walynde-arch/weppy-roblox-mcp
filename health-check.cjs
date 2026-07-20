@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Weppy Health Check
+ * NovaMCP Health Check
  * 
- * Vérifie l'état du serveur Weppy et de la connexion Studio.
+ * Vérifie l'état du serveur NovaMCP et de la connexion Studio.
  * Usage: node health-check.js [--json]
  * 
  * Sortie:
- *   - Serveur Weppy: running/stopped
+ *   - Serveur NovaMCP: running/stopped
  *   - Port 3002: listening/not listening
  *   - Plugin Studio: connected/disconnected
  *   - License: pro/basic
@@ -91,7 +91,7 @@ async function main() {
   if (jsonOutput) {
     console.log(JSON.stringify(results, null, 2));
   } else {
-    console.log('═══ Weppy Health Check ═══');
+    console.log('═══ NovaMCP Health Check ═══');
     console.log(`  Serveur:    ${results.server.status === 'running' ? '✓ Running' : '✗ Stopped'}${results.server.pid ? ` (PID ${results.server.pid})` : ''}`);
     console.log(`  Port 3002:  ${results.server.status === 'running' ? '✓ Listening' : '✗ Not listening'}`);
     console.log(`  Studio:     ${results.studio.connected ? '✓ Connected' : '✗ Disconnected'}`);

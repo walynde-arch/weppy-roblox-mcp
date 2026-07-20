@@ -1,4 +1,4 @@
-# WEPPY Roblox AI Toolkit — AI Game Development for Roblox Studio
+# NovaMCP Roblox AI Toolkit — AI Game Development for Roblox Studio
 
 > **⚠️ FORK NOTICE — walynde-arch/weppy-roblox-mcp**
 > 
@@ -65,7 +65,7 @@
 >
 > ---
 
-> **WEPPY Roblox AI Toolkit**
+> **NovaMCP Roblox AI Toolkit**
 
 **Multi-Place Studio work · Generated assets to Roblox · Bidirectional sync · Automated playtest · UI Studio**
 
@@ -73,13 +73,13 @@
 
 [![Demo - AI building a Roblox game in real time](https://img.youtube.com/vi/j14LZHYzLg8/maxresdefault.jpg)](https://www.youtube.com/watch?v=j14LZHYzLg8)
 
-## Why WEPPY Roblox AI Toolkit?
+## Why NovaMCP Roblox AI Toolkit?
 
 AI coding agents like Claude, Codex, and Gemini are powerful, but they cannot see or modify anything inside Roblox Studio. The DataModel, scripts, terrain, and lighting are invisible to external tools. Without a bridge, AI can only generate code snippets that you must paste manually.
 
-The **WEPPY MCP Server** connects AI agents to the **WEPPY Roblox Studio Plugin**. AI directly creates and modifies instances, scripts, properties, terrain, and more inside Studio, and the changes are reflected immediately in Studio and the dashboard so you can see exactly what changed.
+The **NovaMCP MCP Server** connects AI agents to the **NovaMCP Roblox Studio Plugin**. AI directly creates and modifies instances, scripts, properties, terrain, and more inside Studio, and the changes are reflected immediately in Studio and the dashboard so you can see exactly what changed.
 
-WEPPY is also built for Roblox experiences that are split across several Places. Open up to five Studio windows for Lobby, Game, Shop, Tutorial, or other Places, then tell the agent which Studio ID to use. One request can update several Places without re-explaining context or copying changes by hand.
+NovaMCP is also built for Roblox experiences that are split across several Places. Open up to five Studio windows for Lobby, Game, Shop, Tutorial, or other Places, then tell the agent which Studio ID to use. One request can update several Places without re-explaining context or copying changes by hand.
 
 For assets, an agent can create or prepare an image, save it to the Asset Library, upload it through Roblox Open Cloud, and apply the returned asset URI to a Place. The result is a shorter path from "make this icon/decal" to "it is visible in Studio."
 
@@ -115,8 +115,8 @@ npx -y @walynde-arch/weppy-roblox-mcp@latest
 
 Then reopen your AI app and restart Roblox Studio.
 
-Automatic **WEPPY MCP Server** registration supports Claude Code, Claude Desktop, Cursor, Codex CLI/App, Gemini CLI, and Antigravity / Antigravity IDE / Antigravity CLI.
-For Claude Code, the installer also installs the **WEPPY AI Agent Plugin**. For Codex, it adds the plugin marketplace and then asks you to install **WEPPY AI Agent Plugin** from Plugin Directory. For Antigravity, the AI agent plugin is installed only when Antigravity CLI and `agy plugin` are available; otherwise the installer preserves the direct MCP connection.
+Automatic **NovaMCP MCP Server** registration supports Claude Code, Claude Desktop, Cursor, Codex CLI/App, Gemini CLI, and Antigravity / Antigravity IDE / Antigravity CLI.
+For Claude Code, the installer also installs the **NovaMCP AI Agent Plugin**. For Codex, it adds the plugin marketplace and then asks you to install **NovaMCP AI Agent Plugin** from Plugin Directory. For Antigravity, the AI agent plugin is installed only when Antigravity CLI and `agy plugin` are available; otherwise the installer preserves the direct MCP connection.
 
 ### Browser Web Install
 
@@ -124,7 +124,7 @@ If terminal or PowerShell is uncomfortable, use the terminal-free web installer 
 
 ### Manual Install
 
-If the one-line install or terminal-free web installer does not work, register the **WEPPY MCP Server** manually with your AI app.
+If the one-line install or terminal-free web installer does not work, register the **NovaMCP MCP Server** manually with your AI app.
 
 Use this server command:
 
@@ -136,9 +136,9 @@ Supported AI apps are Claude Code, Claude Desktop, Cursor, Codex CLI, Codex App,
 
 > Any MCP-compatible AI client works. The server command is `npx -y @walynde-arch/weppy-roblox-mcp@latest`.
 
-### Optional WEPPY AI Agent Plugin
+### Optional NovaMCP AI Agent Plugin
 
-The **WEPPY Roblox AI Toolkit** connects to every supported AI app through the **WEPPY MCP Server**. Claude Code, Codex, and Antigravity can additionally install the **WEPPY AI Agent Plugin** for client-native setup and workflow guidance for Studio control, sync, and assets.
+The **NovaMCP Roblox AI Toolkit** connects to every supported AI app through the **NovaMCP MCP Server**. Claude Code, Codex, and Antigravity can additionally install the **NovaMCP AI Agent Plugin** for client-native setup and workflow guidance for Studio control, sync, and assets.
 
 **Claude Code**
 
@@ -153,13 +153,13 @@ claude plugin install weppy-roblox-ai-toolkit@walynde-arch-roblox-mcp --scope us
 codex plugin marketplace add walynde-arch/weppy-roblox-mcp
 ```
 
-After adding the Codex marketplace, restart Codex, open Plugin Directory, and install **WEPPY AI Agent Plugin**.
+After adding the Codex marketplace, restart Codex, open Plugin Directory, and install **NovaMCP AI Agent Plugin**.
 
 **Antigravity**
 
-Antigravity CLI is required to install the **WEPPY AI Agent Plugin**. The one-line installer uses `agy plugin install` with the latest public GitHub release, verifies it with `agy plugin list`, and publishes the verified skill-only payload to supported IDE surfaces. Existing installs are replaced on every run so they can converge on the latest release.
+Antigravity CLI is required to install the **NovaMCP AI Agent Plugin**. The one-line installer uses `agy plugin install` with the latest public GitHub release, verifies it with `agy plugin list`, and publishes the verified skill-only payload to supported IDE surfaces. Existing installs are replaced on every run so they can converge on the latest release.
 
-The installer reports results as installed, updated, reinstalled, repaired, fallback, failed, or skipped. A missing CLI keeps the shared MCP connection at `~/.gemini/config/mcp_config.json` working and reports fallback; an existing plugin is never treated as a skip. In a CLI-only profile, verified native plugin MCP replaces the shared direct WEPPY entry. When Antigravity IDE and CLI coexist, both plugin views stay skill-only and one shared direct `weppy-roblox-mcp` definition serves both. Outside the verified OS and version matrix, native discovery uses the MCP fallback.
+The installer reports results as installed, updated, reinstalled, repaired, fallback, failed, or skipped. A missing CLI keeps the shared MCP connection at `~/.gemini/config/mcp_config.json` working and reports fallback; an existing plugin is never treated as a skip. In a CLI-only profile, verified native plugin MCP replaces the shared direct NovaMCP entry. When Antigravity IDE and CLI coexist, both plugin views stay skill-only and one shared direct `weppy-roblox-mcp` definition serves both. Outside the verified OS and version matrix, native discovery uses the MCP fallback.
 
 On Windows Antigravity, CLI installation has been verified to expose skills and MCP. Windows Antigravity IDE plugin discovery is unverified because the verified environment has no plugin or skills inspection UI, so the shared MCP fallback is preserved. GitHub URLs are not passed directly to `agy plugin install`; the installer downloads the latest public release and installs from a prepared local path.
 
@@ -185,25 +185,25 @@ AI can directly handle scripts, instances, properties, terrain, lighting, assets
 
 ### 2) Multi-Place work: Split one request across several Studio windows
 
-Many Roblox experiences are not a single Place. WEPPY lets you keep up to five Studio windows connected to one MCP server, then route work by Studio ID.
+Many Roblox experiences are not a single Place. NovaMCP lets you keep up to five Studio windows connected to one MCP server, then route work by Studio ID.
 
 - Open up to five Roblox Studio windows, such as Lobby, Game, Shop, or Tutorial
 - Ask once: "In studio-1, add the event portal to Lobby. In studio-2, add the arrival point and guide UI to Game."
 - Use Dashboard Connection to see every AI agent, Studio Target, copyable Studio ID, and routing state
-- Work with the multi-Studio flow also documented by [Roblox's official Studio MCP guide](https://create.roblox.com/docs/studio/mcp), with WEPPY's dashboard visibility on top
+- Work with the multi-Studio flow also documented by [Roblox's official Studio MCP guide](https://create.roblox.com/docs/studio/mcp), with NovaMCP's dashboard visibility on top
 
-![WEPPY Dashboard Connection - multiple AI agents and Studio Targets connected to one MCP server](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_connection.png)
+![NovaMCP Dashboard Connection - multiple AI agents and Studio Targets connected to one MCP server](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_connection.png)
 
 ### 3) Assets: Generate, upload, and apply images in Studio
 
-WEPPY Assets turns a natural-language asset request into a Studio-ready result.
+NovaMCP Assets turns a natural-language asset request into a Studio-ready result.
 
 - "Create a gem icon for the shop button, upload it to Roblox, then apply it to the ShopButton image in the Lobby Place."
 - Save generated images, Decals, and RBXM files to the local Asset Library
 - Upload images through Roblox Open Cloud and reuse place-specific or shared assets
 - Apply the returned asset URI to ImageLabel, Decal, Texture, or other Studio properties
 
-![WEPPY Dashboard Assets - local Asset Library items and Roblox upload status](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_assets.png)
+![NovaMCP Dashboard Assets - local Asset Library items and Roblox upload status](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_assets.png)
 
 ### 4) Sync: Keep full project context stable for AI
 
@@ -222,7 +222,7 @@ AI can control Roblox Studio playtests directly. It can start and stop Play (F5)
 - "Write a test that verifies the SpawnLocation is above the ground and run it."
 - "Validate that the script I just changed runs without errors in playtest."
 
-![WEPPY Playtest Dashboard - Test history and detailed report](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_playtest.png)
+![NovaMCP Playtest Dashboard - Test history and detailed report](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_playtest.png)
 
 ### 6) UI Studio: Build and inspect in-game UI
 
@@ -232,9 +232,9 @@ UI Studio lets AI agents create in-game UI that matches your game's style, or an
 - Create or refine game-style menus, HUDs, buttons, labels, image panels, and other Roblox UI elements directly in Studio
 - Capture the result, compare before/after changes, and follow dashboard suggestions for layout, readability, touch targets, and safe areas
 
-![WEPPY UI Studio - Roblox Studio showing AI-generated in-game UI](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_ui_roblox_studio.png)
+![NovaMCP UI Studio - Roblox Studio showing AI-generated in-game UI](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_ui_roblox_studio.png)
 
-### 7) WEPPY Dashboard: Monitor AI work in real time
+### 7) NovaMCP Dashboard: Monitor AI work in real time
 
 The MCP server provides a web dashboard where you can check connection status, tool execution history, sync state, UI Studio history, and game change logs in real time.
 
@@ -245,19 +245,19 @@ The MCP server provides a web dashboard where you can check connection status, t
 - Compare every change the AI made via Before & After in Changelog
 - Analyze workflow with tool execution history, UI Studio captures, and statistics
 
-![WEPPY Dashboard Overview - Server status, recent changes, and session summary](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_overview.png)
+![NovaMCP Dashboard Overview - Server status, recent changes, and session summary](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/dashboard/dashboard_overview.png)
 
-### 8) WEPPY Roblox Explorer: Browse Studio hierarchy in VSCode
+### 8) NovaMCP Roblox Explorer: Browse Studio hierarchy in VSCode
 
 View the full instance tree of your Roblox Studio place directly inside VSCode. Navigate services, open synced scripts and property files, and track sync status - all without switching to Studio.
-WEPPY Roblox Explorer is a companion VSCode extension for sync data generated by WEPPY. Tree browsing works from synced files, and live sync state or direction indicators are enhanced when the local MCP server is running.
+NovaMCP Roblox Explorer is a companion VSCode extension for sync data generated by NovaMCP. Tree browsing works from synced files, and live sync state or direction indicators are enhanced when the local MCP server is running.
 Install from [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=weppy.weppy-roblox-explorer) or [Open VSX](https://open-vsx.org/extension/weppy/weppy-roblox-explorer).
 
 - Class icons matching Studio for instant recognition
 - Click to open synced scripts and property files
 - Multi-place support with sync status indicators for up to five Places
 
-![WEPPY Roblox Explorer - Studio instance tree displayed in VSCode sidebar](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/roblox-explorer/roblox-explorer-screen.png)
+![NovaMCP Roblox Explorer - Studio instance tree displayed in VSCode sidebar](https://raw.githubusercontent.com/hope1026/weppy-roblox-mcp/main/docs/assets/screenshots/roblox-explorer/roblox-explorer-screen.png)
 
 ## Use Cases
 
@@ -290,19 +290,19 @@ For app setup details, open the web docs hub and choose the relevant AI client g
 
 ## Privacy & Telemetry
 
-WEPPY uses Google Analytics 4 Measurement Protocol telemetry and a best-effort anonymous operations device observation to understand product usage, reliability, platform coverage, and feature adoption. Telemetry can be disabled by setting `ENABLE_TELEMETRY=false` or `ENABLE_TELEMETRY=0` in the MCP server environment.
+NovaMCP uses Google Analytics 4 Measurement Protocol telemetry and a best-effort anonymous operations device observation to understand product usage, reliability, platform coverage, and feature adoption. Telemetry can be disabled by setting `ENABLE_TELEMETRY=false` or `ENABLE_TELEMETRY=0` in the MCP server environment.
 
-WEPPY does not collect your name, email address, raw license key, local file paths, script source, or Roblox project contents through telemetry.
+NovaMCP does not collect your name, email address, raw license key, local file paths, script source, or Roblox project contents through telemetry.
 
 See [PRIVACY.md](PRIVACY.md) for the full telemetry notice.
 
 ## FAQ
 
 ### How do I connect Claude Code to Roblox Studio?
-Install from the web install page to register the **WEPPY MCP Server** and install the **WEPPY Roblox Studio Plugin**. You can also add the **WEPPY AI Agent Plugin** for Claude Code with the commands above. Its MCP command remains `npx -y @walynde-arch/weppy-roblox-mcp@latest`.
+Install from the web install page to register the **NovaMCP MCP Server** and install the **NovaMCP Roblox Studio Plugin**. You can also add the **NovaMCP AI Agent Plugin** for Claude Code with the commands above. Its MCP command remains `npx -y @walynde-arch/weppy-roblox-mcp@latest`.
 
 ### How do I use Codex CLI with Roblox Studio?
-Install the **WEPPY Roblox Studio Plugin**, then add the **WEPPY MCP Server** config to Codex CLI. You can also add the Codex plugin marketplace and install **WEPPY AI Agent Plugin** from Plugin Directory.
+Install the **NovaMCP Roblox Studio Plugin**, then add the **NovaMCP MCP Server** config to Codex CLI. You can also add the Codex plugin marketplace and install **NovaMCP AI Agent Plugin** from Plugin Directory.
 
 ### Does Roblox MCP work with Cursor?
 Yes. Any MCP-compatible AI client works.
@@ -313,8 +313,8 @@ Yes. AI can create instances, write scripts, generate terrain, set up lighting, 
 ### What is the difference between Basic and Pro?
 Basic (Free) includes MCP tool execution and one-way sync (Studio -> Local). Pro adds multi-place work across up to five Places, Asset Library with Roblox upload, bidirectional sync, UI Studio, bulk operations, terrain generation, spatial analysis, and audio/animation control. See the Pro upgrade page.
 
-### How is Weppy different from other Roblox MCP servers?
-Weppy uses action-based dispatching instead of separate tools for each function. This reduces AI token consumption significantly. It also combines Studio ID based multi-place work, generated asset upload/apply, bidirectional project sync, and Playtest control.
+### How is NovaMCP different from other Roblox MCP servers?
+NovaMCP uses action-based dispatching instead of separate tools for each function. This reduces AI token consumption significantly. It also combines Studio ID based multi-place work, generated asset upload/apply, bidirectional project sync, and Playtest control.
 
 ### Is it safe? Can AI break my game?
 The server runs on localhost only (127.0.0.1:3002). Forbidden paths (CoreGui, CorePackages) are blocked. Rate limiting (450 req/min) and 30-second timeouts prevent runaway operations. All changes are trackable via sync history.
@@ -331,7 +331,7 @@ This repository is licensed under `AGPL-3.0`.
 
 Commercial licensing is available separately. See [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md).
 
-Use of the Weppy name and logos is governed by [TRADEMARKS.md](TRADEMARKS.md).
+Use of the NovaMCP name and logos is governed by [TRADEMARKS.md](TRADEMARKS.md).
 
 ---
 

@@ -17,7 +17,7 @@ Read `mcp-actions.md` for exact params and tiers.
 
 `manage_studio.run_test` requires `script`. Optional fields include `mode`, `test_name`, `timeout`, `contextId`, `contextSummary`, and `replayMetadata`.
 
-The runner wraps the user script, emits `[WEPPY_TEST]` log signals, collects `manage_logs` output, stops playtest during cleanup, and stores report artifacts under the active place test directory.
+The runner wraps the user script, emits `[NovaMCP_TEST]` log signals, collects `manage_logs` output, stops playtest during cleanup, and stores report artifacts under the active place test directory.
 
 ## Screenshot Limitation
 

@@ -1,6 +1,6 @@
 # Roblox Documentation Sources
 
-When using Weppy MCP tools, look up Roblox engine APIs, classes, or patterns through these sources.
+When using NovaMCP MCP tools, look up Roblox engine APIs, classes, or patterns through these sources.
 
 ## llms.txt — LLM-optimized indexes
 

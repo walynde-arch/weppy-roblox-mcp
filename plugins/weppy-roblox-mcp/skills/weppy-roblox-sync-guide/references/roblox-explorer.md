@@ -1,6 +1,6 @@
 # Roblox Explorer Reference
 
-The WEPPY Roblox Explorer VSCode extension reads the local sync mirror. It does not talk directly to Roblox Studio for tree data.
+The NovaMCP Roblox Explorer VSCode extension reads the local sync mirror. It does not talk directly to Roblox Studio for tree data.
 
 ## Data Source
 

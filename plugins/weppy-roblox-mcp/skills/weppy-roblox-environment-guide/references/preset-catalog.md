@@ -45,7 +45,7 @@ Provide one or more `templatePaths`, an XZ `region {min, max}`, and `count`. Kee
 | `alignToNormal` | Align clones to the terrain surface normal | `false` |
 | `scaleJitter {min, max}` | Randomize clone scale within a deterministic range | `{min: 0.85, max: 1.25}` |
 | `minSpacing` | Minimum XZ distance between accepted candidates | `0` |
-| `parentName` | Name of the result Folder in Workspace | `WeppyScatter_<seed>` |
+| `parentName` | Name of the result Folder in Workspace | `NovaMCPScatter_<seed>` |
 
 The response reports `requested`, `placed`, `skipped`, `parentPath`, and `seed`; always treat `placed + skipped == requested` as the completion invariant. Inspect the result Folder and verify it with `manage_camera` action `screenshot` before continuing.
 

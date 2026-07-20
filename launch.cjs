@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Weppy Enhanced Launcher
+ * NovaMCP Enhanced Launcher
  * 
- * Lance Weppy MCP avec toutes les améliorations:
+ * Lance NovaMCP MCP avec toutes les améliorations:
  * 1. Auto-patch PRO si nécessaire
  * 2. Health check Studio
  * 3. Dashboard auto-open désactivé
@@ -15,11 +15,11 @@ const { execSync, spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-const WEPPY_DIR = __dirname;
-const WEPPY_BIN = path.join(WEPPY_DIR, 'dist', 'index.js');
-const PATCH_SCRIPT = path.join(WEPPY_DIR, 'patch-pro.cjs');
-const HEALTH_SCRIPT = path.join(WEPPY_DIR, 'health-check.cjs');
-const SAFE_SCRIPT = path.join(WEPPY_DIR, 'weppy-safe.cjs');
+const NovaMCP_DIR = __dirname;
+const NovaMCP_BIN = path.join(NovaMCP_DIR, 'dist', 'index.js');
+const PATCH_SCRIPT = path.join(NovaMCP_DIR, 'patch-pro.cjs');
+const HEALTH_SCRIPT = path.join(NovaMCP_DIR, 'health-check.cjs');
+const SAFE_SCRIPT = path.join(NovaMCP_DIR, 'weppy-safe.cjs');
 
 const args = process.argv.slice(2);
 
@@ -63,14 +63,14 @@ try {
 console.log('\n[LAUNCH] Étape 2/2: Démarrage serveur...');
 
 const useSafeMode = args.includes('--safe');
-const serverScript = useSafeMode ? SAFE_SCRIPT : WEPPY_BIN;
+const serverScript = useSafeMode ? SAFE_SCRIPT : NovaMCP_BIN;
 
 if (useSafeMode) {
   console.log('[LAUNCH] Mode safe activé (wrapper avec safety checks).');
 }
 
-if (!fs.existsSync(WEPPY_BIN)) {
-  console.error(`[LAUNCH] Fichier introuvable: ${WEPPY_BIN}`);
+if (!fs.existsSync(NovaMCP_BIN)) {
+  console.error(`[LAUNCH] Fichier introuvable: ${NovaMCP_BIN}`);
   console.error('[LAUNCH] Installez avec: npx -y @weppy/roblox-mcp@latest');
   process.exit(1);
 }

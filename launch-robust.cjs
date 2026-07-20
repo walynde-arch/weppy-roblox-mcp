@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Weppy Robust Launcher
+ * NovaMCP Robust Launcher
  * 
  * - Auto-restart si le serveur crash
  * - Request logging dans un fichier
@@ -14,10 +14,10 @@ const { execSync, spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-const WEPPY_DIR = __dirname;
-const WEPPY_BIN = path.join(WEPPY_DIR, 'dist', 'index.js');
-const HEALTH_SCRIPT = path.join(WEPPY_DIR, 'health-check.cjs');
-const LOG_DIR = path.join(WEPPY_DIR, 'logs');
+const NovaMCP_DIR = __dirname;
+const NovaMCP_BIN = path.join(NovaMCP_DIR, 'dist', 'index.js');
+const HEALTH_SCRIPT = path.join(NovaMCP_DIR, 'health-check.cjs');
+const LOG_DIR = path.join(NovaMCP_DIR, 'logs');
 
 const args = process.argv.slice(2);
 const MAX_RESTARTS = 5;
@@ -130,7 +130,7 @@ let restartCount = 0;
 let currentProcess = null;
 
 function startServer() {
-  log('INFO', 'Démarrage serveur Weppy...');
+  log('INFO', 'Démarrage serveur NovaMCP...');
   
   const env = {
     ...process.env,
@@ -138,7 +138,7 @@ function startServer() {
     HERMES_AGENT: '1'
   };
   
-  const server = spawn('node', [WEPPY_BIN], {
+  const server = spawn('node', [NovaMCP_BIN], {
     stdio: ['pipe', 'pipe', 'pipe'],
     env
   });
@@ -150,23 +150,23 @@ function startServer() {
     const lines = data.toString().trim().split('\n');
     for (const line of lines) {
       if (line.trim()) {
-        log('WEPPY', line.trim());
+        log('NovaMCP', line.trim());
       }
     }
   });
   
-  // Log stderr (Weppy écrit INFO sur stderr)
+  // Log stderr (NovaMCP écrit INFO sur stderr)
   server.stderr?.on('data', (data) => {
     const lines = data.toString().trim().split('\n');
     for (const line of lines) {
       if (line.trim()) {
-        // Weppy écrit "[INFO]" ou "[WARN]" ou "[ERROR]" dans ses logs
+        // NovaMCP écrit "[INFO]" ou "[WARN]" ou "[ERROR]" dans ses logs
         if (line.includes('[WARN]')) {
           log('WARN', line.trim());
         } else if (line.includes('[ERROR]')) {
           log('ERROR', line.trim());
         } else {
-          log('WEPPY', line.trim());
+          log('NovaMCP', line.trim());
         }
       }
     }
@@ -203,7 +203,7 @@ function startServer() {
 // ─── Main ────────────────────────────────────────────────
 
 function main() {
-  log('INFO', '═══ Weppy Robust Launcher ═══');
+  log('INFO', '═══ NovaMCP Robust Launcher ═══');
   
   // Health check
   const health = healthCheck();

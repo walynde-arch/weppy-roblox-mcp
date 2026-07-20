@@ -8,4 +8,4 @@
 6. Use `manage_open_cloud_assets.operation_status` until processing completes when the first response is pending.
 7. Verify the returned asset ID, operation ID, status, Creator, and local source path.
 
-WEPPY does not expose remote Roblox asset deletion, archive, or restore actions. Never pass a raw API key in tool parameters, logs, or skill output.
+NovaMCP does not expose remote Roblox asset deletion, archive, or restore actions. Never pass a raw API key in tool parameters, logs, or skill output.

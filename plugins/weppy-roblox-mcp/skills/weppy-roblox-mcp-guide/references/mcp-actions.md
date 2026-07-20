@@ -1,4 +1,4 @@
-# WEPPY Roblox MCP Action Reference
+# NovaMCP Roblox MCP Action Reference
 
 <!-- AUTO-GENERATED from tool-codegen/tools.yaml and tool-codegen/tools/*.yaml. DO NOT EDIT. -->
 
@@ -20,8 +20,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.children`
 
@@ -37,8 +37,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `recursive` - boolean - If true, returns all descendants instead of just immediate children. Used by: children. Default: false.
   - `maxDepth` - number - Maximum depth for recursive traversal. Used by: children (default: 10), file_tree (default: 5).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.find_child`
 
@@ -51,8 +51,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `childName` - string - Name of the child instance to find. Used by: find_child, wait_for_child.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.find_descendant`
 
@@ -65,8 +65,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `descendantName` - string - Name of the descendant instance to find. Used by: find_descendant.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.wait_for_child`
 
@@ -80,8 +80,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
 - Optional params:
   - `timeout` - number - Maximum time to wait in seconds. Used by: wait_for_child. Default: 5. Maximum: 30.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.class_info`
 
@@ -93,8 +93,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `className` - string - Roblox class name. Used by: find_child/find_descendant (optional filter), class_info (required), search_class (required).
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.search_name`
 
@@ -110,8 +110,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `caseSensitive` - boolean - Case-sensitive name search. Used by: search_name. Default: false.
   - `maxResults` - number - Maximum results to return. Used by: search_name, search_class, search_property, search_tag, descendants. Default: 100.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.search_class`
 
@@ -126,8 +126,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `includeSubclasses` - boolean - Include subclasses in class search (e.g., BasePart finds Part, MeshPart). Used by: search_class. Default: true.
   - `maxResults` - number - Maximum results to return. Used by: search_name, search_class, search_property, search_tag, descendants. Default: 100.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.search_property`
 
@@ -143,8 +143,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `propertyValue` - unknown - [PRO] Property value to match. Used by: search_property.
   - `maxResults` - number - Maximum results to return. Used by: search_name, search_class, search_property, search_tag, descendants. Default: 100.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.search_tag`
 
@@ -159,8 +159,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `root` - string - Root path to search/scan from. Used by: search_name, search_class, search_property, search_tag, file_tree, project_structure. Default: "game".
   - `maxResults` - number - Maximum results to return. Used by: search_name, search_class, search_property, search_tag, descendants. Default: 100.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.file_tree`
 
@@ -174,8 +174,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `root` - string - Root path to search/scan from. Used by: search_name, search_class, search_property, search_tag, file_tree, project_structure. Default: "game".
   - `includeServices` - boolean - [PRO] Include Roblox services when root is "game". Used by: file_tree. Default: true.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.project_structure`
 
@@ -189,8 +189,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `root` - string - Root path to search/scan from. Used by: search_name, search_class, search_property, search_tag, file_tree, project_structure. Default: "game".
   - `depth` - number - [PRO] Maximum depth for project structure traversal. Used by: project_structure. Default: 3.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.descendants`
 
@@ -205,8 +205,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
   - `maxResults` - number - Maximum results to return. Used by: search_name, search_class, search_property, search_tag, descendants. Default: 100.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `query_instances.ancestors`
 
@@ -220,8 +220,8 @@ Query Roblox instances: get, children, find child/descendant, wait for child, cl
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for resolving duplicate-named path targets. Used by: get, children, descendants, ancestors.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `mutate_instances`
 
@@ -240,8 +240,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `name` - string - Name for the instance. Used by: create (optional), create_with_props (required).
   - `properties` - object - Properties to set on the instance. Supports Vector3, Color3, CFrame, UDim2, Enum types. Used by: create (optional), create_with_props (required).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.create_with_props`
 
@@ -256,8 +256,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `properties` - object - Properties to set on the instance. Supports Vector3, Color3, CFrame, UDim2, Enum types. Used by: create (optional), create_with_props (required).
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.delete`
 
@@ -271,8 +271,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.clone`
 
@@ -290,8 +290,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `targetParent` - string - Target parent for cloned/duplicated instances. Used by: clone, mass_duplicate, smart_duplicate.
   - `newName` - string - New name for instance. Used by: rename (required), clone (optional).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.move`
 
@@ -306,8 +306,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.rename`
 
@@ -322,8 +322,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `sessionDebugId` - string - Optional same Studio/plugin session debug identity for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `siblingIndex` - number - Optional 1-based same-name sibling index fallback for verifying a duplicate-named target. Used by: delete, clone, move, rename, pivot, smart_duplicate.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.pivot`
 
@@ -340,8 +340,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `cframe` - array<number> - Target CFrame as 12-number array [x, y, z, r00, r01, r02, r10, r11, r12, r20, r21, r22]. Used by: pivot.
   - `offset` - object - Relative offset to move by (ignores position/cframe). Used by: pivot, smart_duplicate.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.create_tree`
 
@@ -354,8 +354,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `tree` - object - [PRO] Instance tree specification for hierarchical creation. Used by: create_tree.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.mass_create`
 
@@ -367,8 +367,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `instances` - array<object> - [PRO] Array of instance specifications for batch creation. Used by: mass_create. Each item: {className, name, parentPath, properties?}.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.mass_delete`
 
@@ -380,8 +380,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `paths` - array<string> - [PRO] Array of instance paths. Used by: mass_delete, mass_duplicate.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.mass_duplicate`
 
@@ -394,8 +394,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
 - Optional params:
   - `targetParent` - string - Target parent for cloned/duplicated instances. Used by: clone, mass_duplicate, smart_duplicate.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.smart_duplicate`
 
@@ -413,8 +413,8 @@ Create, delete, clone, move, rename, or pivot instances. [PRO] create_tree, mass
   - `targetParent` - string - Target parent for cloned/duplicated instances. Used by: clone, mass_duplicate, smart_duplicate.
   - `count` - number - [PRO] Number of copies to create. Used by: smart_duplicate, scatter.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `mutate_instances.scatter`
 
@@ -435,10 +435,10 @@ clone template instances onto natural ground positions in a region: ray-snapped 
   - `alignToNormal` - boolean - Align instances to the surface normal (yaw jitter always applies). Used by: scatter. Default: false.
   - `scaleJitter` - object - Uniform scale jitter range. Used by: scatter. Default: {min: 0.85, max: 1.25}.
   - `minSpacing` - number - Minimum distance between placements in studs. Used by: scatter.
-  - `parentName` - string - Folder name that groups the results. Used by: scatter. Default: WeppyScatter_<seed>.
+  - `parentName` - string - Folder name that groups the results. Used by: scatter. Default: NovaMCPScatter_<seed>.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_properties`
 
@@ -455,8 +455,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `property` - string - Property name (e.g., "Size", "Position", "Anchored"). Used by: get, set.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.set`
 
@@ -470,8 +470,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `value` - unknown - Value to set. Supports primitives, Vector3 {x,y,z}, Color3 {r,g,b} (0-255), CFrame (12-number array), UDim2 {xScale,xOffset,yScale,yOffset}, Enum strings. Used by: set, set_attr, set_relative.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.get_all`
 
@@ -484,8 +484,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Optional params:
   - `includeReadOnly` - boolean - Include read-only properties. Used by: get_all. Default: false.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.set_multiple`
 
@@ -498,8 +498,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `properties` - object - Dictionary of property names to values. Used by: set_multiple.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.get_attr`
 
@@ -512,8 +512,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `attribute` - string - Attribute name. Used by: get_attr, set_attr, delete_attr.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.set_attr`
 
@@ -527,8 +527,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `attribute` - string - Attribute name. Used by: get_attr, set_attr, delete_attr.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.get_all_attrs`
 
@@ -540,8 +540,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.delete_attr`
 
@@ -554,8 +554,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `attribute` - string - Attribute name. Used by: get_attr, set_attr, delete_attr.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.add_tag`
 
@@ -568,8 +568,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `tag` - string - Tag string (case-sensitive). Used by: add_tag, remove_tag, check_tag.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.remove_tag`
 
@@ -582,8 +582,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `tag` - string - Tag string (case-sensitive). Used by: add_tag, remove_tag, check_tag.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.check_tag`
 
@@ -596,8 +596,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `tag` - string - Tag string (case-sensitive). Used by: add_tag, remove_tag, check_tag.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.get_tags`
 
@@ -609,8 +609,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `path` - string - Instance path. Used by: get, set, get_all, set_multiple, get_attr, set_attr, get_all_attrs, delete_attr, add_tag, remove_tag, check_tag, get_tags, set_calculated, set_relative.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.get_tagged`
 
@@ -626,8 +626,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `root` - string - Root path to filter get_tagged results. Used by: get_tagged.
   - `maxResults` - number - Maximum results for get_tagged. Default: 100.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.set_calculated`
 
@@ -642,8 +642,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
 - Optional params:
   - `variables` - object - [PRO] Variable name to value/path mapping. Used by: set_calculated. Example: {"baseValue": "workspace.Config.BaseValue", "multiplier": 2}.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.set_relative`
 
@@ -660,8 +660,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `value` - unknown - Value to set. Supports primitives, Vector3 {x,y,z}, Color3 {r,g,b} (0-255), CFrame (12-number array), UDim2 {xScale,xOffset,yScale,yOffset}, Enum strings. Used by: set, set_attr, set_relative.
   - `amount` - unknown - [PRO] Value for relative operation. Can be number, Vector3, etc. Used by: set_relative. Alias for value in set_relative context.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.mass_set`
 
@@ -675,8 +675,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `propertyValue` - unknown - [PRO] Property value for mass_set and modify_children.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.mass_get`
 
@@ -689,8 +689,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `propertyName` - string - [PRO] Property name for mass operations or set_calculated/set_relative. Used by: mass_set, mass_get, set_calculated, set_relative, modify_children.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_properties.modify_children`
 
@@ -707,8 +707,8 @@ Get/set properties, attributes, and tags on instances. [PRO] set_calculated, set
   - `filter` - string - [PRO] Class name filter for modify_children.
   - `recursive` - boolean - [PRO] Modify all descendants, not just immediate children. Used by: modify_children. Default: false.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_scripts`
 
@@ -724,8 +724,8 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `path` - string - Path to the script instance. Used by: get_source, set_source, delete, edit_replace, edit_insert, edit_delete, search, get_dependencies, replace.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.set_source`
 
@@ -738,8 +738,8 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `source` - string - Script source code. Used by: set_source (required), create (optional initial source).
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.create`
 
@@ -754,8 +754,8 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `source` - string - Script source code. Used by: set_source (required), create (optional initial source).
   - `name` - string - Name for new script. Used by: create.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.delete`
 
@@ -767,8 +767,8 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `path` - string - Path to the script instance. Used by: get_source, set_source, delete, edit_replace, edit_insert, edit_delete, search, get_dependencies, replace.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.edit_replace`
 
@@ -784,8 +784,8 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `newLines` - string - New content to replace specified lines. Used by: edit_replace. Can be multi-line.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.edit_insert`
 
@@ -801,8 +801,8 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
 - Optional params:
   - `lines` - string - Content to insert after afterLine. Used by: edit_insert. Can be multi-line. Alias for content.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.edit_delete`
 
@@ -816,8 +816,8 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `endLine` - number - Ending line number, 1-based inclusive. Used by: edit_replace, edit_delete.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.search`
 
@@ -834,8 +834,8 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `usePattern` - boolean - Treat pattern as Lua pattern instead of plain text. Used by: search, replace. Default: false.
   - `maxResults` - number - Maximum results to return. Used by: search. Default: 100.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.replace`
 
@@ -852,8 +852,8 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `usePattern` - boolean - Treat pattern as Lua pattern instead of plain text. Used by: search, replace. Default: false.
   - `dryRun` - boolean - [PRO] Show what would be replaced without making changes. Used by: replace. Default: false.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_scripts.get_dependencies`
 
@@ -865,8 +865,8 @@ Manage script source code: read, write, create, delete, edit lines, search. [PRO
   - `path` - string - Path to the script instance. Used by: get_source, set_source, delete, edit_replace, edit_insert, edit_delete, search, get_dependencies, replace.
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_ui`
 
@@ -882,8 +882,8 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
 - Optional params:
   - `brief` - object - 완성 또는 부분 design_brief 구조체. Used by: design_brief (optional; partial allowed).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_ui.create_tree`
 
@@ -896,8 +896,8 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
 - Optional params:
   - `briefId` - string - design_brief 가 반환한 brief 식별자. Used by: create_tree, update, delete (optional).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_ui.update`
 
@@ -911,8 +911,8 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
 - Optional params:
   - `briefId` - string - design_brief 가 반환한 brief 식별자. Used by: create_tree, update, delete (optional).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_ui.delete`
 
@@ -924,8 +924,8 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
   - `targetPath` - string - Path to existing UI instance. Both `StarterGui.MyGui` and `game.StarterGui.MyGui` are accepted. Used by: update, delete (required).
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_ui.preview`
 
@@ -938,8 +938,8 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
   - `targetPath` - string - Path to existing UI instance. Both `StarterGui.MyGui` and `game.StarterGui.MyGui` are accepted. Used by: update, delete (required).
   - `briefId` - string - design_brief 가 반환한 brief 식별자. Used by: create_tree, update, delete (optional).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_ui.check`
 
@@ -954,8 +954,8 @@ Create / update / verify Roblox in-game UI (ScreenGui / Frame / TextLabel / …)
   - `includeVisualAnalysis` - boolean - Opt-in only. Used by: check. When true, the server may read a saved preview snapshot PNG + visible GUI metadata and merge AI visual suggestions into check_results. Default false; no screenshot capture is triggered by check.
   - `snapshotId` - string - Saved manage_ui.preview snapshot_id to use for visual analysis. Used by: check when includeVisualAnalysis=true. If omitted, the latest compatible saved snapshot is used when available.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_lighting`
 
@@ -973,8 +973,8 @@ set Lighting service properties.
 - Optional params:
   - `properties` - object - Dictionary of properties to set. Used by: lighting, atmosphere, sky, terrain_props. Supports Color3 {r,g,b} (0-255), numbers, booleans, Enum strings.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_lighting.atmosphere`
 
@@ -989,8 +989,8 @@ set Atmosphere properties.
   - `properties` - object - Dictionary of properties to set. Used by: lighting, atmosphere, sky, terrain_props. Supports Color3 {r,g,b} (0-255), numbers, booleans, Enum strings.
   - `createIfMissing` - boolean - Create Atmosphere/Sky instance if missing. Used by: atmosphere, sky. Default: true.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_lighting.sky`
 
@@ -1005,8 +1005,8 @@ set Sky properties.
   - `properties` - object - Dictionary of properties to set. Used by: lighting, atmosphere, sky, terrain_props. Supports Color3 {r,g,b} (0-255), numbers, booleans, Enum strings.
   - `createIfMissing` - boolean - Create Atmosphere/Sky instance if missing. Used by: atmosphere, sky. Default: true.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_lighting.terrain_props`
 
@@ -1020,8 +1020,8 @@ set Terrain water/visual properties.
 - Optional params:
   - `properties` - object - Dictionary of properties to set. Used by: lighting, atmosphere, sky, terrain_props. Supports Color3 {r,g,b} (0-255), numbers, booleans, Enum strings.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_lighting.time`
 
@@ -1036,8 +1036,8 @@ set time of day.
   - `time` - string - Time string in "HH:MM:SS" format (e.g., "14:30:00"). Used by: time. Provide this OR clockTime.
   - `clockTime` - number - Numeric time in 24-hour format (e.g., 14.5 for 2:30 PM). Used by: time. Provide this OR time.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_lighting.mood`
 
@@ -1052,8 +1052,8 @@ apply a complete environment mood preset (Lighting, Atmosphere, Sky, ColorCorrec
 - Optional params:
   - `overrides` - object - Per-section property overrides applied on top of the preset. Used by: mood. Sections: lighting, atmosphere, sky, effects, water. Values follow the same conversion rules as the properties param.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_selection`
 
@@ -1068,8 +1068,8 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.set`
 
@@ -1081,8 +1081,8 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
   - `paths` - array<string> - Array of instance paths. Used by: set (required), add (required), remove (required).
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.clear`
 
@@ -1093,8 +1093,8 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.cached`
 
@@ -1118,8 +1118,8 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
   - `includeProperties` - boolean - [PRO] Include all readable properties. Used by: context. Default: true.
   - `includeChildren` - boolean - [PRO] Include immediate children. Used by: context. Default: false.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.details`
 
@@ -1132,8 +1132,8 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
   - `maxDepth` - number - [PRO] Maximum depth for descendant tree traversal. Used by: details. Default: 1.
   - `includeAncestors` - boolean - [PRO] Include full ancestor chain. Used by: details. Default: false.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.add`
 
@@ -1145,8 +1145,8 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
   - `paths` - array<string> - Array of instance paths. Used by: set (required), add (required), remove (required).
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.remove`
 
@@ -1158,8 +1158,8 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
   - `paths` - array<string> - Array of instance paths. Used by: set (required), add (required), remove (required).
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_selection.watch`
 
@@ -1170,8 +1170,8 @@ Get, set, or clear selection. [PRO] context, details, add/remove items, watch ch
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_camera`
 
@@ -1188,8 +1188,8 @@ get current camera position, rotation, FOV, viewport size.
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_camera.focus_path`
 
@@ -1207,8 +1207,8 @@ move camera to focus on instance by path.
   - `offset` - object - Camera offset direction from target (normalized and scaled by distance). Used by: focus_path, focus_position. Default: {x:1, y:0.5, z:1}.
   - `respectAutoFocusSetting` - boolean - If true, only focus when plugin Auto Focus setting is enabled. Used by: focus_path, focus_position. Default: false.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_camera.focus_position`
 
@@ -1227,8 +1227,8 @@ move camera to focus on world position.
   - `lookAt` - object - Point for camera to look at. Used by: focus_position.
   - `respectAutoFocusSetting` - boolean - If true, only focus when plugin Auto Focus setting is enabled. Used by: focus_path, focus_position. Default: false.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_camera.suggest`
 
@@ -1243,8 +1243,8 @@ get suggested camera view for a target.
 - Optional params:
   - `path` - string - Instance path to focus on. Used by: focus_path (if not provided, focuses on selection), suggest (if not provided, uses selection).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_camera.screenshot`
 
@@ -1257,8 +1257,8 @@ get suggested camera view for a target.
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_tween`
 
@@ -1278,8 +1278,8 @@ create a new tween with target properties.
   - `tweenInfo` - object - Tween configuration. Used by: create.
   - `properties` - object - Target property values to tween to. Used by: create. Supports Vector3, Color3, numbers, etc.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_tween.play`
 
@@ -1293,8 +1293,8 @@ play a created tween.
 - Optional params:
   - `tweenId` - string - Tween identifier returned by create. Used by: play, pause, cancel.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_tween.pause`
 
@@ -1308,8 +1308,8 @@ pause a running tween.
 - Optional params:
   - `tweenId` - string - Tween identifier returned by create. Used by: play, pause, cancel.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_tween.cancel`
 
@@ -1323,8 +1323,8 @@ cancel a tween.
 - Optional params:
   - `tweenId` - string - Tween identifier returned by create. Used by: play, pause, cancel.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_audio`
 
@@ -1346,8 +1346,8 @@ play a sound (creates Sound if needed).
   - `looped` - boolean - Whether the sound loops. Used by: play. Default: false.
   - `playbackSpeed` - number - Playback speed multiplier. Used by: play. Default: 1.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_audio.stop`
 
@@ -1361,8 +1361,8 @@ stop a playing sound.
 - Optional params:
   - `path` - string - Path to the Sound instance or parent to create Sound in. Used by: play, stop, pause, resume.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_audio.pause`
 
@@ -1376,8 +1376,8 @@ pause a playing sound.
 - Optional params:
   - `path` - string - Path to the Sound instance or parent to create Sound in. Used by: play, stop, pause, resume.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_audio.resume`
 
@@ -1391,8 +1391,8 @@ resume a paused sound.
 - Optional params:
   - `path` - string - Path to the Sound instance or parent to create Sound in. Used by: play, stop, pause, resume.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_audio.set_listener`
 
@@ -1407,8 +1407,8 @@ set the audio listener type/target.
   - `listenerType` - "Camera" | "CFrame" | "ObjectPosition" | "ObjectCFrame" - Listener type for SoundService. Used by: set_listener.
   - `listenerPath` - string - Instance path for ObjectPosition/ObjectCFrame listener type. Used by: set_listener.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_animation`
 
@@ -1427,8 +1427,8 @@ load an animation on a Humanoid/AnimationController.
   - `path` - string - Path to the Humanoid, AnimationController, or Model containing one. Used by: load, play, stop, get_tracks.
   - `animationId` - string - Roblox animation asset ID (e.g., "rbxassetid://1234567"). Used by: load.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_animation.play`
 
@@ -1447,8 +1447,8 @@ play a loaded animation track.
   - `weight` - number - Animation weight (0-1) for blending. Used by: play. Default: 1.
   - `priority` - "Core" | "Idle" | "Movement" | "Action" | "Action2" | "Action3" | "Action4" - Animation priority. Used by: play.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_animation.stop`
 
@@ -1464,8 +1464,8 @@ stop a playing animation.
   - `path` - string - Path to the Humanoid, AnimationController, or Model containing one. Used by: load, play, stop, get_tracks.
   - `fadeTime` - number - Fade time in seconds when starting/stopping. Used by: play, stop. Default: 0.1.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_animation.get_tracks`
 
@@ -1479,8 +1479,8 @@ list all loaded animation tracks.
 - Optional params:
   - `path` - string - Path to the Humanoid, AnimationController, or Model containing one. Used by: load, play, stop, get_tracks.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_physics`
 
@@ -1498,8 +1498,8 @@ register a new collision group with PhysicsService.
   - `groupName` - string - Collision group name. Used by: register_group (required).
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_physics.set_collidable`
 
@@ -1515,8 +1515,8 @@ set whether two groups can collide.
   - `collidable` - boolean - Whether the two groups can collide. Used by: set_collidable (required).
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_physics.get_groups`
 
@@ -1529,8 +1529,8 @@ list all registered collision groups.
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_effects`
 
@@ -1549,8 +1549,8 @@ emit a burst of particles from a ParticleEmitter.
   - `path` - string - Path to the effect instance (ParticleEmitter, Beam, Trail) or parent containing effects. Used by: emit, clear, toggle.
   - `count` - number - Number of particles to emit in a burst. Used by: emit. Default: 16.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_effects.clear`
 
@@ -1564,8 +1564,8 @@ clear all particles from a ParticleEmitter or all emitters under an instance.
 - Optional params:
   - `path` - string - Path to the effect instance (ParticleEmitter, Beam, Trail) or parent containing effects. Used by: emit, clear, toggle.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_effects.toggle`
 
@@ -1580,8 +1580,8 @@ enable or disable a ParticleEmitter, Beam, Trail, or other effect.
   - `path` - string - Path to the effect instance (ParticleEmitter, Beam, Trail) or parent containing effects. Used by: emit, clear, toggle.
   - `enabled` - boolean - Enable or disable the effect. Used by: toggle.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_terrain`
 
@@ -1598,8 +1598,8 @@ enable or disable a ParticleEmitter, Beam, Trail, or other effect.
   - `cframe` - object - Position and rotation for fill shapes. Used by: fill_block, fill_cylinder, fill_wedge.
   - `size` - object - Size in studs. Used by: fill_block, fill_wedge.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.fill_ball`
 
@@ -1612,8 +1612,8 @@ enable or disable a ParticleEmitter, Beam, Trail, or other effect.
   - `center` - object - Center position as Vector3. Used by: fill_ball.
   - `radius` - number - Radius in studs. Used by: fill_ball, fill_cylinder.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.fill_cylinder`
 
@@ -1627,8 +1627,8 @@ enable or disable a ParticleEmitter, Beam, Trail, or other effect.
   - `radius` - number - Radius in studs. Used by: fill_ball, fill_cylinder.
   - `height` - number - Height in studs. Used by: fill_cylinder.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.fill_wedge`
 
@@ -1643,8 +1643,8 @@ fill shapes with material. clear_region/clear_bounds: clear terrain. replace_mat
   - `cframe` - object - Position and rotation for fill shapes. Used by: fill_block, fill_cylinder, fill_wedge.
   - `size` - object - Size in studs. Used by: fill_block, fill_wedge.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.clear_region`
 
@@ -1656,8 +1656,8 @@ fill shapes with material. clear_region/clear_bounds: clear terrain. replace_mat
 - Optional params:
   - `region` - object - Rectangular region with min/max corners. Used by: clear_region, replace_material, read_voxels, write_voxels, generate, smooth.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.clear_bounds`
 
@@ -1672,8 +1672,8 @@ clear terrain.
   - `min` - object - Minimum corner for bounds-based clear. Used by: clear_bounds.
   - `max` - object - Maximum corner for bounds-based clear. Used by: clear_bounds.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.replace_material`
 
@@ -1690,8 +1690,8 @@ swap materials in region. colors_get/colors_set: manage material colors. read_vo
   - `sourceMaterial` - string - Material to replace. Used by: replace_material.
   - `targetMaterial` - string - Replacement material. Used by: replace_material.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.colors_get`
 
@@ -1703,8 +1703,8 @@ swap materials in region. colors_get/colors_set: manage material colors. read_vo
 - Optional params:
   - `material` - string - Terrain material name (e.g., Grass, Rock, Water, Sand, Slate, Concrete). Used by: fill_*, replace_material, colors_get, colors_set.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.colors_set`
 
@@ -1719,8 +1719,8 @@ manage material colors.
   - `material` - string - Terrain material name (e.g., Grass, Rock, Water, Sand, Slate, Concrete). Used by: fill_*, replace_material, colors_get, colors_set.
   - `color` - object - RGB color (0-255). Used by: colors_set.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.read_voxel`
 
@@ -1734,8 +1734,8 @@ single voxel. read_voxels/write_voxels: bulk voxels. generate: procedural terrai
 - Optional params:
   - `position` - object - Position as Vector3. Used by: read_voxel.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.read_voxels`
 
@@ -1748,8 +1748,8 @@ single voxel. read_voxels/write_voxels: bulk voxels. generate: procedural terrai
   - `region` - object - Rectangular region with min/max corners. Used by: clear_region, replace_material, read_voxels, write_voxels, generate, smooth.
   - `resolution` - number - Voxel resolution (studs per voxel). Used by: read_voxels, write_voxels. Default: 4.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.write_voxels`
 
@@ -1766,8 +1766,8 @@ bulk voxels.
   - `materials` - array<array<array<string>>> - 3D array of material names [x][y][z]. Used by: write_voxels.
   - `occupancy` - array<array<array<number>>> - 3D array of occupancy values [x][y][z] (0-1). Used by: write_voxels.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.generate`
 
@@ -1792,8 +1792,8 @@ natural procedural terrain: multi-octave fBm, slope-based materials, smooth surf
   - `materialPalette` - object - Material palette override {surface, cliff, shore, underwater}. Used by: generate.
   - `layers` - array<object> - Material layers by height. Used by: generate. Each: {material, maxHeight}.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_terrain.smooth`
 
@@ -1808,8 +1808,8 @@ smooth terrain.
   - `region` - object - Rectangular region with min/max corners. Used by: clear_region, replace_material, read_voxels, write_voxels, generate, smooth.
   - `intensity` - number - Smoothing intensity (0-1). Used by: smooth. Default: 0.5.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `spatial_query`
 
@@ -1832,8 +1832,8 @@ single ray.
   - `filterInstances` - array<string> - Instance paths to filter (alias for filterList). Used by: raycast, multi_raycast, find_ground, check_placement, scan_area.
   - `ignoreWater` - boolean - Ignore terrain water. Used by: raycast, multi_raycast. Default: false.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.find_ground`
 
@@ -1851,8 +1851,8 @@ ground below point.
   - `filterInstances` - array<string> - Instance paths to filter (alias for filterList). Used by: raycast, multi_raycast, find_ground, check_placement, scan_area.
   - `offset` - number - Vertical offset for ground position. Used by: find_ground. Default: 0.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.check_placement`
 
@@ -1871,8 +1871,8 @@ collision-free placement check.
   - `rotation` - object - Rotation in degrees. Used by: check_placement.
   - `checkGround` - boolean - Verify ground support for placement. Used by: check_placement. Default: true.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.multi_raycast`
 
@@ -1890,8 +1890,8 @@ batch rays.
   - `ignoreWater` - boolean - Ignore terrain water. Used by: raycast, multi_raycast. Default: false.
   - `rays` - array<object> - Array of ray specifications. Used by: multi_raycast. Max 50 rays.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.scan_area`
 
@@ -1910,8 +1910,8 @@ heightmap generation.
   - `resolution` - number - Grid resolution in studs. Used by: scan_area, analyze_walkable. Default: 4.
   - `maxResults` - number - Maximum results. Used by: spatial_map (default: 500), scan_area (default: 500), find_flat (default: 10).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.find_flat`
 
@@ -1929,8 +1929,8 @@ flat areas for building.
   - `tolerance` - number - Height variation tolerance in studs. Used by: find_flat.
   - `maxResults` - number - Maximum results. Used by: spatial_map (default: 500), scan_area (default: 500), find_flat (default: 10).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.find_spawn`
 
@@ -1948,8 +1948,8 @@ spawn positions.
   - `preferOutdoor` - boolean - Prefer open sky positions. Used by: find_spawn. Default: false.
   - `count` - number - Number of results to find. Used by: find_spawn. Default: 10.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.analyze_walkable`
 
@@ -1967,8 +1967,8 @@ walkability grid.
   - `characterHeight` - number - Character height for clearance checks. Used by: analyze_walkable. Default: 5.
   - `maxStepHeight` - number - Maximum step height. Used by: analyze_walkable. Default: 2.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.spatial_map`
 
@@ -1986,8 +1986,8 @@ all BasePart positions.
   - `includeModels` - boolean - Include Model bounding boxes. Used by: spatial_map. Default: true.
   - `maxResults` - number - Maximum results. Used by: spatial_map (default: 500), scan_area (default: 500), find_flat (default: 10).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.find_space`
 
@@ -2005,8 +2005,8 @@ empty space for object.
   - `gridSnap` - number - Grid snap size. Alias for gridSize.
   - `padding` - number - Minimum distance from other objects. Used by: find_space. Default: 1.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.bounds`
 
@@ -2021,8 +2021,8 @@ bounding box.
   - `path` - string - Instance path. Used by: bounds (optional), snap_grid (required), collision (required), spatial_map (rootPath alias).
   - `paths` - array<string> - Multiple instance paths for batch bounds. Used by: bounds.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.snap_grid`
 
@@ -2039,8 +2039,8 @@ snap position to grid.
   - `gridSnap` - number - Grid snap size. Alias for gridSize.
   - `axes` - array<"x" | "y" | "z"> - Axes to snap. Used by: snap_grid. Default: ["x","y","z"]. Use ["x","z"] for horizontal only.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `spatial_query.collision`
 
@@ -2056,8 +2056,8 @@ AABB collision check.
   - `position` - object - Position as Vector3. Used by: find_ground (cast from here), check_placement (center), collision (hypothetical position).
   - `ignorePaths` - array<string> - Instance paths to ignore in collision check. Used by: collision.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_assets`
 
@@ -2078,8 +2078,8 @@ insert model by asset ID.
   - `name` - string - Optional name for inserted instance.
   - `position` - object - Position to place the model. Used by: insert, insert_free.
   - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.info`
 
@@ -2093,8 +2093,8 @@ get asset metadata.
   - `assetId` - number - Roblox asset ID. Used by: insert (required), info (required), insert_free (required), insert_package (required).
 - Optional params:
   - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.search`
 
@@ -2112,8 +2112,8 @@ search Creator Store.
   - `category` - string - Asset category filter. Used by: search, export_selection_rbxm, export_path_rbxm, review_model, generate_model, import_rbxm, generate_thumbnail. upload_asset may omit this and use assetType/selection auto-detection.
   - `sortType` - string - Sort order for search results. Used by: search.
   - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.search_insert`
 
@@ -2129,8 +2129,8 @@ search and insert first match.
   - `parent` - string - Parent path for inserted asset. Used by: insert, search_insert, insert_free, insert_package. Default: "game.Workspace".
   - `name` - string - Optional name for inserted instance.
   - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.insert_free`
 
@@ -2147,8 +2147,8 @@ insert free model.
   - `name` - string - Optional name for inserted instance.
   - `position` - object - Position to place the model. Used by: insert, insert_free.
   - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.insert_package`
 
@@ -2164,8 +2164,8 @@ insert package.
   - `parent` - string - Parent path for inserted asset. Used by: insert, search_insert, insert_free, insert_package. Default: "game.Workspace".
   - `name` - string - Optional name for inserted instance.
   - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.export_selection_json`
 
@@ -2182,8 +2182,8 @@ return a JSON snapshot of the current Studio selection.
   - `includeChildren` - boolean - Include children in export. Used by: export_selection_json. Default: false.
   - `maxDepth` - number - Maximum depth for recursive child export. Used by: export_selection_json. Default: 5.
   - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.export_selection_rbxm`
 
@@ -2208,8 +2208,8 @@ serialize the current Studio selection to a local Asset Library .rbxm asset.
   - `uploadTemporaryAssets` - boolean - Explicit user approval for Studio-local CreateAssetAsync uploads before .rbxm registration. Used by: export_selection_rbxm, export_path_rbxm, review_model. Default: false; set true only after user approval.
   - `creatorType` - "user" | "group" - Optional Roblox creator type for Studio-local temporary asset upload. Used with uploadTemporaryAssets by .rbxm registration actions. Omit to use the logged-in Studio user.
   - `creatorId` - string - Optional Roblox user or group ID for Studio-local temporary asset upload. Used with uploadTemporaryAssets by .rbxm registration actions.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.export_path_rbxm`
 
@@ -2235,8 +2235,8 @@ serialize one Studio instance path to a local Asset Library .rbxm asset.
   - `uploadTemporaryAssets` - boolean - Explicit user approval for Studio-local CreateAssetAsync uploads before .rbxm registration. Used by: export_selection_rbxm, export_path_rbxm, review_model. Default: false; set true only after user approval.
   - `creatorType` - "user" | "group" - Optional Roblox creator type for Studio-local temporary asset upload. Used with uploadTemporaryAssets by .rbxm registration actions. Omit to use the logged-in Studio user.
   - `creatorId` - string - Optional Roblox user or group ID for Studio-local temporary asset upload. Used with uploadTemporaryAssets by .rbxm registration actions.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.review_model`
 
@@ -2268,8 +2268,8 @@ QA the current selection or a Studio path and optionally register it as a local 
   - `maxDescendants` - number - Maximum descendants to inspect during model QA. Used by: review_model, generate_model. Default: 500.
   - `maxDepth` - number - Maximum depth for recursive child export. Used by: export_selection_json. Default: 5.
   - `readiness` - "ready" | "review" | "blocked" - Optional readiness gate for Asset Library registration decisions. Used by: review_model, generate_model.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.generate_model`
 
@@ -2303,8 +2303,8 @@ Generate a Roblox Model in Studio with GenerationService and return the Studio p
   - `maxDepth` - number - Maximum depth for recursive child export. Used by: export_selection_json. Default: 5.
   - `readiness` - "ready" | "review" | "blocked" - Optional readiness gate for Asset Library registration decisions. Used by: review_model, generate_model.
   - `anchorMode` - "none" | "all" - How to anchor generated BaseParts before review/export. Used by: generate_model. Default: all.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.upload_asset`
 
@@ -2327,8 +2327,8 @@ Upload the current selection or sourcePath through Studio-local AssetService wit
   - `description` - string - Asset Library description or Studio upload description. Used by: export_selection_rbxm, export_path_rbxm, review_model, upload_asset.
   - `creatorType` - "user" | "group" - Optional Roblox creator type for Studio-local temporary asset upload. Used with uploadTemporaryAssets by .rbxm registration actions. Omit to use the logged-in Studio user.
   - `creatorId` - string - Optional Roblox user or group ID for Studio-local temporary asset upload. Used with uploadTemporaryAssets by .rbxm registration actions.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.import_rbxm`
 
@@ -2349,8 +2349,8 @@ import an Asset Library .rbxm asset into Studio under a target parent.
   - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
   - `targetParent` - string - Studio parent path for imported/generated instances. Used by: import_rbxm, generate_model. Default: game.Workspace.
   - `name` - string - Optional name for inserted instance.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_assets.generate_thumbnail`
 
@@ -2369,8 +2369,8 @@ generate or replace thumbnail.png for an Asset Library .rbxm asset.
   - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
   - `scope` - "place" | "shared" - Asset Library scope. Used by: export_selection_rbxm, export_path_rbxm, review_model, import_rbxm, generate_thumbnail. Default: place.
   - `placeId` - number - Place ID for place-scoped Asset Library .rbxm round-trip operations. For other manage_assets Studio/plugin actions, this also acts as an optional Studio target selector.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_open_cloud_assets`
 
@@ -2378,7 +2378,7 @@ generate or replace thumbnail.png for an Asset Library .rbxm asset.
 
 ### `manage_open_cloud_assets.preflight`
 
-diagnose credential, Assets Read/Write permissions, Creator target, category, and local file readiness without uploading. Credential guidance: In Roblox Creator Hub, create an API key, add Assets under Access Permissions, enable both Read and Write, then save and test the key in WEPPY Assets settings. File guidance: Check that the selected asset category, file extension, and file size satisfy the Roblox Assets API requirements.
+diagnose credential, Assets Read/Write permissions, Creator target, category, and local file readiness without uploading. Credential guidance: In Roblox Creator Hub, create an API key, add Assets under Access Permissions, enable both Read and Write, then save and test the key in NovaMCP Assets settings. File guidance: Check that the selected asset category, file extension, and file size satisfy the Roblox Assets API requirements.
 
 - Tier: `pro`
 - Route: `internal`
@@ -2387,7 +2387,7 @@ diagnose credential, Assets Read/Write permissions, Creator target, category, an
 - Required params: none
 - Optional params:
   - `filePath` - string - Local file path on the MCP server machine. Used by: upload, update.
-  - `category` - "image" | "decal" | "audio" | "mesh" | "model" | "video" | "animation" - WEPPY asset category. Used by: upload, update.
+  - `category` - "image" | "decal" | "audio" | "mesh" | "model" | "video" | "animation" - NovaMCP asset category. Used by: upload, update.
   - `creatorType` - "user" | "group" - Asset creator owner type. Used by: upload, update. Defaults to saved credential metadata when available.
   - `creatorId` - string - User ID or group ID for the asset creator. Used by: upload, update. Defaults to saved credential metadata when available.
 
@@ -2423,7 +2423,7 @@ upload a local file as a new Roblox asset through Open Cloud.
 - Param aliases: none
 - Required params:
   - `filePath` - string - Local file path on the MCP server machine. Used by: upload, update.
-  - `category` - "image" | "decal" | "audio" | "mesh" | "model" | "video" | "animation" - WEPPY asset category. Used by: upload, update.
+  - `category` - "image" | "decal" | "audio" | "mesh" | "model" | "video" | "animation" - NovaMCP asset category. Used by: upload, update.
   - `displayName` - string - Roblox asset display name. Used by: upload, update.
 - Optional params:
   - `contextId` - string - Optional execution context identifier. Used to continue an existing context for mutating actions.
@@ -2447,7 +2447,7 @@ update an existing Roblox asset through Open Cloud.
 - Param aliases: none
 - Required params:
   - `assetId` - string - Roblox asset ID. Used by: update (required), info (required).
-  - `category` - "image" | "decal" | "audio" | "mesh" | "model" | "video" | "animation" - WEPPY asset category. Used by: upload, update.
+  - `category` - "image" | "decal" | "audio" | "mesh" | "model" | "video" | "animation" - NovaMCP asset category. Used by: upload, update.
 - Optional params:
   - `contextId` - string - Optional execution context identifier. Used to continue an existing context for mutating actions.
   - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
@@ -2582,8 +2582,8 @@ fetch current Workspace state (hierarchy, history, stats).
 - Optional params:
   - `includeMetadata` - boolean - Include metadata (instance counts, timestamps). Used by: sync. Default: true.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.snapshot`
 
@@ -2596,8 +2596,8 @@ get full instance tree structure.
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.changes`
 
@@ -2611,8 +2611,8 @@ get recent changes (added/removed/modified).
 - Optional params:
   - `limit` - number - Maximum number of changes to return. Used by: changes. Default: 20.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.viewport`
 
@@ -2627,8 +2627,8 @@ get camera position, FOV, viewport size, selection bounds.
   - `includeCameraInfo` - boolean - Include camera position and settings. Used by: viewport. Default: true.
   - `includeSelectionBounds` - boolean - Include current selection bounds info. Used by: viewport. Default: true.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.clear_history`
 
@@ -2641,8 +2641,8 @@ clear change history.
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.metadata`
 
@@ -2655,8 +2655,8 @@ get workspace metadata.
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.scripts`
 
@@ -2669,8 +2669,8 @@ get script list.
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.selection_info`
 
@@ -2683,8 +2683,8 @@ get selection info.
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `workspace_state.clear_cache`
 
@@ -2697,8 +2697,8 @@ clear state cache.
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_logs`
 
@@ -2721,8 +2721,8 @@ retrieve logs with optional level/limit/since/sinceSeq filters.
   - `since` - number - Unix timestamp in milliseconds. Only logs after this time. Used by: get.
   - `sinceSeq` - number - Return only logs after this sequence number. Cursor mode returns logs oldest-to-newest and includes lastSeq/oldestSeq/hasMore/cursorStatus. Used by: get.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_logs.clear`
 
@@ -2735,8 +2735,8 @@ clear internal log buffer without resetting seq.
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_logs.errors`
 
@@ -2750,8 +2750,8 @@ quick access to recent errors only.
 - Optional params:
   - `limit` - number - Maximum entries to return. Used by: get (default: 100, max: 500), errors (default: 20, max: 100).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `system_info`
 
@@ -2767,8 +2767,8 @@ System info: ping, connection status, usage tier, and read-only Studio preflight
 - Optional params:
   - `message` - string - Optional message to echo back. Used by: ping.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `system_info.connection`
 
@@ -2788,8 +2788,8 @@ System info: ping, connection status, usage tier, and read-only Studio preflight
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `system_info.place_info`
 
@@ -2800,8 +2800,8 @@ System info: ping, connection status, usage tier, and read-only Studio preflight
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `system_info.services`
 
@@ -2812,8 +2812,8 @@ System info: ping, connection status, usage tier, and read-only Studio preflight
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `system_info.preflight`
 
@@ -2826,8 +2826,8 @@ diagnose Studio connection, identity, state, publish status, and security capabi
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `manage_studio`
 
@@ -2843,8 +2843,8 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Optional params:
   - `enabled` - boolean - Boolean value to set. Omit to toggle the current value. Used by: toggle_ui_preview (optional).
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.play_start`
 
@@ -2856,8 +2856,8 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Optional params:
   - `mode` - "play" | "run" - Playtest mode. "play" = Play mode (F5, default), "run" = Run mode (F8). Used by: play_start, run_test.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.play_stop`
 
@@ -2868,8 +2868,8 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.play_pause`
 
@@ -2880,8 +2880,8 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.play_resume`
 
@@ -2892,8 +2892,8 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.play_status`
 
@@ -2904,8 +2904,8 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
 - Required params: none
 - Optional params:
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ### `manage_studio.run_test`
 
@@ -2920,8 +2920,8 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
   - `test_name` - string - Optional report display name for the automated playtest run. Used by: run_test.
   - `timeout` - number - Timeout in seconds for the automated playtest run. Default: 60. Maximum: 300. Used by: run_test.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this call to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
   - `contextId` - string - Optional execution context identifier. Used to continue an existing context for mutating actions.
   - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
   - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
@@ -2939,7 +2939,7 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
   - `stopOnError` - boolean - If true, stop executing remaining commands when one fails. Default: true.
   - `placeId` - number - Optional Studio target selector for the entire batch. Per-item selectors inside commands[].args are rejected.
   - `clientId` - string - Optional Studio target selector for the entire batch. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 
 ## Tool: `execute_luau`
 
@@ -2955,6 +2955,6 @@ Control Roblox Studio state for playtest lifecycle, automated test runs, and edi
   - `contextSummary` - ExecutionContextSummary - Optional structured execution context attached to this tool call.
   - `replayMetadata` - ExecutionReplayMetadata - Optional replay-ready metadata attached to this tool call.
   - `placeId` - number - Optional Studio target selector. When multiple Studio clients are connected, route this Luau execution to the active client for this Roblox placeId. If no matching active client exists, the call fails instead of falling back to another Place.
-  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected WEPPY Plugin client. Takes precedence over targetAlias and placeId.
-  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected WEPPY Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
+  - `clientId` - string - Optional Studio target selector. Routes this call to the exact connected NovaMCP Plugin client. Takes precedence over targetAlias and placeId.
+  - `targetAlias` - string - Optional Studio target selector. Routes this call to the connected NovaMCP Studio target alias shown in Dashboard/Plugin, such as studio-1. Takes precedence over placeId.
 

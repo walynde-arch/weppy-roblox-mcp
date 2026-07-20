@@ -27,4 +27,4 @@ Local `instanceRemoved` changes are destructive and enter the manual queue even 
 
 ## Temporary Instances
 
-Instances whose names start with `__MCP_` are temporary WEPPY test/control objects and must not be treated as synced game content.
+Instances whose names start with `__MCP_` are temporary NovaMCP test/control objects and must not be treated as synced game content.

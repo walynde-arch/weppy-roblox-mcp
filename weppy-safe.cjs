@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Weppy Safe Wrapper
+ * NovaMCP Safe Wrapper
  * 
  * Intercepte les appels MCP et ajoute des safety checks:
  * - Vérifie la connexion Studio avant chaque opération
@@ -8,7 +8,7 @@
  * - Complète get_source tronqué avec pagination
  * 
  * Usage: node weppy-safe.js (remplace le lancement direct de dist/index.js)
- * Ce script proxy stdio entre Hermes et le vrai serveur Weppy.
+ * Ce script proxy stdio entre Hermes et le vrai serveur NovaMCP.
  */
 
 const { spawn } = require('child_process');
@@ -16,7 +16,7 @@ const path = require('path');
 const readline = require('readline');
 
 // Config
-const WEPPY_BIN = path.join(__dirname, 'dist', 'index.js');
+const NovaMCP_BIN = path.join(__dirname, 'dist', 'index.js');
 const STUDIO_HEALTH_URL = 'http://127.0.0.1:3002/api/dashboard/license/status';
 const MAX_SCRIPT_LINES = 300; // Au-delà, utiliser execute_luau
 
@@ -81,7 +81,7 @@ async function preExecCheck(msg) {
       result: {
         content: [{
           type: 'text',
-          text: `[WEPPY-SAFE] Studio non connecté. Vérifiez que le plugin Weppy est actif dans Roblox Studio.`
+          text: `[NovaMCP-SAFE] Studio non connecté. Vérifiez que le plugin NovaMCP est actif dans Roblox Studio.`
         }],
         isError: true
       }
@@ -118,7 +118,7 @@ async function wrappedEditReplace(msg) {
   };
   
   // Forward get_source
-  forwardToWeppy(getSourceMsg);
+  forwardToNovaMCP(getSourceMsg);
   
   // We'll handle the response in the response interceptor
   return { _pending: true, _tool: 'edit_replace', _args: args, _getSourceMsg: getSourceMsg };
@@ -129,8 +129,8 @@ async function wrappedEditReplace(msg) {
 let weppyProcess = null;
 const pendingCallbacks = new Map();
 
-function startWeppy() {
-  weppyProcess = spawn('node', [WEPPY_BIN], {
+function startNovaMCP() {
+  weppyProcess = spawn('node', [NovaMCP_BIN], {
     stdio: ['pipe', 'pipe', 'pipe'],
     env: { ...process.env, DASHBOARD_AUTO_OPEN: 'false' }
   });
@@ -142,7 +142,7 @@ function startWeppy() {
   return weppyProcess;
 }
 
-function forwardToWeppy(msg) {
+function forwardToNovaMCP(msg) {
   if (weppyProcess && weppyProcess.stdin.writable) {
     weppyProcess.stdin.write(JSON.stringify(msg) + '\n');
   }
@@ -155,9 +155,9 @@ function forwardToHermes(msg) {
 // ─── Main stdio Proxy ─────────────────────────────────────
 
 async function main() {
-  weppyProcess = startWeppy();
+  weppyProcess = startNovaMCP();
   
-  // Read from Weppy → forward to Hermes
+  // Read from NovaMCP → forward to Hermes
   const weppyRL = readline.createInterface({ input: weppyProcess.stdout });
   weppyRL.on('line', (line) => {
     const msg = parseMCPMessage(line);
@@ -175,7 +175,7 @@ async function main() {
     }
   });
   
-  // Read from Hermes → intercept and forward to Weppy
+  // Read from Hermes → intercept and forward to NovaMCP
   const hermesRL = readline.createInterface({ input: process.stdin });
   for await (const line of hermesRL) {
     const msg = parseMCPMessage(line);
@@ -191,15 +191,15 @@ async function main() {
       forwardToHermes(intercept);
     } else if (intercept?._weppy_safe) {
       // Wrapped operation — forward with monitoring
-      forwardToWeppy(msg);
+      forwardToNovaMCP(msg);
     } else {
       // Normal passthrough
-      forwardToWeppy(msg);
+      forwardToNovaMCP(msg);
     }
   }
 }
 
 main().catch((err) => {
-  console.error(`[WEPPY-SAFE] Fatal: ${err.message}`);
+  console.error(`[NovaMCP-SAFE] Fatal: ${err.message}`);
   process.exit(1);
 });

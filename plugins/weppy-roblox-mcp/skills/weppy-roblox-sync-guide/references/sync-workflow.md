@@ -1,6 +1,6 @@
 # Sync Workflow Reference
 
-WEPPY sync mirrors Roblox Studio content into local files under `weppy-project-sync`.
+NovaMCP sync mirrors Roblox Studio content into local files under `weppy-project-sync`.
 
 ## Lifecycle
 
@@ -13,7 +13,7 @@ WEPPY sync mirrors Roblox Studio content into local files under `weppy-project-s
 
 ## Safe Defaults
 
-WEPPY is Studio-first by default: every category starts as `forward` with `manual` apply. Pro unlocks reverse and bidirectional choices but does not silently switch existing settings. Destructive local deletes stay manual unless the user explicitly enables delete auto-apply.
+NovaMCP is Studio-first by default: every category starts as `forward` with `manual` apply. Pro unlocks reverse and bidirectional choices but does not silently switch existing settings. Destructive local deletes stay manual unless the user explicitly enables delete auto-apply.
 
 ## Detector And Project Root Recovery
 

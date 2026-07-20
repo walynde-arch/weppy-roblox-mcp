@@ -1,9 +1,9 @@
 ---
 name: weppy-roblox-environment-guide
-description: Use when building natural Roblox backgrounds through WEPPY Roblox MCP - generating realistic terrain with biome presets, applying environment mood presets (lighting, atmosphere, sky, water), scattering props, and iterating with screenshot verification.
+description: Use when building natural Roblox backgrounds through NovaMCP Roblox MCP - generating realistic terrain with biome presets, applying environment mood presets (lighting, atmosphere, sky, water), scattering props, and iterating with screenshot verification.
 ---
 
-# WEPPY Roblox Environment Guide
+# NovaMCP Roblox Environment Guide
 
 ## Workflow
 

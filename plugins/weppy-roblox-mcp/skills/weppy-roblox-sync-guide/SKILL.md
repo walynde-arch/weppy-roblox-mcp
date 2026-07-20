@@ -1,13 +1,13 @@
 ---
 name: weppy-roblox-sync-guide
-description: Use when working with WEPPY Roblox MCP Studio-local sync, bidirectional file mirrors, sync directions, multi-place project folders, conflicts, reverse apply and delete safety, sourcemaps, detector recovery, or Roblox Explorer context.
+description: Use when working with NovaMCP Roblox MCP Studio-local sync, bidirectional file mirrors, sync directions, multi-place project folders, conflicts, reverse apply and delete safety, sourcemaps, detector recovery, or Roblox Explorer context.
 ---
 
-# WEPPY Roblox Sync Guide
+# NovaMCP Roblox Sync Guide
 
 ## Overview
 
-Use this skill when local files and Roblox Studio state must stay aligned through WEPPY sync. Load only the reference that matches the sync problem.
+Use this skill when local files and Roblox Studio state must stay aligned through NovaMCP sync. Load only the reference that matches the sync problem.
 
 ## Workflow
 

@@ -22531,3 +22531,159 @@
 [2026-07-20T15:05:40.158Z] [WEPPY] "httpBridge": "127.0.0.1:3002",
 [2026-07-20T15:05:40.158Z] [WEPPY] "sessionId": "219E-51EB"
 [2026-07-20T15:05:40.158Z] [WEPPY] }
+[2026-07-20T15:12:44.461Z] [INFO] ═══ NovaMCP Robust Launcher ═══
+[2026-07-20T15:12:44.672Z] [INFO] Health: serveur=running, studio=false, license=pro
+[2026-07-20T15:12:44.672Z] [INFO] Serveur déjà actif (PID 17072).
+[2026-07-20T15:12:44.673Z] [INFO] Arrêt du processus existant avant relance...
+[2026-07-20T15:12:45.229Z] [WARN] Serveur arrêté (code 4294967295, signal null)
+[2026-07-20T15:12:45.230Z] [INFO] Restart 1/5 dans 3s...
+[2026-07-20T15:12:45.456Z] [INFO] Process existant tué (PID 17072)
+[2026-07-20T15:12:45.457Z] [INFO] Démarrage serveur NovaMCP...
+[2026-07-20T15:12:45.658Z] [NovaMCP] [90m[2026-07-20T15:12:45.657Z][0m [32m[INFO][0m NovaMCP Server
+[2026-07-20T15:12:45.659Z] [NovaMCP] {
+[2026-07-20T15:12:45.659Z] [NovaMCP] "version": "2.11.0",
+[2026-07-20T15:12:45.659Z] [NovaMCP] "config": {
+[2026-07-20T15:12:45.660Z] [NovaMCP] "httpHost": "127.0.0.1",
+[2026-07-20T15:12:45.660Z] [NovaMCP] "httpPort": 3002,
+[2026-07-20T15:12:45.660Z] [NovaMCP] "logLevel": "info",
+[2026-07-20T15:12:45.661Z] [NovaMCP] "requestTimeout": 30000,
+[2026-07-20T15:12:45.661Z] [NovaMCP] "enableLocalHistory": true,
+[2026-07-20T15:12:45.662Z] [NovaMCP] "enableLocalStatistics": true,
+[2026-07-20T15:12:45.662Z] [NovaMCP] "enableContextCapture": true,
+[2026-07-20T15:12:45.662Z] [NovaMCP] "dataDir": "C:\\Users\\lulul\\.agents\\skills\\weppy-project-sync",
+[2026-07-20T15:12:45.663Z] [NovaMCP] "appDataDir": "C:\\Users\\lulul\\.weppy-data",
+[2026-07-20T15:12:45.663Z] [NovaMCP] "licenseApiBaseUrl": "https://roblox-license-api.hope841026.workers.dev",
+[2026-07-20T15:12:45.663Z] [NovaMCP] "licenseProjectId": "roblox-mcp",
+[2026-07-20T15:12:45.664Z] [NovaMCP] "licenseProvider": "auto",
+[2026-07-20T15:12:45.664Z] [NovaMCP] "licenseRequestTimeoutMs": 8000,
+[2026-07-20T15:12:45.664Z] [NovaMCP] "licenseRetryCount": 1,
+[2026-07-20T15:12:45.665Z] [NovaMCP] "licenseRetryDelayMs": 300,
+[2026-07-20T15:12:45.665Z] [NovaMCP] "licenseFallbackMaxHours": 48
+[2026-07-20T15:12:45.665Z] [NovaMCP] }
+[2026-07-20T15:12:45.666Z] [NovaMCP] }
+[2026-07-20T15:12:45.670Z] [NovaMCP] [90m[2026-07-20T15:12:45.669Z][0m [32m[INFO][0m MCP Server initialized
+[2026-07-20T15:12:45.670Z] [NovaMCP] {
+[2026-07-20T15:12:45.671Z] [NovaMCP] "name": "novamcp",
+[2026-07-20T15:12:45.671Z] [NovaMCP] "version": "2.11.0",
+[2026-07-20T15:12:45.671Z] [NovaMCP] "tools": 24,
+[2026-07-20T15:12:45.672Z] [NovaMCP] "localHistoryEnabled": true,
+[2026-07-20T15:12:45.672Z] [NovaMCP] "localStatisticsEnabled": true,
+[2026-07-20T15:12:45.673Z] [NovaMCP] "telemetryEnabled": false,
+[2026-07-20T15:12:45.673Z] [NovaMCP] "licenseApiConfigured": true
+[2026-07-20T15:12:45.674Z] [NovaMCP] }
+[2026-07-20T15:12:45.674Z] [NovaMCP] [90m[2026-07-20T15:12:45.670Z][0m [32m[INFO][0m Starting NovaMCP Server
+[2026-07-20T15:12:45.675Z] [NovaMCP] [90m[2026-07-20T15:12:45.670Z][0m [32m[INFO][0m AI client detected via environment
+[2026-07-20T15:12:45.675Z] [NovaMCP] {
+[2026-07-20T15:12:45.676Z] [NovaMCP] "name": "Hermes"
+[2026-07-20T15:12:45.676Z] [NovaMCP] }
+[2026-07-20T15:12:45.707Z] [NovaMCP] [90m[2026-07-20T15:12:45.707Z][0m [32m[INFO][0m SyncController initialized
+[2026-07-20T15:12:45.708Z] [NovaMCP] [90m[2026-07-20T15:12:45.707Z][0m [32m[INFO][0m SyncController initialized
+[2026-07-20T15:12:45.708Z] [NovaMCP] [90m[2026-07-20T15:12:45.707Z][0m [32m[INFO][0m HTTP Bridge started in SERVER MODE
+[2026-07-20T15:12:45.708Z] [NovaMCP] {
+[2026-07-20T15:12:45.709Z] [NovaMCP] "host": "127.0.0.1",
+[2026-07-20T15:12:45.709Z] [NovaMCP] "port": 3002,
+[2026-07-20T15:12:45.709Z] [NovaMCP] "pid": 43788,
+[2026-07-20T15:12:45.710Z] [NovaMCP] "instanceId": "811c8e3c-486f-49a7-baab-5f9fae5ef983"
+[2026-07-20T15:12:45.710Z] [NovaMCP] }
+[2026-07-20T15:12:45.710Z] [NovaMCP] [90m[2026-07-20T15:12:45.707Z][0m [32m[INFO][0m Tool history manager initialized
+[2026-07-20T15:12:45.711Z] [NovaMCP] {
+[2026-07-20T15:12:45.711Z] [NovaMCP] "sessionId": "811C-8E3C",
+[2026-07-20T15:12:45.711Z] [NovaMCP] "localHistoryEnabled": true,
+[2026-07-20T15:12:45.712Z] [NovaMCP] "localStatisticsEnabled": true,
+[2026-07-20T15:12:45.712Z] [NovaMCP] "dataDir": "C:\\Users\\lulul\\.agents\\skills\\weppy-project-sync"
+[2026-07-20T15:12:45.713Z] [NovaMCP] }
+[2026-07-20T15:12:45.730Z] [NovaMCP] [90m[2026-07-20T15:12:45.730Z][0m [32m[INFO][0m MCP Server started successfully
+[2026-07-20T15:12:45.731Z] [NovaMCP] {
+[2026-07-20T15:12:45.731Z] [NovaMCP] "transport": "stdio",
+[2026-07-20T15:12:45.731Z] [NovaMCP] "httpBridge": "127.0.0.1:3002",
+[2026-07-20T15:12:45.732Z] [NovaMCP] "sessionId": "811C-8E3C"
+[2026-07-20T15:12:45.732Z] [NovaMCP] }
+[2026-07-20T15:12:46.284Z] [NovaMCP] [90m[2026-07-20T15:12:46.283Z][0m [32m[INFO][0m Plugin client registered
+[2026-07-20T15:12:46.284Z] [NovaMCP] {
+[2026-07-20T15:12:46.284Z] [NovaMCP] "clientId": "87ece879-c429-4575-b210-6e41a90a94b0",
+[2026-07-20T15:12:46.285Z] [NovaMCP] "targetAlias": "studio-1",
+[2026-07-20T15:12:46.285Z] [NovaMCP] "projectName": "Hauts-de-France",
+[2026-07-20T15:12:46.285Z] [NovaMCP] "placeName": "Hauts-de-France",
+[2026-07-20T15:12:46.286Z] [NovaMCP] "isReconnect": false
+[2026-07-20T15:12:46.286Z] [NovaMCP] }
+[2026-07-20T15:12:46.287Z] [WARN] [90m[2026-07-20T15:12:46.287Z][0m [33m[WARN][0m Failed to refresh root representative sourcemap after updating last active place
+[2026-07-20T15:12:46.287Z] [NovaMCP] {
+[2026-07-20T15:12:46.287Z] [NovaMCP] "syncRoot": "C:\\Users\\lulul\\.agents\\skills\\weppy-project-sync",
+[2026-07-20T15:12:46.288Z] [NovaMCP] "placeId": 108926365638377,
+[2026-07-20T15:12:46.288Z] [NovaMCP] "placeName": "Hauts-de-France"
+[2026-07-20T15:12:46.288Z] [NovaMCP] }
+[2026-07-20T15:12:47.492Z] [INFO] Agent name défini: Hermes (instanceId: 811c8e3c-486f-49a7-baab-5f9fae5ef983)
+[2026-07-20T15:12:48.231Z] [INFO] Démarrage serveur Weppy...
+[2026-07-20T15:12:48.420Z] [WEPPY] [90m[2026-07-20T15:12:48.418Z][0m [32m[INFO][0m NovaMCP Server
+[2026-07-20T15:12:48.420Z] [WEPPY] {
+[2026-07-20T15:12:48.420Z] [WEPPY] "version": "2.11.0",
+[2026-07-20T15:12:48.421Z] [WEPPY] "config": {
+[2026-07-20T15:12:48.421Z] [WEPPY] "httpHost": "127.0.0.1",
+[2026-07-20T15:12:48.421Z] [WEPPY] "httpPort": 3002,
+[2026-07-20T15:12:48.422Z] [WEPPY] "logLevel": "info",
+[2026-07-20T15:12:48.422Z] [WEPPY] "requestTimeout": 30000,
+[2026-07-20T15:12:48.422Z] [WEPPY] "enableLocalHistory": true,
+[2026-07-20T15:12:48.422Z] [WEPPY] "enableLocalStatistics": true,
+[2026-07-20T15:12:48.423Z] [WEPPY] "enableContextCapture": true,
+[2026-07-20T15:12:48.423Z] [WEPPY] "dataDir": "C:\\Users\\lulul\\weppy-roblox-mcp\\weppy-project-sync",
+[2026-07-20T15:12:48.423Z] [WEPPY] "appDataDir": "C:\\Users\\lulul\\.weppy-data",
+[2026-07-20T15:12:48.424Z] [WEPPY] "licenseApiBaseUrl": "https://roblox-license-api.hope841026.workers.dev",
+[2026-07-20T15:12:48.424Z] [WEPPY] "licenseProjectId": "roblox-mcp",
+[2026-07-20T15:12:48.424Z] [WEPPY] "licenseProvider": "auto",
+[2026-07-20T15:12:48.425Z] [WEPPY] "licenseRequestTimeoutMs": 8000,
+[2026-07-20T15:12:48.425Z] [WEPPY] "licenseRetryCount": 1,
+[2026-07-20T15:12:48.425Z] [WEPPY] "licenseRetryDelayMs": 300,
+[2026-07-20T15:12:48.426Z] [WEPPY] "licenseFallbackMaxHours": 48
+[2026-07-20T15:12:48.426Z] [WEPPY] }
+[2026-07-20T15:12:48.426Z] [WEPPY] }
+[2026-07-20T15:12:48.430Z] [WEPPY] [90m[2026-07-20T15:12:48.430Z][0m [32m[INFO][0m MCP Server initialized
+[2026-07-20T15:12:48.431Z] [WEPPY] {
+[2026-07-20T15:12:48.431Z] [WEPPY] "name": "novamcp",
+[2026-07-20T15:12:48.431Z] [WEPPY] "version": "2.11.0",
+[2026-07-20T15:12:48.432Z] [WEPPY] "tools": 24,
+[2026-07-20T15:12:48.432Z] [WEPPY] "localHistoryEnabled": true,
+[2026-07-20T15:12:48.432Z] [WEPPY] "localStatisticsEnabled": true,
+[2026-07-20T15:12:48.433Z] [WEPPY] "telemetryEnabled": false,
+[2026-07-20T15:12:48.433Z] [WEPPY] "licenseApiConfigured": true
+[2026-07-20T15:12:48.434Z] [WEPPY] }
+[2026-07-20T15:12:48.434Z] [WEPPY] [90m[2026-07-20T15:12:48.431Z][0m [32m[INFO][0m Starting NovaMCP Server
+[2026-07-20T15:12:48.434Z] [WEPPY] [90m[2026-07-20T15:12:48.431Z][0m [32m[INFO][0m AI client detected via environment
+[2026-07-20T15:12:48.435Z] [WEPPY] {
+[2026-07-20T15:12:48.435Z] [WEPPY] "name": "Hermes"
+[2026-07-20T15:12:48.436Z] [WEPPY] }
+[2026-07-20T15:12:48.452Z] [WEPPY] [90m[2026-07-20T15:12:48.452Z][0m [32m[INFO][0m Existing HTTP Bridge detected
+[2026-07-20T15:12:48.453Z] [WEPPY] {
+[2026-07-20T15:12:48.453Z] [WEPPY] "status": "online",
+[2026-07-20T15:12:48.453Z] [WEPPY] "uptime": 2781,
+[2026-07-20T15:12:48.454Z] [WEPPY] "version": "2.11.0",
+[2026-07-20T15:12:48.454Z] [WEPPY] "pid": 43788
+[2026-07-20T15:12:48.454Z] [WEPPY] }
+[2026-07-20T15:12:48.455Z] [WEPPY] [90m[2026-07-20T15:12:48.452Z][0m [32m[INFO][0m Existing MCP server found, switching to CLIENT MODE
+[2026-07-20T15:12:48.455Z] [WEPPY] {
+[2026-07-20T15:12:48.455Z] [WEPPY] "existingPid": 43788,
+[2026-07-20T15:12:48.456Z] [WEPPY] "existingUptime": 2781,
+[2026-07-20T15:12:48.456Z] [WEPPY] "existingConnectedClients": 1
+[2026-07-20T15:12:48.456Z] [WEPPY] }
+[2026-07-20T15:12:48.458Z] [NovaMCP] [90m[2026-07-20T15:12:48.458Z][0m [32m[INFO][0m MCP instance registered (client mode)
+[2026-07-20T15:12:48.458Z] [NovaMCP] {
+[2026-07-20T15:12:48.459Z] [WEPPY] [90m[2026-07-20T15:12:48.459Z][0m [32m[INFO][0m Registered with existing server
+[2026-07-20T15:12:48.459Z] [NovaMCP] "instanceId": "46d03457-142e-4515-9973-91691adf4279",
+[2026-07-20T15:12:48.459Z] [WEPPY] {
+[2026-07-20T15:12:48.459Z] [NovaMCP] "pid": 7496,
+[2026-07-20T15:12:48.459Z] [WEPPY] "serverInstanceId": "811c8e3c-486f-49a7-baab-5f9fae5ef983",
+[2026-07-20T15:12:48.460Z] [NovaMCP] "cwd": "C:\\Users\\lulul\\weppy-roblox-mcp"
+[2026-07-20T15:12:48.460Z] [WEPPY] "myInstanceId": "46d03457-142e-4515-9973-91691adf4279"
+[2026-07-20T15:12:48.460Z] [NovaMCP] }
+[2026-07-20T15:12:48.460Z] [WEPPY] }
+[2026-07-20T15:12:48.461Z] [WEPPY] [90m[2026-07-20T15:12:48.460Z][0m [32m[INFO][0m HTTP Bridge started in CLIENT MODE
+[2026-07-20T15:12:48.461Z] [WEPPY] {
+[2026-07-20T15:12:48.462Z] [WEPPY] "serverUrl": "http://127.0.0.1:3002",
+[2026-07-20T15:12:48.462Z] [WEPPY] "myPid": 7496,
+[2026-07-20T15:12:48.463Z] [WEPPY] "myInstanceId": "46d03457-142e-4515-9973-91691adf4279"
+[2026-07-20T15:12:48.463Z] [WEPPY] }
+[2026-07-20T15:12:48.493Z] [WEPPY] [90m[2026-07-20T15:12:48.493Z][0m [32m[INFO][0m MCP Server started successfully
+[2026-07-20T15:12:48.493Z] [WEPPY] {
+[2026-07-20T15:12:48.494Z] [WEPPY] "transport": "stdio",
+[2026-07-20T15:12:48.494Z] [WEPPY] "httpBridge": "127.0.0.1:3002",
+[2026-07-20T15:12:48.494Z] [WEPPY] "sessionId": "46D0-3457"
+[2026-07-20T15:12:48.495Z] [WEPPY] }
