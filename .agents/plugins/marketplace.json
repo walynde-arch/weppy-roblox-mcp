@@ -1,11 +1,11 @@
 {
   "name": "hope1026-roblox-mcp",
   "interface": {
-    "displayName": "NovaMCP AI Agent Plugin"
+    "displayName": "WEPPY AI Agent Plugin"
   },
   "metadata": {
-    "description": "NovaMCP AI Agent Plugin marketplace for Codex — MCP setup and workflow guidance for the NovaMCP Roblox AI Toolkit",
-    "version": "2.11.0"
+    "description": "WEPPY AI Agent Plugin marketplace for Codex — MCP setup and workflow guidance for the WEPPY Roblox AI Toolkit",
+    "version": "2.11.1"
   },
   "plugins": [
     {
@@ -19,8 +19,8 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Coding",
-      "description": "NovaMCP AI Agent Plugin for Codex.",
-      "version": "2.11.0"
+      "description": "WEPPY AI Agent Plugin for Codex.",
+      "version": "2.11.1"
     }
   ]
 }
