@@ -1,6 +1,6 @@
 {
   "name": "@walynde-arch/novamcp",
-  "version": "2.11.0",
+  "version": "2.11.3",
   "displayName": "NovaMCP",
   "description": "NovaMCP — Roblox Studio MCP server (fork of @weppy/roblox-mcp with PRO patches and enhancements)",
   "main": "dist/index.js",
